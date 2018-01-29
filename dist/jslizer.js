@@ -1,4 +1,4 @@
-var jslizer =
+window["jslizer"] =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
