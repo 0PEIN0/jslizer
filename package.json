@@ -26,5 +26,5 @@
   "dependencies": {},
   "deprecated": false,
   "license": "MIT",
-  "main": "./src/index.js"
+  "main": "./dist/index.js"
 }
