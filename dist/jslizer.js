@@ -162,8 +162,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 new _coreFactory2.default();
 
-console.log(77, _coreFactory2.default.objectHelper.isNull(null));
-
 exports.CoreFactory = _coreFactory2.default;
 
 /***/ }),
