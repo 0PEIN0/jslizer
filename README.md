@@ -1,5 +1,5 @@
 # Jslizer Library Project.
 
-[![NPM version][npm-version-image]][npm-url]
-[![MIT License][license-image]][license-url]
-[![Build Status][travis-image]][travis-url]
+[![npm version](https://badge.fury.io/js/jslizer.svg)](https://badge.fury.io/js/jslizer)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
