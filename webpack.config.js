@@ -15,7 +15,9 @@ const config = {
         path: distDir,
         publicPath: '/',
         sourceMapFilename: 'jslizer.map',
-        library: 'jslizer'
+        library: 'jslizer',
+        libraryTarget: 'umd',
+        umdNamedDefine: true
     },
     module: {
         loaders: [{
