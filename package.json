@@ -15,8 +15,8 @@
     "clean": "rimraf dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --progress --colors --watch",
-    "build": "WEBPACK_ENV=development npm run clean && webpack",
-    "build_production": "WEBPACK_ENV=production npm run clean && webpack",
+    "build": "export WEBPACK_ENV=development && npm run clean && webpack",
+    "build_production": "export WEBPACK_ENV=production && npm run clean && webpack",
     "watch": " ./node_modules/webpack/bin/webpack.js --progress --colors --watch"
   },
   "devDependencies": {
