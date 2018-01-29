@@ -15,8 +15,7 @@ const config = {
         path: distDir,
         publicPath: '/',
         sourceMapFilename: 'jslizer.map',
-        library: 'jslizer',
-        libraryTarget: 'window'
+        library: 'jslizer'
     },
     module: {
         loaders: [{
