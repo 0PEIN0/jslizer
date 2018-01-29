@@ -1,6 +1,6 @@
 import SystemSettings from './system-settings';
 import ObjectHelper from './../utils/object-helper';
-import JsLizerConfig from './../jslizer/jslizer-config';
+import JsLizerConfig from './../jslizer/config';
 import StorageHandler from './../utils/storage-handler';
 
 class CoreFactory {
