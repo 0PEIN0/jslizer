@@ -75,352 +75,542 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__system_settings__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_object_helper__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__jslizer_config__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_storage_handler__ = __webpack_require__(7);
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _systemSettings = __webpack_require__(2);
 
-class CoreFactory {
+var _systemSettings2 = _interopRequireDefault(_systemSettings);
 
-    constructor() {
+var _objectHelper = __webpack_require__(5);
+
+var _objectHelper2 = _interopRequireDefault(_objectHelper);
+
+var _config = __webpack_require__(6);
+
+var _config2 = _interopRequireDefault(_config);
+
+var _storageHandler = __webpack_require__(7);
+
+var _storageHandler2 = _interopRequireDefault(_storageHandler);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var CoreFactory = function () {
+    function CoreFactory() {
+        _classCallCheck(this, CoreFactory);
+
         this.generateInstances();
     }
 
-    generateInstances() {
-        var objectHelper;
-        if (CoreFactory.objectHelper === null || JSON.stringify(CoreFactory.objectHelper) === 'null' || JSON.stringify(CoreFactory.objectHelper) === 'undefined' || typeof (CoreFactory.objectHelper) === 'undefined') {
-            objectHelper = new __WEBPACK_IMPORTED_MODULE_1__utils_object_helper__["a" /* default */]();
-        } else {
-            objectHelper = CoreFactory.objectHelper;
+    _createClass(CoreFactory, [{
+        key: 'generateInstances',
+        value: function generateInstances() {
+            var objectHelper;
+            if (CoreFactory.objectHelper === null || JSON.stringify(CoreFactory.objectHelper) === 'null' || JSON.stringify(CoreFactory.objectHelper) === 'undefined' || typeof CoreFactory.objectHelper === 'undefined') {
+                objectHelper = new _objectHelper2.default();
+            } else {
+                objectHelper = CoreFactory.objectHelper;
+            }
+            if (objectHelper.isNull(this.systemSettings)) {
+                this.systemSettings = CoreFactory.systemSettings = new _systemSettings2.default();
+            }
+            if (objectHelper.isNull(this.objectHelper)) {
+                this.objectHelper = CoreFactory.objectHelper = objectHelper;
+            }
+            if (objectHelper.isNull(this.jsLizerConfig)) {
+                this.jsLizerConfig = CoreFactory.jsLizerConfig = new _config2.default();
+            }
+            if (objectHelper.isNull(this.storageHandler)) {
+                this.storageHandler = CoreFactory.storageHandler = new _storageHandler2.default(this.objectHelper);
+            }
         }
-        if (objectHelper.isNull(this.systemSettings)) {
-            this.systemSettings = CoreFactory.systemSettings = new __WEBPACK_IMPORTED_MODULE_0__system_settings__["a" /* default */]();
-        }
-        if (objectHelper.isNull(this.objectHelper)) {
-            this.objectHelper = CoreFactory.objectHelper = objectHelper;
-        }
-        if (objectHelper.isNull(this.jsLizerConfig)) {
-            this.jsLizerConfig = CoreFactory.jsLizerConfig = new __WEBPACK_IMPORTED_MODULE_2__jslizer_config__["a" /* default */]();
-        }
-        if (objectHelper.isNull(this.storageHandler)) {
-            this.storageHandler = CoreFactory.storageHandler = new __WEBPACK_IMPORTED_MODULE_3__utils_storage_handler__["a" /* default */](this.objectHelper);
-        }
-    }
-}
+    }]);
 
-/* harmony default export */ __webpack_exports__["a"] = (CoreFactory);
+    return CoreFactory;
+}();
+
+exports.default = CoreFactory;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_core_factory__ = __webpack_require__(0);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CoreFactory", function() { return __WEBPACK_IMPORTED_MODULE_0__core_core_factory__["a"]; });
 
 
-new __WEBPACK_IMPORTED_MODULE_0__core_core_factory__["a" /* default */]();
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.CoreFactory = undefined;
 
-console.log(77, __WEBPACK_IMPORTED_MODULE_0__core_core_factory__["a" /* default */].objectHelper.isNull(null));
+var _coreFactory = __webpack_require__(0);
 
+var _coreFactory2 = _interopRequireDefault(_coreFactory);
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+new _coreFactory2.default();
+
+console.log(77, _coreFactory2.default.objectHelper.isNull(null));
+
+exports.CoreFactory = _coreFactory2.default;
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error_custom_exception__ = __webpack_require__(3);
 
 
-class SystemSettings {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-    constructor() {
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _customException = __webpack_require__(3);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var SystemSettings = function () {
+    function SystemSettings() {
+        _classCallCheck(this, SystemSettings);
+
         this.SYSTEM_LANGUAGE = 'en';
         this.SYSTEM_DATE_FORMAT = 'DD-MM-YYYY';
         this.SYSTEM_DATE_TIME_FORMAT = 'DD-MM-YYYY hh:mm';
         this.setEnvironmentRelatedValues();
     }
 
-    setEnvironmentRelatedValues() {
-        if (location.hostname === 'localhost') {
-            this.ENVIRONMENT = 'development';
-            this.ROOT_URL = 'http://' + location.hostname + '/';
-        } else {
-            throw new __WEBPACK_IMPORTED_MODULE_0__error_custom_exception__["a" /* FatalError */]('core_system_settings_1', null);
+    _createClass(SystemSettings, [{
+        key: 'setEnvironmentRelatedValues',
+        value: function setEnvironmentRelatedValues() {
+            if (location.hostname === 'localhost') {
+                this.ENVIRONMENT = 'development';
+                this.ROOT_URL = 'http://' + location.hostname + '/';
+            } else {
+                throw new _customException.FatalError('core_system_settings_1', null);
+            }
+            this.ROOT_API_URL = this.ROOT_URL + 'api/';
         }
-        this.ROOT_API_URL = this.ROOT_URL + 'api/';
-    }
+    }]);
 
-}
+    return SystemSettings;
+}();
 
-/* harmony default export */ __webpack_exports__["a"] = (SystemSettings);
+exports.default = SystemSettings;
 
 /***/ }),
 /* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* unused harmony export ValidationError */
-/* unused harmony export JsLizerError */
-/* unused harmony export DeveloperError */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FatalError; });
-/* unused harmony export FieldError */
-/* unused harmony export MatchError */
-/* unused harmony export ApiResponseError */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error_message__ = __webpack_require__(4);
 
 
-class CustomException extends Error {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.ApiResponseError = exports.MatchError = exports.FieldError = exports.FatalError = exports.DeveloperError = exports.JsLizerError = exports.ValidationError = undefined;
 
-    constructor(customErrorCode, contextData) {
-        super(customErrorCode);
-        this.className = 'CustomException';
-        this.errorTypeDetails = 'Base custom exception class that extends from Error object.';
-        this.messageCode = '';
-        this.customMessage = '';
-        this.contextData = {};
-        this.contextData = contextData;
-        this.messageCode = customErrorCode;
-        this.customMessage = __WEBPACK_IMPORTED_MODULE_0__error_message__["a" /* default */].getErrorMessage(customErrorCode, contextData);
-        console.log('CUSTOM ERROR LOG: ', this);
+var _errorMessage = __webpack_require__(4);
+
+var _errorMessage2 = _interopRequireDefault(_errorMessage);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CustomException = function (_Error) {
+    _inherits(CustomException, _Error);
+
+    function CustomException(customErrorCode, contextData) {
+        _classCallCheck(this, CustomException);
+
+        var _this = _possibleConstructorReturn(this, (CustomException.__proto__ || Object.getPrototypeOf(CustomException)).call(this, customErrorCode));
+
+        _this.className = 'CustomException';
+        _this.errorTypeDetails = 'Base custom exception class that extends from Error object.';
+        _this.messageCode = '';
+        _this.customMessage = '';
+        _this.contextData = {};
+        _this.contextData = contextData;
+        _this.messageCode = customErrorCode;
+        _this.customMessage = _errorMessage2.default.getErrorMessage(customErrorCode, contextData);
+        console.log('CUSTOM ERROR LOG: ', _this);
+        return _this;
     }
 
-}
+    return CustomException;
+}(Error);
 
-class ValidationError extends CustomException {
+var ValidationError = function (_CustomException) {
+    _inherits(ValidationError, _CustomException);
 
-    constructor(customErrorCode, contextData = {}) {
-        super(customErrorCode, contextData);
-        this.className = 'ValidationError';
-        this.errorTypeDetails = 'Throws when custom made validation check is failed in the system.';
+    function ValidationError(customErrorCode) {
+        var contextData = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+        _classCallCheck(this, ValidationError);
+
+        var _this2 = _possibleConstructorReturn(this, (ValidationError.__proto__ || Object.getPrototypeOf(ValidationError)).call(this, customErrorCode, contextData));
+
+        _this2.className = 'ValidationError';
+        _this2.errorTypeDetails = 'Throws when custom made validation check is failed in the system.';
+        return _this2;
     }
 
-}
+    return ValidationError;
+}(CustomException);
 
-class JsLizerError extends CustomException {
+var JsLizerError = function (_CustomException2) {
+    _inherits(JsLizerError, _CustomException2);
 
-    constructor(customErrorCode, contextData = {}) {
-        super(customErrorCode, contextData);
-        this.className = 'JsLizerError';
-        this.errorTypeDetails = 'Exception thrown from Jslizer library that is not fatal.';
+    function JsLizerError(customErrorCode) {
+        var contextData = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+        _classCallCheck(this, JsLizerError);
+
+        var _this3 = _possibleConstructorReturn(this, (JsLizerError.__proto__ || Object.getPrototypeOf(JsLizerError)).call(this, customErrorCode, contextData));
+
+        _this3.className = 'JsLizerError';
+        _this3.errorTypeDetails = 'Exception thrown from Jslizer library that is not fatal.';
+        return _this3;
     }
 
-}
+    return JsLizerError;
+}(CustomException);
 
-class DeveloperError extends CustomException {
+var DeveloperError = function (_CustomException3) {
+    _inherits(DeveloperError, _CustomException3);
 
-    constructor(customErrorCode, contextData = {}) {
-        super(customErrorCode, contextData);
-        this.className = 'DeveloperError';
-        this.errorTypeDetails = 'HIGHER THAN FATAL ERROR. BASICALLY THE DEVELOPER MESSED UP. FIX IMMEDIATELY.';
+    function DeveloperError(customErrorCode) {
+        var contextData = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+        _classCallCheck(this, DeveloperError);
+
+        var _this4 = _possibleConstructorReturn(this, (DeveloperError.__proto__ || Object.getPrototypeOf(DeveloperError)).call(this, customErrorCode, contextData));
+
+        _this4.className = 'DeveloperError';
+        _this4.errorTypeDetails = 'HIGHER THAN FATAL ERROR. BASICALLY THE DEVELOPER MESSED UP. FIX IMMEDIATELY.';
+        return _this4;
     }
 
-}
+    return DeveloperError;
+}(CustomException);
 
-class FatalError extends CustomException {
+var FatalError = function (_CustomException4) {
+    _inherits(FatalError, _CustomException4);
 
-    constructor(customErrorCode, contextData = {}) {
-        super(customErrorCode, contextData);
-        this.className = 'FatalError';
-        this.errorTypeDetails = 'FATAL SYSTEM ERROR. FIX IMMEDIATELY.';
+    function FatalError(customErrorCode) {
+        var contextData = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+        _classCallCheck(this, FatalError);
+
+        var _this5 = _possibleConstructorReturn(this, (FatalError.__proto__ || Object.getPrototypeOf(FatalError)).call(this, customErrorCode, contextData));
+
+        _this5.className = 'FatalError';
+        _this5.errorTypeDetails = 'FATAL SYSTEM ERROR. FIX IMMEDIATELY.';
+        return _this5;
     }
 
-}
+    return FatalError;
+}(CustomException);
 
-class FieldError extends CustomException {
+var FieldError = function (_CustomException5) {
+    _inherits(FieldError, _CustomException5);
 
-    constructor(customErrorCode, contextData = {}) {
-        super(customErrorCode, contextData);
-        this.className = 'FieldError';
-        this.errorTypeDetails = 'Field or attribute error. Probably type check failed.';
+    function FieldError(customErrorCode) {
+        var contextData = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+        _classCallCheck(this, FieldError);
+
+        var _this6 = _possibleConstructorReturn(this, (FieldError.__proto__ || Object.getPrototypeOf(FieldError)).call(this, customErrorCode, contextData));
+
+        _this6.className = 'FieldError';
+        _this6.errorTypeDetails = 'Field or attribute error. Probably type check failed.';
+        return _this6;
     }
 
-}
+    return FieldError;
+}(CustomException);
 
-class MatchError extends CustomException {
+var MatchError = function (_CustomException6) {
+    _inherits(MatchError, _CustomException6);
 
-    constructor(customErrorCode, contextData = {}) {
-        super(customErrorCode, contextData);
-        this.className = 'MatchError';
-        this.errorTypeDetails = 'Expected match error.';
+    function MatchError(customErrorCode) {
+        var contextData = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+        _classCallCheck(this, MatchError);
+
+        var _this7 = _possibleConstructorReturn(this, (MatchError.__proto__ || Object.getPrototypeOf(MatchError)).call(this, customErrorCode, contextData));
+
+        _this7.className = 'MatchError';
+        _this7.errorTypeDetails = 'Expected match error.';
+        return _this7;
     }
 
-}
+    return MatchError;
+}(CustomException);
 
-class ApiResponseError extends CustomException {
+var ApiResponseError = function (_CustomException7) {
+    _inherits(ApiResponseError, _CustomException7);
 
-    constructor(customErrorCode, contextData = {}) {
-        super(customErrorCode, contextData);
-        this.className = 'ApiResponseError';
-        this.errorTypeDetails = '';
-        this.errorTypeDetails = 'Error occured in api response or the response object processing.';
+    function ApiResponseError(customErrorCode) {
+        var contextData = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+        _classCallCheck(this, ApiResponseError);
+
+        var _this8 = _possibleConstructorReturn(this, (ApiResponseError.__proto__ || Object.getPrototypeOf(ApiResponseError)).call(this, customErrorCode, contextData));
+
+        _this8.className = 'ApiResponseError';
+        _this8.errorTypeDetails = '';
+        _this8.errorTypeDetails = 'Error occured in api response or the response object processing.';
+        return _this8;
     }
 
-}
+    return ApiResponseError;
+}(CustomException);
 
-
+exports.ValidationError = ValidationError;
+exports.JsLizerError = JsLizerError;
+exports.DeveloperError = DeveloperError;
+exports.FatalError = FatalError;
+exports.FieldError = FieldError;
+exports.MatchError = MatchError;
+exports.ApiResponseError = ApiResponseError;
 
 /***/ }),
 /* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_core_factory__ = __webpack_require__(0);
 
 
-class ErrorMessage {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-    constructor() {
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _coreFactory = __webpack_require__(0);
+
+var _coreFactory2 = _interopRequireDefault(_coreFactory);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var ErrorMessage = function () {
+    function ErrorMessage() {
+        _classCallCheck(this, ErrorMessage);
+
         this.loadMessages();
     }
 
-    loadMessages() {
-        var keyList;
-        this.MESSAGES = {};
-        keyList = Object.getOwnPropertyNames(this);
-        for (let i = 0; i < keyList.length; i++) {
-            for (let key in this[keyList[i]]) {
-                this.MESSAGES[key] = this[keyList[i]][key];
-            }
-        }
-    }
-
-    getErrorMessage(customErrorCode, contextData) {
-        var currentLanguage, message, patternString;
-        currentLanguage = __WEBPACK_IMPORTED_MODULE_0__core_core_factory__["a" /* default */].systemSettings.SYSTEM_LANGUAGE;
-        message = this.MESSAGES[customErrorCode][currentLanguage];
-        if (__WEBPACK_IMPORTED_MODULE_0__core_core_factory__["a" /* default */].objectHelper.isNotNull(contextData, null)) {
-            for (let key in contextData) {
-                patternString = '{{' + key + '}}';
-                while (message.indexOf(patternString) != -1) {
-                    message = message.replace(patternString, contextData[key]);
+    _createClass(ErrorMessage, [{
+        key: 'loadMessages',
+        value: function loadMessages() {
+            var keyList;
+            this.MESSAGES = {};
+            keyList = Object.getOwnPropertyNames(this);
+            for (var i = 0; i < keyList.length; i++) {
+                for (var key in this[keyList[i]]) {
+                    this.MESSAGES[key] = this[keyList[i]][key];
                 }
             }
         }
-        return message;
-    }
+    }, {
+        key: 'getErrorMessage',
+        value: function getErrorMessage(customErrorCode, contextData) {
+            var currentLanguage, message, patternString;
+            currentLanguage = _coreFactory2.default.systemSettings.SYSTEM_LANGUAGE;
+            message = this.MESSAGES[customErrorCode][currentLanguage];
+            if (_coreFactory2.default.objectHelper.isNotNull(contextData, null)) {
+                for (var key in contextData) {
+                    patternString = '{{' + key + '}}';
+                    while (message.indexOf(patternString) != -1) {
+                        message = message.replace(patternString, contextData[key]);
+                    }
+                }
+            }
+            return message;
+        }
+    }]);
 
-}
+    return ErrorMessage;
+}();
 
-/* harmony default export */ __webpack_exports__["a"] = (ErrorMessage);
+exports.default = ErrorMessage;
 
 /***/ }),
 /* 5 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-class ObjectHelper {
 
-    constructor() {}
 
-    isNull( obj, property = null ) {
-        if ( property === null || JSON.stringify( property ) === 'null' || JSON.stringify( property ) === 'undefined' || typeof ( property ) === 'undefined' ) {
-            if ( obj === null || JSON.stringify( obj ) === 'null' || JSON.stringify( obj ) === 'undefined' || typeof ( obj ) === 'undefined' ) {
-                return true;
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var ObjectHelper = function () {
+    function ObjectHelper() {
+        _classCallCheck(this, ObjectHelper);
+    }
+
+    _createClass(ObjectHelper, [{
+        key: 'isNull',
+        value: function isNull(obj) {
+            var property = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+            if (property === null || JSON.stringify(property) === 'null' || JSON.stringify(property) === 'undefined' || typeof property === 'undefined') {
+                if (obj === null || JSON.stringify(obj) === 'null' || JSON.stringify(obj) === 'undefined' || typeof obj === 'undefined') {
+                    return true;
+                }
+                return false;
+            } else {
+                if (obj === null || JSON.stringify(obj) === 'null' || JSON.stringify(obj) === 'undefined' || typeof obj === 'undefined') {
+                    return true;
+                }
+                if (obj[property] === null || JSON.stringify(obj[property]) === 'null' || JSON.stringify(obj[property]) === 'undefined' || typeof obj[property] === 'undefined') {
+                    return true;
+                }
+                return false;
             }
-            return false;
-        } else {
-            if ( obj === null || JSON.stringify( obj ) === 'null' || JSON.stringify( obj ) === 'undefined' || typeof ( obj ) === 'undefined' ) {
-                return true;
-            }
-            if ( obj[ property ] === null || JSON.stringify( obj[ property ] ) === 'null' || JSON.stringify( obj[ property ] ) === 'undefined' || typeof ( obj[ property ] ) === 'undefined' ) {
-                return true;
-            }
-            return false;
         }
-    }
+    }, {
+        key: 'isNotNull',
+        value: function isNotNull(obj) {
+            var property = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
-    isNotNull( obj, property = null ) {
-        return !this.isNull( obj, property );
-    }
-
-    extractFromDef( def ) {
-        var res, key;
-        res = {};
-        for ( key in def ) {
-            res[ key ] = def[ key ].value;
+            return !this.isNull(obj, property);
         }
-        return res;
-    }
-}
+    }, {
+        key: 'extractFromDef',
+        value: function extractFromDef(def) {
+            var res, key;
+            res = {};
+            for (key in def) {
+                res[key] = def[key].value;
+            }
+            return res;
+        }
+    }]);
 
-/* harmony default export */ __webpack_exports__["a"] = (ObjectHelper);
+    return ObjectHelper;
+}();
+
+exports.default = ObjectHelper;
 
 /***/ }),
 /* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-class JsLizerConfig {
 
-    constructor() {
-        this.FIELD_CHILD = 'child';
-        this.FIELD_TYPE = 'type';
-        this.FIELD_OBJECT = 'obj';
-        this.FIELD_ARRAY = 'arr';
-        this.FIELD_STRING = 'str';
-        this.FIELD_INTEGER = 'int';
-        this.FIELD_DATE = 'date';
-        this.FIELD_DECIMAL = 'float';
-        this.FIELD_NULL = 'null';
-        this.FIELD_REQUIRED = 'required';
-        this.FIELD_MAX_LENGTH = 'max';
-        this.FIELD_MIN_LENGTH = 'min';
-        this.ROOT_OBJECT_NAME = '__ROOT_OBJECT__';
-        this.STRING_MAX_LENGTH = 128;
-        this.STRING_MIN_LENGTH = 1;
-        this.GLOBAL_REQUIRED = true;
-        this.GLOBAL_NULL_VALUE = false;
-    }
-}
 
-/* harmony default export */ __webpack_exports__["a"] = (JsLizerConfig);
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var JsLizerConfig = function JsLizerConfig() {
+    _classCallCheck(this, JsLizerConfig);
+
+    this.FIELD_CHILD = 'child';
+    this.FIELD_TYPE = 'type';
+    this.FIELD_OBJECT = 'obj';
+    this.FIELD_ARRAY = 'arr';
+    this.FIELD_STRING = 'str';
+    this.FIELD_INTEGER = 'int';
+    this.FIELD_DATE = 'date';
+    this.FIELD_DECIMAL = 'float';
+    this.FIELD_NULL = 'null';
+    this.FIELD_REQUIRED = 'required';
+    this.FIELD_MAX_LENGTH = 'max';
+    this.FIELD_MIN_LENGTH = 'min';
+    this.ROOT_OBJECT_NAME = '__ROOT_OBJECT__';
+    this.STRING_MAX_LENGTH = 128;
+    this.STRING_MIN_LENGTH = 1;
+    this.GLOBAL_REQUIRED = true;
+    this.GLOBAL_NULL_VALUE = false;
+};
+
+exports.default = JsLizerConfig;
 
 /***/ }),
 /* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-class StorageHandler {
 
-    constructor(objectHelper) {
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var StorageHandler = function () {
+    function StorageHandler(objectHelper) {
+        _classCallCheck(this, StorageHandler);
+
         this.objectHelper = objectHelper;
         this.temporaryStorageKey = 'storeTemp';
     }
 
-    getValue(key) {
-        if (this.objectHelper.isNotNull(window.sessionStorage, key)) {
-            return window.sessionStorage[key];
+    _createClass(StorageHandler, [{
+        key: 'getValue',
+        value: function getValue(key) {
+            if (this.objectHelper.isNotNull(window.sessionStorage, key)) {
+                return window.sessionStorage[key];
+            }
+            return window.localStorage[key];
         }
-        return window.localStorage[key];
-    }
-
-    setValue(key, value) {
-        if (this.objectHelper.isNotNull(window.sessionStorage, this.temporaryStorageKey)) {
-            window.sessionStorage[key] = value;
-        } else {
-            window.localStorage[key] = value;
+    }, {
+        key: 'setValue',
+        value: function setValue(key, value) {
+            if (this.objectHelper.isNotNull(window.sessionStorage, this.temporaryStorageKey)) {
+                window.sessionStorage[key] = value;
+            } else {
+                window.localStorage[key] = value;
+            }
         }
-    }
+    }, {
+        key: 'destroyValue',
+        value: function destroyValue(key) {
+            window.localStorage.removeItem(key);
+            window.sessionStorage.removeItem(key);
+        }
+    }]);
 
-    destroyValue(key) {
-        window.localStorage.removeItem(key);
-        window.sessionStorage.removeItem(key);
-    }
+    return StorageHandler;
+}();
 
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (StorageHandler);
+exports.default = StorageHandler;
 
 /***/ })
 /******/ ]);
 });
+//# sourceMappingURL=jslizer.map

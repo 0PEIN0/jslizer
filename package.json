@@ -1,6 +1,6 @@
 {
   "name": "jslizer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Jslizer Library Project.",
   "repository": {
     "type": "git",
@@ -14,11 +14,28 @@
   "scripts": {
     "clean": "rimraf dist",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --colors",
-    "build": "npm run clean && webpack",
-    "watch": " ./node_modules/webpack/bin/webpack.js --watch"
+    "start": "webpack-dev-server --progress --colors --watch",
+    "build": "WEBPACK_ENV=development npm run clean && webpack",
+    "build_production": "WEBPACK_ENV=production npm run clean && webpack",
+    "watch": " ./node_modules/webpack/bin/webpack.js --progress --colors --watch"
   },
   "devDependencies": {
+    "babel-core": "*",
+    "babel-eslint": "*",
+    "babel-loader": "*",
+    "babel-preset-es2015": "*",
+    "babel-plugin-add-module-exports": "*",
+    "chai": "*",
+    "eslint": "*",
+    "eslint-loader": "*",
+    "eslint-config-defaults": "*",
+    "eslint-config-standard": "*",
+    "eslint-plugin-babel": "*",
+    "eslint-plugin-import": "*",
+    "eslint-plugin-node": "*",
+    "eslint-plugin-promise": "*",
+    "eslint-plugin-standard": "*",
+    "mocha": "*",
     "webpack": "*",
     "webpack-dev-server": "*"
   },
