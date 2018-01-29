@@ -1,14 +1,5 @@
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define("jslizer", [], factory);
-	else if(typeof exports === 'object')
-		exports["jslizer"] = factory();
-	else
-		root["jslizer"] = factory();
-})(typeof self !== 'undefined' ? self : this, function() {
-return /******/ (function(modules) { // webpackBootstrap
+var jslizer =
+/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -612,5 +603,4 @@ exports.default = StorageHandler;
 
 /***/ })
 /******/ ]);
-});
 //# sourceMappingURL=jslizer.map
