@@ -11,6 +11,8 @@ module.exports = {
         filename: 'jslizer.js',
         path: distDir,
         publicPath: '/',
-        sourceMapFilename: 'jslizer.map'
+        sourceMapFilename: 'jslizer.map',
+        library: 'jslizer',
+        libraryTarget: 'var'
     }
 };
