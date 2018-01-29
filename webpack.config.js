@@ -13,6 +13,7 @@ module.exports = {
         publicPath: '/',
         sourceMapFilename: 'jslizer.map',
         library: 'jslizer',
-        libraryTarget: 'var'
+        libraryTarget: 'umd',
+        umdNamedDefine: true
     }
 };
