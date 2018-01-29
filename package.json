@@ -1,0 +1,30 @@
+{
+  "name": "jslizer",
+  "version": "1.0.1",
+  "description": "Jslizer Library Project.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:0PEIN0/jslizer.git"
+  },
+  "author": "S. M. Ijaz-ul-Amin Chowdhury <cetazo@outlook.com>",
+  "engines": {
+    "node": "*",
+    "npm": "*"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --colors",
+    "build": "npm run clean && webpack",
+    "watch": " ./node_modules/webpack/bin/webpack.js --watch"
+  },
+  "devDependencies": {
+    "webpack": "*",
+    "webpack-dev-server": "*",
+    "html-webpack-plugin": "*"
+  },
+  "dependencies": {},
+  "deprecated": false,
+  "license": "MIT",
+  "main": "./src/index.js"
+}
