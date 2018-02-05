@@ -20,9 +20,9 @@ class SystemSettings {
     }
 
     setEnvironmentRelatedValues() {
-        if (location.hostname === 'localhost') {
+        if (this.LOCAL_API_SERVER_DOMAIN_LIST.indexOf(location.hostname) !== -1) {
             this.ENVIRONMENT = 'development';
-            this.ROOT_URL = 'http://' + location.hostname + '/';
+            this.ROOT_URL = this.LOCAL_API_SERVER_ADDRESS_LIST[this.LOCAL_API_SERVER_DOMAIN_LIST.indexOf(location.hostname)];
         } else {
             throw new FatalError('core_system_settings_1', null);
         }
