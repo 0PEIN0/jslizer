@@ -2,32 +2,43 @@ class ObjectHelper {
 
     constructor() {}
 
-    isNull( obj, property = null ) {
-        if ( property === null || JSON.stringify( property ) === 'null' || JSON.stringify( property ) === 'undefined' || typeof ( property ) === 'undefined' ) {
-            if ( obj === null || JSON.stringify( obj ) === 'null' || JSON.stringify( obj ) === 'undefined' || typeof ( obj ) === 'undefined' ) {
+    isNull(obj, property = null) {
+        if (property === null || typeof(property) === 'undefined') {
+            if (obj === null || typeof(obj) === 'undefined') {
                 return true;
             }
             return false;
         } else {
-            if ( obj === null || JSON.stringify( obj ) === 'null' || JSON.stringify( obj ) === 'undefined' || typeof ( obj ) === 'undefined' ) {
+            if (obj === null || typeof(obj) === 'undefined') {
                 return true;
             }
-            if ( obj[ property ] === null || JSON.stringify( obj[ property ] ) === 'null' || JSON.stringify( obj[ property ] ) === 'undefined' || typeof ( obj[ property ] ) === 'undefined' ) {
+            if (obj[property] === null || typeof(obj[property]) === 'undefined') {
                 return true;
             }
             return false;
         }
     }
 
-    isNotNull( obj, property = null ) {
-        return !this.isNull( obj, property );
+    isNotNull(obj, property = null) {
+        return !this.isNull(obj, property);
     }
 
-    extractFromDef( def ) {
+    isEmpty(stringValue) {
+        if (stringValue === '') {
+            return true;
+        }
+        return false;
+    }
+
+    isNotEmpty(stringValue) {
+        return !this.isEmpty(stringValue);
+    }
+
+    extractFromDef(def) {
         var res, key;
         res = {};
-        for ( key in def ) {
-            res[ key ] = def[ key ].value;
+        for (key in def) {
+            res[key] = def[key].value;
         }
         return res;
     }

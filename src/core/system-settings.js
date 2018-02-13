@@ -15,7 +15,8 @@ class SystemSettings {
         this.SYSTEM_DEFAULT_SERVICE_DATA_OBJECT_KEY = 'data';
         this.SYSTEM_DEFAULT_API_ERROR_MESSAGE_ID = 'core_system_settings_2';
         this.LOCAL_API_SERVER_DOMAIN_LIST = ['localhost'];
-        this.LOCAL_API_SERVER_ADDRESS_LIST = ['http://localhost/'];
+        this.LOCAL_API_SERVER_ADDRESS_LIST = ['http://localhost:8000/'];
+        this.API_PREFIX_PATH = 'api/';
         this.setEnvironmentRelatedValues();
     }
 
@@ -24,9 +25,10 @@ class SystemSettings {
             this.ENVIRONMENT = 'development';
             this.ROOT_URL = this.LOCAL_API_SERVER_ADDRESS_LIST[this.LOCAL_API_SERVER_DOMAIN_LIST.indexOf(location.hostname)];
         } else {
-            throw new FatalError('core_system_settings_1', null);
+            //TODO: coreFactory was not passed in the custom error class instantiation
+            throw new FatalError('core_system_settings_1');
         }
-        this.ROOT_API_URL = this.ROOT_URL + 'api/';
+        this.ROOT_API_URL = this.ROOT_URL + this.API_PREFIX_PATH;
     }
 
 }
