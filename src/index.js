@@ -1,7 +1,15 @@
-import CoreFactory from './core/core-factory';
+// import CoreFactory from './core/core-factory';
+//
+// new CoreFactory();
+//
+// export {
+//     CoreFactory
+// };
 
-new CoreFactory();
+var jslizer;
 
-export {
-    CoreFactory
+jslizer = {
+    'val': 42
 };
+
+export default jslizer;

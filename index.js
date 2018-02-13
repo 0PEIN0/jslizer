@@ -4,6 +4,4 @@ jslizer = {
     'val': 42
 };
 
-export {
-    jslizer
-};
+export default jslizer;
