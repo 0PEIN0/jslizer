@@ -38,7 +38,9 @@
     "webpack": "*",
     "webpack-dev-server": "*"
   },
-  "dependencies": {},
+  "dependencies": {
+    "rxjs": "^5.5.6"
+  },
   "deprecated": false,
   "license": "MIT",
   "main": "./dist/index.js"
