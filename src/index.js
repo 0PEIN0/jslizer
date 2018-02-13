@@ -1,9 +1,12 @@
 import CoreFactory from './core/core-factory';
 
-var jslizer;
+var jslizer, coreFactory;
+
+coreFactory = new CoreFactory();
 
 jslizer = {
-    'CoreFactory': CoreFactory
+    'CoreFactory': CoreFactory,
+    'coreFactory': coreFactory
 };
 
 export default jslizer;
