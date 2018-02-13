@@ -1,10 +1,10 @@
 import SystemSettings from './system-settings';
-import ObjectHelper from './object-helper';
-import JsLizerConfig from './jslizer-config';
-import JsLizerExecutor from './jslizer';
-import StorageHandler from './storage-handler';
-import ErrorMessage from './error-message'
-import ApiResponseService from './api-response-service';
+import ObjectHelper from './../utils/object-helper';
+import JsLizerConfig from './../jslizer/config';
+import JsLizerExecutor from './../jslizer/executor';
+import StorageHandler from './../utils/storage-handler';
+import ErrorMessage from './../error/error-message'
+import ApiResponseService from './../api/api-response-service';
 import {
     ValidationError,
     JsLizerError,
@@ -13,7 +13,7 @@ import {
     FieldError,
     MatchError,
     ApiResponseError
-} from './custom-exception';
+} from './../error/custom-exception';
 
 class CoreFactory {
 
