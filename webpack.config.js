@@ -33,7 +33,7 @@ function loadProductionPlugins(plugins) {
 
 function getDefaultConfig() {
     return {
-        entry: './src/index.js',
+        entry: './index.js',
         devtool: 'source-map',
         output: {
             filename: 'jslizer.js',

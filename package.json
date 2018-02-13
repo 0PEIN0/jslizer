@@ -43,5 +43,5 @@
   },
   "deprecated": false,
   "license": "MIT",
-  "main": "./dist/index.js"
+  "main": "./dist/jslizer.min.js"
 }

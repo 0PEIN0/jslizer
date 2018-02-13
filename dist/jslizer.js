@@ -363,27 +363,24 @@ exports.ApiResponseError = ApiResponseError;
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_core_core_factory__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_core_core_factory___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__src_core_core_factory__);
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.CoreFactory = undefined;
+var jslizer, coreFactory;
 
-var _coreFactory = __webpack_require__(0);
+coreFactory = new __WEBPACK_IMPORTED_MODULE_0__src_core_core_factory___default.a();
 
-var _coreFactory2 = _interopRequireDefault(_coreFactory);
+jslizer = {
+    'CoreFactory': __WEBPACK_IMPORTED_MODULE_0__src_core_core_factory___default.a,
+    'coreFactory': coreFactory
+};
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//import coreFactory as angularCoreFactory from './angular/index'
-
-new _coreFactory2.default();
-
-exports.CoreFactory = _coreFactory2.default;
+/* harmony default export */ __webpack_exports__["default"] = (jslizer);
 
 /***/ }),
 /* 3 */
