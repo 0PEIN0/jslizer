@@ -27319,7 +27319,6 @@ exports.default = BaseAngularController;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.angularCoreFactory = undefined;
 
 var _coreFactory = __webpack_require__(12);
 
@@ -27331,7 +27330,9 @@ var angularCoreFactory = function angularCoreFactory() {
     return angular.module('core.coreFactory', []).service('coreFactory', _coreFactory2.default).name;
 };
 
-exports.angularCoreFactory = angularCoreFactory;
+console.log(55, angularCoreFactory);
+
+exports.default = angularCoreFactory;
 
 /***/ })
 /******/ ]);
