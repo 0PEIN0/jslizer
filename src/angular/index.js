@@ -6,6 +6,4 @@ let angularCoreFactory = () => {
         .name;
 }
 
-console.log(55, angularCoreFactory);
-
 export default angularCoreFactory;

@@ -27330,8 +27330,6 @@ var angularCoreFactory = function angularCoreFactory() {
     return angular.module('core.coreFactory', []).service('coreFactory', _coreFactory2.default).name;
 };
 
-console.log(55, angularCoreFactory);
-
 exports.default = angularCoreFactory;
 
 /***/ })
