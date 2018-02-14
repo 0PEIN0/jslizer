@@ -6,6 +6,7 @@ class ErrorMessage {
         this.objectHelper = objectHelper;
         this.systemSettings = systemSettings;
         this._loadCoreMessages();
+        console.log(111115, 'ErrorMessage constructor called.');
     }
 
     _loadCoreMessages() {
