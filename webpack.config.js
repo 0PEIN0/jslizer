@@ -65,5 +65,5 @@ minConfig.output.sourceMapFilename = 'jslizer.min.map';
 config.plugins = loadDefaultPlugins();
 minConfig.plugins = loadDefaultPlugins();
 minConfig.plugins = loadProductionPlugins(minConfig.plugins);
-
+//TODO: add `minConfig` variable in the array below after the bugs are resolved.
 module.exports = [config];
