@@ -1,5 +1,5 @@
-import CoreFactory from './core-factory';
-import BaseApiService from './base-api-service'
+import CoreFactory from './../core/core-factory';
+import BaseApiService from './../base/base-api-service'
 
 class BaseAngularApiService extends BaseApiService {
 
