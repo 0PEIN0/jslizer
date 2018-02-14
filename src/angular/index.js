@@ -1,9 +1,10 @@
-import CoreFactory from './core/core-factory';
+import CoreFactory from './../core/core-factory';
 
-var angularCoreFactory = () =>
+var angularCoreFactory = () => {
     return angular.module('core.coreFactory', [])
         .service('coreFactory', CoreFactory)
         .name;
+}
 
 export {
     angularCoreFactory

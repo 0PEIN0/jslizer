@@ -1290,6 +1290,119 @@ exports.isArray = Array.isArray || (function (x) { return x && typeof x.length =
 
 "use strict";
 
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _systemSettings = __webpack_require__(167);
+
+var _systemSettings2 = _interopRequireDefault(_systemSettings);
+
+var _objectHelper = __webpack_require__(168);
+
+var _objectHelper2 = _interopRequireDefault(_objectHelper);
+
+var _config = __webpack_require__(169);
+
+var _config2 = _interopRequireDefault(_config);
+
+var _executor = __webpack_require__(170);
+
+var _executor2 = _interopRequireDefault(_executor);
+
+var _storageHandler = __webpack_require__(171);
+
+var _storageHandler2 = _interopRequireDefault(_storageHandler);
+
+var _errorMessage = __webpack_require__(172);
+
+var _errorMessage2 = _interopRequireDefault(_errorMessage);
+
+var _apiResponseService = __webpack_require__(174);
+
+var _apiResponseService2 = _interopRequireDefault(_apiResponseService);
+
+var _customException = __webpack_require__(58);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var CoreFactory = function () {
+    function CoreFactory() {
+        _classCallCheck(this, CoreFactory);
+
+        this.generateInstances();
+    }
+
+    _createClass(CoreFactory, [{
+        key: 'generateInstances',
+        value: function generateInstances() {
+            var objectHelper;
+            if (CoreFactory.objectHelper === null || typeof CoreFactory.objectHelper === 'undefined') {
+                objectHelper = new _objectHelper2.default();
+            } else {
+                objectHelper = CoreFactory.objectHelper;
+            }
+            if (objectHelper.isNull(CoreFactory.systemSettings)) {
+                this.systemSettings = CoreFactory.systemSettings = new _systemSettings2.default();
+            }
+            if (objectHelper.isNull(CoreFactory.objectHelper)) {
+                this.objectHelper = CoreFactory.objectHelper = objectHelper;
+            }
+            if (objectHelper.isNull(CoreFactory.jsLizerConfig)) {
+                this.jsLizerConfig = CoreFactory.jsLizerConfig = new _config2.default();
+            }
+            if (objectHelper.isNull(CoreFactory.storageHandler)) {
+                this.storageHandler = CoreFactory.storageHandler = new _storageHandler2.default(CoreFactory.objectHelper);
+            }
+            if (objectHelper.isNull(CoreFactory.apiResponseService)) {
+                this.apiResponseService = CoreFactory.apiResponseService = new _apiResponseService2.default();
+            }
+            if (objectHelper.isNull(CoreFactory.JsLizerExecutor)) {
+                this.JsLizerExecutor = CoreFactory.JsLizerExecutor = _executor2.default;
+            }
+            if (objectHelper.isNull(CoreFactory.ValidationError)) {
+                this.ValidationError = CoreFactory.ValidationError = _customException.ValidationError;
+            }
+            if (objectHelper.isNull(CoreFactory.JsLizerError)) {
+                this.JsLizerError = CoreFactory.JsLizerError = _customException.JsLizerError;
+            }
+            if (objectHelper.isNull(CoreFactory.DeveloperError)) {
+                this.DeveloperError = CoreFactory.DeveloperError = _customException.DeveloperError;
+            }
+            if (objectHelper.isNull(CoreFactory.FatalError)) {
+                this.FatalError = CoreFactory.FatalError = _customException.FatalError;
+            }
+            if (objectHelper.isNull(CoreFactory.FieldError)) {
+                this.FieldError = CoreFactory.FieldError = _customException.FieldError;
+            }
+            if (objectHelper.isNull(CoreFactory.MatchError)) {
+                this.MatchError = CoreFactory.MatchError = _customException.MatchError;
+            }
+            if (objectHelper.isNull(CoreFactory.ApiResponseError)) {
+                this.ApiResponseError = CoreFactory.ApiResponseError = _customException.ApiResponseError;
+            }
+            if (objectHelper.isNull(CoreFactory.errorMessage)) {
+                this.errorMessage = CoreFactory.errorMessage = new _errorMessage2.default(CoreFactory.objectHelper, CoreFactory.systemSettings, CoreFactory.DeveloperError);
+            }
+        }
+    }]);
+
+    return CoreFactory;
+}();
+
+exports.default = CoreFactory;
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -1297,7 +1410,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var Observable_1 = __webpack_require__(0);
 var ScalarObservable_1 = __webpack_require__(43);
-var EmptyObservable_1 = __webpack_require__(13);
+var EmptyObservable_1 = __webpack_require__(14);
 var isScheduler_1 = __webpack_require__(10);
 /**
  * We need this JSDoc comment for affecting ESDoc.
@@ -1413,7 +1526,7 @@ exports.ArrayObservable = ArrayObservable;
 //# sourceMappingURL=ArrayObservable.js.map
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1498,119 +1611,6 @@ var EmptyObservable = (function (_super) {
 }(Observable_1.Observable));
 exports.EmptyObservable = EmptyObservable;
 //# sourceMappingURL=EmptyObservable.js.map
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _systemSettings = __webpack_require__(167);
-
-var _systemSettings2 = _interopRequireDefault(_systemSettings);
-
-var _objectHelper = __webpack_require__(168);
-
-var _objectHelper2 = _interopRequireDefault(_objectHelper);
-
-var _config = __webpack_require__(169);
-
-var _config2 = _interopRequireDefault(_config);
-
-var _executor = __webpack_require__(170);
-
-var _executor2 = _interopRequireDefault(_executor);
-
-var _storageHandler = __webpack_require__(171);
-
-var _storageHandler2 = _interopRequireDefault(_storageHandler);
-
-var _errorMessage = __webpack_require__(172);
-
-var _errorMessage2 = _interopRequireDefault(_errorMessage);
-
-var _apiResponseService = __webpack_require__(174);
-
-var _apiResponseService2 = _interopRequireDefault(_apiResponseService);
-
-var _customException = __webpack_require__(58);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var CoreFactory = function () {
-    function CoreFactory() {
-        _classCallCheck(this, CoreFactory);
-
-        this.generateInstances();
-    }
-
-    _createClass(CoreFactory, [{
-        key: 'generateInstances',
-        value: function generateInstances() {
-            var objectHelper;
-            if (CoreFactory.objectHelper === null || typeof CoreFactory.objectHelper === 'undefined') {
-                objectHelper = new _objectHelper2.default();
-            } else {
-                objectHelper = CoreFactory.objectHelper;
-            }
-            if (objectHelper.isNull(CoreFactory.systemSettings)) {
-                this.systemSettings = CoreFactory.systemSettings = new _systemSettings2.default();
-            }
-            if (objectHelper.isNull(CoreFactory.objectHelper)) {
-                this.objectHelper = CoreFactory.objectHelper = objectHelper;
-            }
-            if (objectHelper.isNull(CoreFactory.jsLizerConfig)) {
-                this.jsLizerConfig = CoreFactory.jsLizerConfig = new _config2.default();
-            }
-            if (objectHelper.isNull(CoreFactory.storageHandler)) {
-                this.storageHandler = CoreFactory.storageHandler = new _storageHandler2.default(CoreFactory.objectHelper);
-            }
-            if (objectHelper.isNull(CoreFactory.apiResponseService)) {
-                this.apiResponseService = CoreFactory.apiResponseService = new _apiResponseService2.default();
-            }
-            if (objectHelper.isNull(CoreFactory.JsLizerExecutor)) {
-                this.JsLizerExecutor = CoreFactory.JsLizerExecutor = _executor2.default;
-            }
-            if (objectHelper.isNull(CoreFactory.ValidationError)) {
-                this.ValidationError = CoreFactory.ValidationError = _customException.ValidationError;
-            }
-            if (objectHelper.isNull(CoreFactory.JsLizerError)) {
-                this.JsLizerError = CoreFactory.JsLizerError = _customException.JsLizerError;
-            }
-            if (objectHelper.isNull(CoreFactory.DeveloperError)) {
-                this.DeveloperError = CoreFactory.DeveloperError = _customException.DeveloperError;
-            }
-            if (objectHelper.isNull(CoreFactory.FatalError)) {
-                this.FatalError = CoreFactory.FatalError = _customException.FatalError;
-            }
-            if (objectHelper.isNull(CoreFactory.FieldError)) {
-                this.FieldError = CoreFactory.FieldError = _customException.FieldError;
-            }
-            if (objectHelper.isNull(CoreFactory.MatchError)) {
-                this.MatchError = CoreFactory.MatchError = _customException.MatchError;
-            }
-            if (objectHelper.isNull(CoreFactory.ApiResponseError)) {
-                this.ApiResponseError = CoreFactory.ApiResponseError = _customException.ApiResponseError;
-            }
-            if (objectHelper.isNull(CoreFactory.errorMessage)) {
-                this.errorMessage = CoreFactory.errorMessage = new _errorMessage2.default(CoreFactory.objectHelper, CoreFactory.systemSettings, CoreFactory.DeveloperError);
-            }
-        }
-    }]);
-
-    return CoreFactory;
-}();
-
-exports.default = CoreFactory;
 
 /***/ }),
 /* 15 */
@@ -2740,7 +2740,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var ArrayObservable_1 = __webpack_require__(12);
+var ArrayObservable_1 = __webpack_require__(13);
 var isArray_1 = __webpack_require__(11);
 var OuterSubscriber_1 = __webpack_require__(2);
 var subscribeToResult_1 = __webpack_require__(3);
@@ -3073,7 +3073,7 @@ exports.mergeAll = mergeAll;
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var ArrayObservable_1 = __webpack_require__(12);
+var ArrayObservable_1 = __webpack_require__(13);
 var isScheduler_1 = __webpack_require__(10);
 var mergeAll_1 = __webpack_require__(33);
 /* tslint:enable:max-line-length */
@@ -3185,7 +3185,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var ArrayObservable_1 = __webpack_require__(12);
+var ArrayObservable_1 = __webpack_require__(13);
 var isArray_1 = __webpack_require__(11);
 var Subscriber_1 = __webpack_require__(1);
 var OuterSubscriber_1 = __webpack_require__(2);
@@ -3957,7 +3957,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var isArray_1 = __webpack_require__(11);
-var ArrayObservable_1 = __webpack_require__(12);
+var ArrayObservable_1 = __webpack_require__(13);
 var OuterSubscriber_1 = __webpack_require__(2);
 var subscribeToResult_1 = __webpack_require__(3);
 function race() {
@@ -4923,7 +4923,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var Subscriber_1 = __webpack_require__(1);
 var ArgumentOutOfRangeError_1 = __webpack_require__(24);
-var EmptyObservable_1 = __webpack_require__(13);
+var EmptyObservable_1 = __webpack_require__(14);
 /**
  * Emits only the last `count` values emitted by the source Observable.
  *
@@ -5489,7 +5489,7 @@ __webpack_require__(107);
 
 __webpack_require__(80);
 
-var _coreFactory = __webpack_require__(14);
+var _coreFactory = __webpack_require__(12);
 
 var _coreFactory2 = _interopRequireDefault(_coreFactory);
 
@@ -5736,7 +5736,7 @@ exports.isPromise = isPromise;
 
 "use strict";
 
-var ArrayObservable_1 = __webpack_require__(12);
+var ArrayObservable_1 = __webpack_require__(13);
 exports.of = ArrayObservable_1.ArrayObservable.of;
 //# sourceMappingURL=of.js.map
 
@@ -5766,7 +5766,7 @@ var isArrayLike_1 = __webpack_require__(64);
 var isPromise_1 = __webpack_require__(65);
 var PromiseObservable_1 = __webpack_require__(69);
 var IteratorObservable_1 = __webpack_require__(187);
-var ArrayObservable_1 = __webpack_require__(12);
+var ArrayObservable_1 = __webpack_require__(13);
 var ArrayLikeObservable_1 = __webpack_require__(188);
 var iterator_1 = __webpack_require__(16);
 var Observable_1 = __webpack_require__(0);
@@ -11268,7 +11268,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var EmptyObservable_1 = __webpack_require__(13);
+var EmptyObservable_1 = __webpack_require__(14);
 /**
  * Returns an Observable that repeats the stream of items emitted by the source Observable at most count times.
  *
@@ -12479,9 +12479,9 @@ var SkipWhileSubscriber = (function (_super) {
 
 "use strict";
 
-var ArrayObservable_1 = __webpack_require__(12);
+var ArrayObservable_1 = __webpack_require__(13);
 var ScalarObservable_1 = __webpack_require__(43);
-var EmptyObservable_1 = __webpack_require__(13);
+var EmptyObservable_1 = __webpack_require__(14);
 var concat_1 = __webpack_require__(17);
 var isScheduler_1 = __webpack_require__(10);
 /* tslint:enable:max-line-length */
@@ -12797,7 +12797,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var Subscriber_1 = __webpack_require__(1);
 var ArgumentOutOfRangeError_1 = __webpack_require__(24);
-var EmptyObservable_1 = __webpack_require__(13);
+var EmptyObservable_1 = __webpack_require__(14);
 /**
  * Emits only the first `count` values emitted by the source Observable.
  *
@@ -14683,7 +14683,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _coreFactory = __webpack_require__(14);
+var _coreFactory = __webpack_require__(12);
 
 var _coreFactory2 = _interopRequireDefault(_coreFactory);
 
@@ -14879,7 +14879,7 @@ exports.default = BaseController;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_core_core_factory__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_core_core_factory__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_core_core_factory___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__src_core_core_factory__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_base_base_api_service__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_base_base_api_service___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__src_base_base_api_service__);
@@ -14889,6 +14889,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_angular_base_angular_api_service___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__src_angular_base_angular_api_service__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__src_angular_base_angular_controller__ = __webpack_require__(470);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__src_angular_base_angular_controller___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__src_angular_base_angular_controller__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__src_angular_index__ = __webpack_require__(471);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__src_angular_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__src_angular_index__);
+
 
 
 
@@ -14905,7 +14908,8 @@ jslizer = {
     'BaseApiService': __WEBPACK_IMPORTED_MODULE_1__src_base_base_api_service___default.a,
     'BaseController': __WEBPACK_IMPORTED_MODULE_2__src_base_base_controller___default.a,
     'BaseAngularApiService': __WEBPACK_IMPORTED_MODULE_3__src_angular_base_angular_api_service___default.a,
-    'BaseAngularController': __WEBPACK_IMPORTED_MODULE_4__src_angular_base_angular_controller___default.a
+    'BaseAngularController': __WEBPACK_IMPORTED_MODULE_4__src_angular_base_angular_controller___default.a,
+    'angularCoreFactory': __WEBPACK_IMPORTED_MODULE_5__src_angular_index___default.a
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (jslizer);
@@ -15671,7 +15675,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _coreFactory = __webpack_require__(14);
+var _coreFactory = __webpack_require__(12);
 
 var _coreFactory2 = _interopRequireDefault(_coreFactory);
 
@@ -16598,7 +16602,7 @@ Observable_1.Observable.combineLatest = combineLatest_1.combineLatest;
 
 var isScheduler_1 = __webpack_require__(10);
 var isArray_1 = __webpack_require__(11);
-var ArrayObservable_1 = __webpack_require__(12);
+var ArrayObservable_1 = __webpack_require__(13);
 var combineLatest_1 = __webpack_require__(31);
 /* tslint:enable:max-line-length */
 /**
@@ -16967,7 +16971,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var Observable_1 = __webpack_require__(0);
 var ScalarObservable_1 = __webpack_require__(43);
-var EmptyObservable_1 = __webpack_require__(13);
+var EmptyObservable_1 = __webpack_require__(14);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -17173,7 +17177,7 @@ Observable_1.Observable.empty = empty_1.empty;
 
 "use strict";
 
-var EmptyObservable_1 = __webpack_require__(13);
+var EmptyObservable_1 = __webpack_require__(14);
 exports.empty = EmptyObservable_1.EmptyObservable.create;
 //# sourceMappingURL=empty.js.map
 
@@ -17210,7 +17214,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(0);
-var EmptyObservable_1 = __webpack_require__(13);
+var EmptyObservable_1 = __webpack_require__(14);
 var isArray_1 = __webpack_require__(11);
 var subscribeToResult_1 = __webpack_require__(3);
 var OuterSubscriber_1 = __webpack_require__(2);
@@ -27046,7 +27050,7 @@ var _Observable = __webpack_require__(0);
 
 __webpack_require__(71);
 
-var _coreFactory = __webpack_require__(14);
+var _coreFactory = __webpack_require__(12);
 
 var _coreFactory2 = _interopRequireDefault(_coreFactory);
 
@@ -27178,7 +27182,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _coreFactory = __webpack_require__(14);
+var _coreFactory = __webpack_require__(12);
 
 var _coreFactory2 = _interopRequireDefault(_coreFactory);
 
@@ -27235,7 +27239,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _coreFactory = __webpack_require__(14);
+var _coreFactory = __webpack_require__(12);
 
 var _coreFactory2 = _interopRequireDefault(_coreFactory);
 
@@ -27304,6 +27308,30 @@ var BaseAngularController = function (_BaseController) {
 }(_baseController2.default);
 
 exports.default = BaseAngularController;
+
+/***/ }),
+/* 471 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.angularCoreFactory = undefined;
+
+var _coreFactory = __webpack_require__(12);
+
+var _coreFactory2 = _interopRequireDefault(_coreFactory);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var angularCoreFactory = function angularCoreFactory() {
+    return angular.module('core.coreFactory', []).service('coreFactory', _coreFactory2.default).name;
+};
+
+exports.angularCoreFactory = angularCoreFactory;
 
 /***/ })
 /******/ ]);
