@@ -1,11 +1,11 @@
 import CoreFactory from './../core/core-factory';
 
-var angularCoreFactory = () => {
+let angularCoreFactory = () => {
     return angular.module('core.coreFactory', [])
         .service('coreFactory', CoreFactory)
         .name;
 }
 
-export {
-    angularCoreFactory
-};
+console.log(55, angularCoreFactory);
+
+export default angularCoreFactory;
