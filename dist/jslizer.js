@@ -15548,6 +15548,7 @@ var ErrorMessage = function () {
     _createClass(ErrorMessage, [{
         key: '_loadCoreMessages',
         value: function _loadCoreMessages() {
+            console.log(111115, 'loading core');
             this.MESSAGES = _coreMessages2.default;
         }
     }, {

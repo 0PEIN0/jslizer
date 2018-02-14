@@ -9,6 +9,7 @@ class ErrorMessage {
     }
 
     _loadCoreMessages() {
+        console.log(111115, 'loading core');
         this.MESSAGES = CORE_ERROR_MESSAGES;
     }
 
