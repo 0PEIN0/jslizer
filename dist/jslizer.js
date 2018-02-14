@@ -14898,13 +14898,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var jslizer, coreFactory;
-
-coreFactory = new __WEBPACK_IMPORTED_MODULE_0__src_core_core_factory___default.a();
+var jslizer;
 
 jslizer = {
     'CoreFactory': __WEBPACK_IMPORTED_MODULE_0__src_core_core_factory___default.a,
-    'coreFactory': coreFactory,
     'BaseApiService': __WEBPACK_IMPORTED_MODULE_1__src_base_base_api_service___default.a,
     'BaseController': __WEBPACK_IMPORTED_MODULE_2__src_base_base_controller___default.a,
     'BaseAngularApiService': __WEBPACK_IMPORTED_MODULE_3__src_angular_base_angular_api_service___default.a,

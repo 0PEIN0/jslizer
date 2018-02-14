@@ -5,13 +5,10 @@ import BaseAngularApiService from './src/angular/base-angular-api-service';
 import BaseAngularController from './src/angular/base-angular-controller';
 import angularCoreFactory from './src/angular/index';
 
-var jslizer, coreFactory;
-
-coreFactory = new CoreFactory();
+var jslizer;
 
 jslizer = {
     'CoreFactory': CoreFactory,
-    'coreFactory': coreFactory,
     'BaseApiService': BaseApiService,
     'BaseController': BaseController,
     'BaseAngularApiService': BaseAngularApiService,
