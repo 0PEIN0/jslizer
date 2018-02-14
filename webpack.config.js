@@ -66,4 +66,4 @@ config.plugins = loadDefaultPlugins();
 minConfig.plugins = loadDefaultPlugins();
 minConfig.plugins = loadProductionPlugins(minConfig.plugins);
 
-module.exports = [config, minConfig];
+module.exports = [config];
