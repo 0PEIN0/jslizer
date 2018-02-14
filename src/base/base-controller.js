@@ -1,4 +1,4 @@
-import CoreFactory from './core-factory';
+import CoreFactory from './../core/core-factory';
 
 class BaseController {
 
