@@ -15543,7 +15543,6 @@ var ErrorMessage = function () {
         this.objectHelper = objectHelper;
         this.systemSettings = systemSettings;
         this._loadCoreMessages();
-        console.log(111115, 'ErrorMessage constructor called.');
     }
 
     _createClass(ErrorMessage, [{
@@ -15554,10 +15553,12 @@ var ErrorMessage = function () {
     }, {
         key: 'loadProjectMessages',
         value: function loadProjectMessages(projectMessages) {
+            console.log(111115, 'before load', this.MESSAGES, projectMessages);
             for (var key in projectMessages) {
                 this.MESSAGES[key] = {};
                 this.MESSAGES[key] = projectMessages[key];
             }
+            console.log(111116, 'after load', this.MESSAGES, projectMessages);
         }
     }, {
         key: 'getErrorMessage',
@@ -15565,6 +15566,7 @@ var ErrorMessage = function () {
             var currentLanguage, message, patternString;
             currentLanguage = this.systemSettings.SYSTEM_LANGUAGE;
             message = this.MESSAGES[customErrorCode][currentLanguage];
+            console.log(111117, 'fetching message', this.MESSAGES);
             if (this.objectHelper.isNotNull(contextData, null)) {
                 for (var key in contextData) {
                     patternString = '{{' + key + '}}';
