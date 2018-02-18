@@ -14891,6 +14891,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__src_angular_base_angular_controller___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__src_angular_base_angular_controller__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__src_angular_index__ = __webpack_require__(471);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__src_angular_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__src_angular_index__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__src_vue_index__ = __webpack_require__(472);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__src_vue_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__src_vue_index__);
+
 
 
 
@@ -14906,7 +14909,8 @@ jslizer = {
     'BaseController': __WEBPACK_IMPORTED_MODULE_2__src_base_base_controller___default.a,
     'BaseAngularApiService': __WEBPACK_IMPORTED_MODULE_3__src_angular_base_angular_api_service___default.a,
     'BaseAngularController': __WEBPACK_IMPORTED_MODULE_4__src_angular_base_angular_controller___default.a,
-    'angularCoreFactory': __WEBPACK_IMPORTED_MODULE_5__src_angular_index___default.a
+    'angularCoreFactory': __WEBPACK_IMPORTED_MODULE_5__src_angular_index___default.a,
+    'vueCoreFactory': __WEBPACK_IMPORTED_MODULE_6__src_vue_index___default.a
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (jslizer);
@@ -27332,6 +27336,41 @@ var angularCoreFactory = function angularCoreFactory() {
 };
 
 exports.default = angularCoreFactory;
+
+/***/ }),
+/* 472 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _coreFactory = __webpack_require__(12);
+
+var _coreFactory2 = _interopRequireDefault(_coreFactory);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var vueCoreFactory = function vueCoreFactory(Vue, jslizer) {
+    jslizer.coreFactory = new _coreFactory2.default();
+    Vue.use(jslizer);
+    Vue.mixin({
+        // eslint-disable-next-line
+        beforeCreate: function beforeCreate() {
+            var options = this.$options;
+            if (options.jslizer) {
+                this.$jslizer = options.jslizer;
+            } else if (options.parent && options.parent.$jslizer) {
+                this.$jslizer = options.parent.$jslizer;
+            }
+        }
+    });
+};
+
+exports.default = vueCoreFactory;
 
 /***/ })
 /******/ ]);
