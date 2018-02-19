@@ -27362,9 +27362,9 @@ var vueCoreFactory = function vueCoreFactory(Vue, jslizer) {
         beforeCreate: function beforeCreate() {
             var options = this.$options;
             if (options.jslizer) {
-                this.$jslizer = options.jslizer;
-            } else if (options.parent && options.parent.$jslizer) {
-                this.$jslizer = options.parent.$jslizer;
+                this.$coreFactory = options.jslizer.coreFactory;
+            } else if (options.parent && options.parent.$coreFactory) {
+                this.$coreFactory = options.parent.$coreFactory;
             }
         }
     });
