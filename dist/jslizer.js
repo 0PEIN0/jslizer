@@ -14740,6 +14740,7 @@ var BaseController = function () {
             var runDigestCycle = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
             var isServerResponse = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
 
+            params.parentObj[params.errorMessageFieldKey] = null;
             if (_coreFactory2.default.objectHelper.isNotNull(this._apiErrorResponseOperations)) {
                 this._apiErrorResponseOperations(errObj, params, isServerResponse);
             }
@@ -14767,6 +14768,15 @@ var BaseController = function () {
             }
         }
     }, {
+        key: '_processServerErrorResponse',
+        value: function _processServerErrorResponse(params) {
+            var results = {};
+            results[_coreFactory2.default.jsLizerConfig.FIELD_VALUE] = params.payload;
+            results[_coreFactory2.default.jsLizerConfig.FIELD_ERROR] = params.parentObj[params.errorObjFieldKey];
+            results[_coreFactory2.default.jsLizerConfig.FIELD_HAS_ERROR] = true;
+            return results;
+        }
+    }, {
         key: '_bindSubscriber',
         value: function _bindSubscriber(params, promise) {
             var _this = this;
@@ -14784,6 +14794,7 @@ var BaseController = function () {
                 }
             }, function (errObj) {
                 _this._processGenericErrorResponse(errObj, params);
+                cbfn(_this._processServerErrorResponse(params));
             });
         }
     }, {
@@ -14825,7 +14836,7 @@ var BaseController = function () {
 
             var promise;
             params = this._baseParamInitializer(params);
-            promise = params.service.listing();
+            promise = params.service.listing(params.queryObj);
             this._bindSubscriber(params, promise, cbfn);
         }
     }, {
@@ -14863,7 +14874,7 @@ var BaseController = function () {
 
             var promise;
             params = this._baseParamInitializer(params);
-            promise = params.service.delete(params.uuid);
+            promise = params.service.destory(params.uuid);
             this._bindSubscriber(params, promise, cbfn);
         }
     }]);
