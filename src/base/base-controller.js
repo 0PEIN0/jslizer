@@ -41,6 +41,7 @@ class BaseController {
     }
 
     _processGenericErrorResponse(errObj, params, runDigestCycle = true, isServerResponse = true) {
+        params.parentObj[params.errorMessageFieldKey] = null;
         if (CoreFactory.objectHelper.isNotNull(this._apiErrorResponseOperations)) {
             this._apiErrorResponseOperations(errObj, params, isServerResponse);
         }
@@ -67,6 +68,14 @@ class BaseController {
         }
     }
 
+    _processServerErrorResponse(params) {
+        var results = {};
+        results[CoreFactory.jsLizerConfig.FIELD_VALUE] = params.payload;
+        results[CoreFactory.jsLizerConfig.FIELD_ERROR] = params.parentObj[params.errorObjFieldKey];
+        results[CoreFactory.jsLizerConfig.FIELD_HAS_ERROR] = true;
+        return results;
+    }
+
     _bindSubscriber(params, promise, cbfn = null) {
         promise.subscribe(data => {
             params.parentObj[params.successFieldKey] = data.results;
@@ -79,6 +88,7 @@ class BaseController {
             }
         }, errObj => {
             this._processGenericErrorResponse(errObj, params);
+            cbfn(this._processServerErrorResponse(params));
         });
     }
 
@@ -114,7 +124,7 @@ class BaseController {
     callListing(params, cbfn = null) {
         var promise;
         params = this._baseParamInitializer(params);
-        promise = params.service.listing();
+        promise = params.service.listing(params.queryObj);
         this._bindSubscriber(params, promise, cbfn);
     }
 
@@ -143,7 +153,7 @@ class BaseController {
     callDelete(params, cbfn = null) {
         var promise;
         params = this._baseParamInitializer(params);
-        promise = params.service.delete(params.uuid);
+        promise = params.service.destory(params.uuid);
         this._bindSubscriber(params, promise, cbfn);
     }
 }
