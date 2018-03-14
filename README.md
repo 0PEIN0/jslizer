@@ -40,4 +40,4 @@ A library to perform automated form validation, api calls, form error bindings. 
 3. [Angular 1](https://docs.angularjs.org/tutorial) `1.6.6`.
 
 ### Alternative Projects
-1. [Joi](https://github.com/hapijs/joi)
+[Joi](https://github.com/hapijs/joi) by [hapijs](https://github.com/hapijs)
