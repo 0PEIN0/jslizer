@@ -10,13 +10,17 @@ A library to perform automated form validation, api calls, form error bindings. 
 2. Provide `Date` object support in core.
 3. Provide `File` object support in core.
 4. Add success message binding support.
-5. Generate HTML for `Angular 1` along with provided CSS class and in-line CSS definition.
-6. Generate component for `VueJS 2`.
-7. Write test cases while using `Angular 1` framework.
-7. Write test cases while using `VueJS 2` library.
-8. Write ***Jslizer*** library usage documentation for `Angular 1` framework.
-9. Write ***Jslizer*** library usage documentation for `VueJS 2` library.
-10. Support `ReactJS 16.2.0` framework in ***Jslizer*** library.
+5. Add support for auto type conversion.
+6. Add support custom validation method for primitive type properties.
+7. Write ***Jslizer*** library usage documentation for `Angular 1` framework.
+8. Write ***Jslizer*** library usage documentation for `VueJS 2` library.
+9. Add support for schema definition inheritance.
+10. Generate component for `VueJS 2`.
+11. Generate HTML for `Angular 1` along with provided CSS class and in-line CSS definition.
+12. Write test cases while using `Angular 1` framework.
+13. Write test cases while using `VueJS 2` library.
+14. Support `ReactJS 16.2.0` framework in ***Jslizer*** library.
+15. Add support custom validation method for any type of property.
 
 ### Build configs
 1. [Nodejs](https://nodejs.org/dist/latest-v8.x/docs/api/) `8.9.4`.
