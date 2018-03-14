@@ -24,7 +24,7 @@ A library to perform automated form validation, api calls, form error bindings. 
 3. [Webpack](https://webpack.js.org/concepts/configuration/) `3.11.0`.
 4. Build output in **ES5**.
 
-### Supports
+### Currently Supports
 1. Raw javascript code.
 2. [Vue](https://vuejs.org/v2/guide/) `2.5.13`.
 3. [Angular 1](https://docs.angularjs.org/tutorial) `1.6.6`.
