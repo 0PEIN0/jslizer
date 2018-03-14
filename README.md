@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/jslizer.svg)](https://badge.fury.io/js/jslizer)  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-### Overview
+### Project Overview
 A library to perform automated form validation, api calls, form error bindings. All from json definitions. So that those pesky `if/else` checks for a set of data is no longer needed. Currently supports only Angular 1 and VueJS 2 is supported.
 
 ### Next set of project goals
@@ -28,7 +28,7 @@ A library to perform automated form validation, api calls, form error bindings. 
 20. Error and success messages should be configurable from a web panel.
 21. Schema should be browsable in a panel as a object tree.
 
-### Build configs
+### Build Configurations
 1. [Nodejs](https://nodejs.org/dist/latest-v8.x/docs/api/) `8.9.4`.
 2. [NPM](https://docs.npmjs.com/) `5.6.0`.
 3. [Webpack](https://webpack.js.org/concepts/configuration/) `3.11.0`.
@@ -40,4 +40,8 @@ A library to perform automated form validation, api calls, form error bindings. 
 3. [Angular 1](https://docs.angularjs.org/tutorial) `1.6.6`.
 
 ### Alternative Projects
-[Joi](https://github.com/hapijs/joi) by [hapijs](https://github.com/hapijs)
+1. [Joi](https://github.com/hapijs/joi) by [The hapi.js node framework](https://github.com/hapijs/)
+2. [Another JSON Schema Validator](https://github.com/epoberezkin/ajv) by [Evgeny Poberezkin](https://github.com/epoberezkin/)
+3. [jsonschema](https://github.com/tdegrunt/jsonschema) by [Tom de Grunt](https://github.com/tdegrunt/)
+4. [Schema Validation for JavaScript](https://github.com/Nijikokun/Validator) by [Nijiko Yonskai](https://github.com/Nijikokun/)
+5. [validate.js](https://github.com/ansman/validate.js) by [Nicklas Ansman Giertz](https://github.com/ansman/)
