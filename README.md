@@ -7,10 +7,10 @@ A library to perform automated form validation, api calls, form error bindings. 
 
 ### Next set of project goals
 1. Provide different types of form data upload like `application/json`, `multipart/form-data` content-type support.
-2. Provide date object support in core.
-3. Provide file object support in core.
+2. Provide `Date` object support in core.
+3. Provide `File` object support in core.
 4. Add success message binding support.
-5. Generate HTML for `Angular 1` along with provided CSS class and inline CSS definition.
+5. Generate HTML for `Angular 1` along with provided CSS class and in-line CSS definition.
 6. Generate component for `VueJS 2`.
 7. Write test cases while using `Angular 1` framework.
 7. Write test cases while using `VueJS 2` library.
