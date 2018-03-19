@@ -13,6 +13,52 @@ class CustomException extends Error {
         console.log('CUSTOM ERROR LOG: ', this.customMessage);
     }
 
+    _constructGenericErrorObject(exObj) {
+        var res, stack, i, len, newStack, stackLine, methodName, fileLink, fileInfo, fileName, lineNumber, columnNumber;
+        res = {};
+        res.name = exObj.name;
+        res.message = exObj.message;
+        stack = exObj.stack;
+        stack = stack.split("" + String.fromCharCode(10));
+        len = stack.length;
+        newStack = [];
+        for (i = 0; i < len; i++) {
+            stackLine = stack[i];
+            stackLine = stackLine.trim();
+            if (stackLine.indexOf('at ') === 0) {
+                stackLine = stackLine.replace('at ', '');
+            }
+            if (stackLine.indexOf('(') === -1) {
+                methodName = '';
+                fileLink = stackLine;
+            } else {
+                methodName = stackLine.split('(')[0].trim();
+                fileLink = stackLine.split('(')[1].replace(')', '').trim();
+            }
+            fileInfo = fileLink.split('/');
+            fileInfo = fileInfo[fileInfo.length - 1].split(':');
+            fileName = fileInfo[0];
+            lineNumber = parseInt(fileInfo[1]);
+            columnNumber = parseInt(fileInfo[2]);
+            fileLink = fileLink.split(':');
+            fileLink.splice(-2, 2);
+            fileLink = fileLink.join('');
+            stackLine = {
+                'stackLineTrace': stackLine,
+                'methodName': methodName,
+                'fileLink': fileLink,
+                'fileName': fileName,
+                'lineNumber': lineNumber,
+                'columnNumber': columnNumber
+            };
+            if (i > 0) {
+                newStack.push(stackLine);
+            }
+        }
+        res.stack = newStack;
+        console.log(res);
+    }
+
 }
 
 class ValidationError extends CustomException {
