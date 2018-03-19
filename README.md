@@ -10,24 +10,25 @@ A library to perform automated form validation, api calls, form error bindings. 
 2. Provide different types of form data upload like `application/json`, `multipart/form-data` content-type support.
 3. Provide `Date` object support in core.
 4. Provide `File` object support in core.
-5. Add success message binding support.
-6. Add support for auto type conversion.
-7. Add support custom validation method for primitive type properties.
-8. Add support to download files from server.
-9. Write ***Jslizer*** library usage documentation for `Angular 1` framework.
-10. Write ***Jslizer*** library usage documentation for `VueJS 2` library.
-11. Add support for schema definition inheritance. Same validations and properties re-usability, for example: address, phone number etc. And custom error message should be same. It means there should be 1 declaration of definitions and usage extends everywhere else.
-12. Pre-defined schema property definition templates. That means a particular property definition template can be used over and over again by choosing to extend them or not.
-13. Generate component for `VueJS 2`.
-14. Generate HTML for `Angular 1` along with provided CSS class and in-line CSS definition.
-15. Provide pagination support for listing apis.
-16. Write test cases while using `Angular 1` framework.
-17. Write test cases while using `VueJS 2` library.
-18. Support `ReactJS 16.2.0` framework in ***Jslizer*** library.
-19. Write test cases while using `ReactJS 16.2.0` framework.
-20. Add support custom validation method for any type of property.
-21. Error and success messages should be configurable from a web panel.
-22. Schema should be browsable in a panel as a object tree.
+5. Provide `UUID` object support in core.
+6. Add success message binding support.
+7. Add support for auto type conversion.
+8. Add support custom validation method for primitive type properties.
+9. Add support to download files from server.
+10. Write ***Jslizer*** library usage documentation for `Angular 1` framework.
+11. Write ***Jslizer*** library usage documentation for `VueJS 2` library.
+12. Add support for schema definition inheritance. Same validations and properties re-usability, for example: address, phone number etc. And custom error message should be same. It means there should be 1 declaration of definitions and usage extends everywhere else.
+13. Pre-defined schema property definition templates. That means a particular property definition template can be used over and over again by choosing to extend them or not.
+14. Generate component for `VueJS 2`.
+15. Generate HTML for `Angular 1` along with provided CSS class and in-line CSS definition.
+16. Provide pagination support for listing apis.
+17. Write test cases while using `Angular 1` framework.
+18. Write test cases while using `VueJS 2` library.
+19. Support `ReactJS 16.2.0` framework in ***Jslizer*** library.
+20. Write test cases while using `ReactJS 16.2.0` framework.
+21. Add support custom validation method for any type of property.
+22. Error and success messages should be configurable from a web panel.
+23. Schema should be browsable in a panel as a object tree.
 
 ### Build Configurations
 1. [Nodejs](https://nodejs.org/dist/latest-v8.x/docs/api/) `8.9.4`.
