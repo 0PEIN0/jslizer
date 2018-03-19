@@ -20,13 +20,14 @@ A library to perform automated form validation, api calls, form error bindings. 
 12. Pre-defined schema property definition templates. That means a particular property definition template can be used over and over again by choosing to extend them or not.
 13. Generate component for `VueJS 2`.
 14. Generate HTML for `Angular 1` along with provided CSS class and in-line CSS definition.
-15. Write test cases while using `Angular 1` framework.
-16. Write test cases while using `VueJS 2` library.
-17. Support `ReactJS 16.2.0` framework in ***Jslizer*** library.
-18. Write test cases while using `ReactJS 16.2.0` framework.
-19. Add support custom validation method for any type of property.
-20. Error and success messages should be configurable from a web panel.
-21. Schema should be browsable in a panel as a object tree.
+15. Provide pagination support for listing apis.
+16. Write test cases while using `Angular 1` framework.
+17. Write test cases while using `VueJS 2` library.
+18. Support `ReactJS 16.2.0` framework in ***Jslizer*** library.
+19. Write test cases while using `ReactJS 16.2.0` framework.
+20. Add support custom validation method for any type of property.
+21. Error and success messages should be configurable from a web panel.
+22. Schema should be browsable in a panel as a object tree.
 
 ### Build Configurations
 1. [Nodejs](https://nodejs.org/dist/latest-v8.x/docs/api/) `8.9.4`.
