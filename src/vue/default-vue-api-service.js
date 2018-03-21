@@ -7,7 +7,7 @@ class DefaultVueApiService extends BaseApiService {
         super();
         this.loader = loader;
         this.apiModuleUrl = null;
-        this.defaultSchema = {};
+        this.schema = {};
     }
 
     _apiExecutionOperations() {

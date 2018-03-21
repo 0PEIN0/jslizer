@@ -5606,7 +5606,6 @@ var BaseController = function () {
             var isServerResponse = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
             var len, i, customErrorObj;
-            console.log(11111678, errObj, params, isServerResponse);
             if (isServerResponse) {
                 if (_coreFactory2.default.objectHelper.isNotNull(errObj, _coreFactory2.default.jsLizerConfig.FIELD_ERROR)) {
                     customErrorObj = {};
@@ -27487,6 +27486,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _coreFactory = __webpack_require__(10);
 
 var _coreFactory2 = _interopRequireDefault(_coreFactory);
@@ -27521,6 +27522,28 @@ var DefaultVueController = function (_BaseController) {
         _this.service = new _defaultVueApiService2.default(_this.loader);
         return _this;
     }
+
+    _createClass(DefaultVueController, [{
+        key: 'apiErrorResponseOperations',
+        value: function apiErrorResponseOperations(errObj, params) {
+            var isServerResponse = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+
+            var len, i, customErrorObj;
+            console.log(11111678, errObj, params, isServerResponse);
+            if (isServerResponse) {
+                if (_coreFactory2.default.objectHelper.isNotNull(errObj, _coreFactory2.default.jsLizerConfig.FIELD_ERROR)) {
+                    customErrorObj = {};
+                    len = errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR].length;
+                    for (i = 0; i < len; i++) {
+                        customErrorObj[errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR][i].field] = errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR][i].message;
+                    }
+                    params.parentObj[params.errorObjFieldKey] = customErrorObj;
+                }
+            } else {
+                params.parentObj[params.errorObjFieldKey] = errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR];
+            }
+        }
+    }]);
 
     return DefaultVueController;
 }(_baseController2.default);
@@ -27568,7 +27591,7 @@ var DefaultVueApiService = function (_BaseApiService) {
 
         _this.loader = loader;
         _this.apiModuleUrl = null;
-        _this.defaultSchema = {};
+        _this.schema = {};
         return _this;
     }
 
