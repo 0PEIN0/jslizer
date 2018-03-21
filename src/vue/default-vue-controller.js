@@ -7,7 +7,7 @@ class DefaultVueController extends BaseController {
     constructor(loader = null) {
         super();
         this.loader = loader;
-        this.service = new DefaultVueApiService(CoreFactory, this.loader);
+        this.service = new DefaultVueApiService(this.loader);
     }
 
     _apiResponseOperations() {

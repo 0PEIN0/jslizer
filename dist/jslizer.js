@@ -27498,7 +27498,7 @@ var DefaultVueController = function (_BaseController) {
         var _this = _possibleConstructorReturn(this, (DefaultVueController.__proto__ || Object.getPrototypeOf(DefaultVueController)).call(this));
 
         _this.loader = loader;
-        _this.service = new _defaultVueApiService2.default(_coreFactory2.default, _this.loader);
+        _this.service = new _defaultVueApiService2.default(_this.loader);
         return _this;
     }
 
@@ -27568,15 +27568,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var DefaultVueApiService = function (_BaseApiService) {
     _inherits(DefaultVueApiService, _BaseApiService);
 
-    function DefaultVueApiService(coreFactory) {
-        var loader = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    function DefaultVueApiService() {
+        var loader = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
         _classCallCheck(this, DefaultVueApiService);
 
         var _this = _possibleConstructorReturn(this, (DefaultVueApiService.__proto__ || Object.getPrototypeOf(DefaultVueApiService)).call(this));
 
         _this.loader = loader;
-        _this.coreFactory = coreFactory;
         _this.apiModuleUrl = null;
         _this.defaultSchema = {};
         return _this;
