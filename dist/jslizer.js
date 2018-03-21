@@ -5548,6 +5548,7 @@ var BaseController = function () {
             var cbfn = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
             promise.subscribe(function (data) {
+                console.log(1111144, data);
                 params.parentObj[params.successFieldKey] = data.results;
                 if (_coreFactory2.default.objectHelper.isNotNull(_this.apiResponseOperations)) {
                     _this.apiResponseOperations();
@@ -5557,6 +5558,7 @@ var BaseController = function () {
                     cbfn(results);
                 }
             }, function (errObj) {
+                console.log(1111145, errObj);
                 _this._processGenericErrorResponse(errObj, params);
                 cbfn(_this._processServerErrorResponse(params));
             });
@@ -27200,6 +27202,7 @@ var ApiExecutionerService = function () {
                     if (xhr.readyState === 4) {
                         var response = JSON.parse(xhr.response);
                         if (xhr.status === 200 || xhr.status === 201) {
+                            console.log(1111143, response);
                             resolve(response);
                         } else {
                             reject(response);

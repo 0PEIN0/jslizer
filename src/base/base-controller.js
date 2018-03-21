@@ -78,6 +78,7 @@ class BaseController {
 
     _bindSubscriber(params, promise, cbfn = null) {
         promise.subscribe(data => {
+            console.log(1111144, data);
             params.parentObj[params.successFieldKey] = data.results;
             if (CoreFactory.objectHelper.isNotNull(this.apiResponseOperations)) {
                 this.apiResponseOperations();
@@ -87,6 +88,7 @@ class BaseController {
                 cbfn(results);
             }
         }, errObj => {
+            console.log(1111145, errObj);
             this._processGenericErrorResponse(errObj, params);
             cbfn(this._processServerErrorResponse(params));
         });
