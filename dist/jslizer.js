@@ -5553,8 +5553,11 @@ var BaseController = function () {
                 if (_coreFactory2.default.objectHelper.isNotNull(_this.apiResponseOperations)) {
                     _this.apiResponseOperations();
                 }
+                console.log(1111146, data);
                 if (_coreFactory2.default.objectHelper.isNotNull(cbfn)) {
+                    console.log(1111147, data);
                     var results = _coreFactory2.default.apiResponseService.genericHandler(data);
+                    console.log(1111148, results);
                     cbfn(results);
                 }
             }, function (errObj) {
@@ -27202,7 +27205,6 @@ var ApiExecutionerService = function () {
                     if (xhr.readyState === 4) {
                         var response = JSON.parse(xhr.response);
                         if (xhr.status === 200 || xhr.status === 201) {
-                            console.log(1111143, response);
                             resolve(response);
                         } else {
                             reject(response);
