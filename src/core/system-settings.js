@@ -18,6 +18,7 @@ class SystemSettings {
         this.LOCAL_API_SERVER_ADDRESS_LIST = ['http://localhost:8000/'];
         this.API_PREFIX_PATH = 'api/';
         this.API_URL_HAS_TRAILING_SLASH = true;
+        this.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME = 'status_code';
         this.setEnvironmentRelatedValues();
     }
 

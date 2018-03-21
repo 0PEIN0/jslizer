@@ -33,7 +33,8 @@ class ApiResponseService {
         validStatusCodes = [200, 201];
         results = response.results;
         results = this._dataPostProcessing(results);
-        if (validStatusCodes.includes(response.status_code)) {
+        console.log(1111149, results);
+        if (CoreFactory.objectHelper.isNull(response, CoreFactory.systemSettings.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME) || validStatusCodes.includes(response[CoreFactory.systemSettings.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME])) {
             finalResult[CoreFactory.jsLizerConfig.FIELD_RESULTS] = results;
             finalResult[CoreFactory.jsLizerConfig.FIELD_HAS_ERROR] = false;
             return finalResult;
