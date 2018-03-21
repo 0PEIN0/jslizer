@@ -5505,8 +5505,8 @@ var BaseController = function () {
             var isServerResponse = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
 
             params.parentObj[params.errorMessageFieldKey] = null;
-            if (_coreFactory2.default.objectHelper.isNotNull(this._apiErrorResponseOperations)) {
-                this._apiErrorResponseOperations(errObj, params, isServerResponse);
+            if (_coreFactory2.default.objectHelper.isNotNull(this.apiErrorResponseOperations)) {
+                this.apiErrorResponseOperations(errObj, params, isServerResponse);
             }
             if (_coreFactory2.default.objectHelper.isNotNull(errObj, _coreFactory2.default.jsLizerConfig.DEFAULT_ERROR_MESSAGE_KEY)) {
                 params.parentObj[params.errorMessageFieldKey] = errObj[_coreFactory2.default.jsLizerConfig.DEFAULT_ERROR_MESSAGE_KEY];
@@ -5516,8 +5516,8 @@ var BaseController = function () {
                     params.parentObj[params.errorMessageFieldKey] = _coreFactory2.default.errorMessage.getErrorMessage(params.errorId);
                 }
             }
-            if (_coreFactory2.default.objectHelper.isNotNull(this._apiResponseOperations)) {
-                this._apiResponseOperations(runDigestCycle);
+            if (_coreFactory2.default.objectHelper.isNotNull(this.apiResponseOperations)) {
+                this.apiResponseOperations(runDigestCycle);
             }
         }
     }, {
@@ -5549,8 +5549,8 @@ var BaseController = function () {
 
             promise.subscribe(function (data) {
                 params.parentObj[params.successFieldKey] = data.results;
-                if (_coreFactory2.default.objectHelper.isNotNull(_this._apiResponseOperations)) {
-                    _this._apiResponseOperations();
+                if (_coreFactory2.default.objectHelper.isNotNull(_this.apiResponseOperations)) {
+                    _this.apiResponseOperations();
                 }
                 if (_coreFactory2.default.objectHelper.isNotNull(cbfn)) {
                     var results = _coreFactory2.default.apiResponseService.genericHandler(data);
@@ -5582,6 +5582,43 @@ var BaseController = function () {
             schemaResult = this._executeSchema(params.schema, params.payload);
             this._processGenericErrorResponse(schemaResult, params, false, false);
             return schemaResult;
+        }
+    }, {
+        key: 'apiResponseOperations',
+        value: function apiResponseOperations() {
+            var i, len, loaderKeyNameList;
+            loaderKeyNameList = ['loader', 'loadingController'];
+            len = loaderKeyNameList.length;
+            for (i = 0; i < len; i++) {
+                if (_coreFactory2.default.objectHelper.isNotNull(this, 'loader')) {
+                    if (_coreFactory2.default.objectHelper.isNotNull(this.loader, 'hide')) {
+                        if (typeof this.loader.hide === 'function') {
+                            this.loader.hide();
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }, {
+        key: 'apiErrorResponseOperations',
+        value: function apiErrorResponseOperations(errObj, params) {
+            var isServerResponse = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+
+            var len, i, customErrorObj;
+            console.log(11111678, errObj, params, isServerResponse);
+            if (isServerResponse) {
+                if (_coreFactory2.default.objectHelper.isNotNull(errObj, _coreFactory2.default.jsLizerConfig.FIELD_ERROR)) {
+                    customErrorObj = {};
+                    len = errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR].length;
+                    for (i = 0; i < len; i++) {
+                        customErrorObj[errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR][i].field] = errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR][i].message;
+                    }
+                    params.parentObj[params.errorObjFieldKey] = customErrorObj;
+                }
+            } else {
+                params.parentObj[params.errorObjFieldKey] = errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR];
+            }
         }
     }, {
         key: 'callFetch',
@@ -27352,8 +27389,8 @@ var BaseAngularController = function (_BaseController) {
     }
 
     _createClass(BaseAngularController, [{
-        key: '_apiResponseOperations',
-        value: function _apiResponseOperations() {
+        key: 'apiResponseOperations',
+        value: function apiResponseOperations() {
             var runDigestCycle = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
             if (runDigestCycle && _coreFactory2.default.objectHelper.isNotNull(this, 'scope')) {
@@ -27363,25 +27400,6 @@ var BaseAngularController = function (_BaseController) {
             }
             if (_coreFactory2.default.objectHelper.isNotNull(this, 'loadingController')) {
                 this.loadingController.hide();
-            }
-        }
-    }, {
-        key: '_apiErrorResponseOperations',
-        value: function _apiErrorResponseOperations(errObj, params) {
-            var isServerResponse = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-
-            var len, i, customErrorObj;
-            if (isServerResponse) {
-                if (_coreFactory2.default.objectHelper.isNotNull(errObj, _coreFactory2.default.jsLizerConfig.FIELD_ERROR)) {
-                    customErrorObj = {};
-                    len = errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR].length;
-                    for (i = 0; i < len; i++) {
-                        customErrorObj[errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR][i].field] = errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR][i].message;
-                    }
-                    params.parentObj[params.errorObjFieldKey] = customErrorObj;
-                }
-            } else {
-                params.parentObj[params.errorObjFieldKey] = errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR];
             }
         }
     }]);
@@ -27469,8 +27487,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _coreFactory = __webpack_require__(10);
 
 var _coreFactory2 = _interopRequireDefault(_coreFactory);
@@ -27505,35 +27521,6 @@ var DefaultVueController = function (_BaseController) {
         _this.service = new _defaultVueApiService2.default(_this.loader);
         return _this;
     }
-
-    _createClass(DefaultVueController, [{
-        key: '_apiResponseOperations',
-        value: function _apiResponseOperations() {
-            if (_coreFactory2.default.objectHelper.isNotNull(this, 'loader')) {
-                this.loader.hide();
-            }
-        }
-    }, {
-        key: '_apiErrorResponseOperations',
-        value: function _apiErrorResponseOperations(errObj, params) {
-            var isServerResponse = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-
-            var len, i, customErrorObj;
-            console.log(678, errObj, params, isServerResponse);
-            if (isServerResponse) {
-                if (_coreFactory2.default.objectHelper.isNotNull(errObj, _coreFactory2.default.jsLizerConfig.FIELD_ERROR)) {
-                    customErrorObj = {};
-                    len = errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR].length;
-                    for (i = 0; i < len; i++) {
-                        customErrorObj[errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR][i].field] = errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR][i].message;
-                    }
-                    params.parentObj[params.errorObjFieldKey] = customErrorObj;
-                }
-            } else {
-                params.parentObj[params.errorObjFieldKey] = errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR];
-            }
-        }
-    }]);
 
     return DefaultVueController;
 }(_baseController2.default);
