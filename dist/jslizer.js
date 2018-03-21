@@ -27453,7 +27453,9 @@ var _defaultVueController2 = _interopRequireDefault(_defaultVueController);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var vueCoreFactory = function vueCoreFactory(Vue, jslizer) {
-    var loader = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+    var PROJECT_MESSAGES = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+    var PROJECT_SYSTEM_SETTINGS = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+    var loader = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
 
     jslizer.coreFactory = new _coreFactory2.default();
     Vue.use(jslizer);
@@ -27468,6 +27470,12 @@ var vueCoreFactory = function vueCoreFactory(Vue, jslizer) {
             }
             if (this.$coreFactory.objectHelper.isNull(this.$coreFactory.defaultVueController)) {
                 this.$coreFactory.defaultVueController = new _defaultVueController2.default(loader);
+            }
+            if (this.$coreFactory.objectHelper.isNotNull(PROJECT_MESSAGES)) {
+                this.$coreFactory.errorMessage.loadProjectMessages(PROJECT_MESSAGES);
+            }
+            if (this.$coreFactory.objectHelper.isNotNull(PROJECT_SYSTEM_SETTINGS)) {
+                this.$coreFactory.systemSettings.loadProjectLocalSettings(this.$coreFactory.systemSettings, PROJECT_SYSTEM_SETTINGS);
             }
         }
     });
