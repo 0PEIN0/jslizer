@@ -15057,6 +15057,7 @@ var SystemSettings = function () {
         this.API_PREFIX_PATH = 'api/';
         this.API_URL_HAS_TRAILING_SLASH = true;
         this.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME = 'status_code';
+        this.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME = 'results';
         this.setEnvironmentRelatedValues();
     }
 
@@ -15843,9 +15844,14 @@ var ApiResponseService = function () {
             var validStatusCodes, results, finalResult;
             finalResult = {};
             validStatusCodes = [200, 201];
-            results = response.results;
-            results = this._dataPostProcessing(results);
+            if (_coreFactory2.default.objectHelper.isNull(_coreFactory2.default.systemSettings.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME) || _coreFactory2.default.objectHelper.isNull(response, _coreFactory2.default.systemSettings.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME)) {
+                results = response;
+            } else {
+                results = response[_coreFactory2.default.systemSettings.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME];
+            }
             console.log(1111149, results);
+            results = this._dataPostProcessing(results);
+            console.log(1111150, results);
             if (_coreFactory2.default.objectHelper.isNull(response, _coreFactory2.default.systemSettings.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME) || validStatusCodes.includes(response[_coreFactory2.default.systemSettings.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME])) {
                 finalResult[_coreFactory2.default.jsLizerConfig.FIELD_RESULTS] = results;
                 finalResult[_coreFactory2.default.jsLizerConfig.FIELD_HAS_ERROR] = false;

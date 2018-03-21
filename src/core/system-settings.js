@@ -19,6 +19,7 @@ class SystemSettings {
         this.API_PREFIX_PATH = 'api/';
         this.API_URL_HAS_TRAILING_SLASH = true;
         this.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME = 'status_code';
+        this.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME = 'results';
         this.setEnvironmentRelatedValues();
     }
 

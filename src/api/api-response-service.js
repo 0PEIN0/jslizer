@@ -31,9 +31,14 @@ class ApiResponseService {
         var validStatusCodes, results, finalResult;
         finalResult = {};
         validStatusCodes = [200, 201];
-        results = response.results;
-        results = this._dataPostProcessing(results);
+        if (CoreFactory.objectHelper.isNull(CoreFactory.systemSettings.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME) || CoreFactory.objectHelper.isNull(response, CoreFactory.systemSettings.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME)) {
+            results = response;
+        } else {
+            results = response[CoreFactory.systemSettings.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME];
+        }
         console.log(1111149, results);
+        results = this._dataPostProcessing(results);
+        console.log(1111150, results);
         if (CoreFactory.objectHelper.isNull(response, CoreFactory.systemSettings.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME) || validStatusCodes.includes(response[CoreFactory.systemSettings.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME])) {
             finalResult[CoreFactory.jsLizerConfig.FIELD_RESULTS] = results;
             finalResult[CoreFactory.jsLizerConfig.FIELD_HAS_ERROR] = false;
