@@ -31,6 +31,16 @@ class SystemSettings {
         this.ROOT_API_URL = this.ROOT_URL + this.API_PREFIX_PATH;
     }
 
+    loadProjectLocalSettings(parentObj, projectSystemSettings) {
+        for (var key in projectSystemSettings) {
+            if (projectSystemSettings.hasOwnProperty(key)) {
+                parentObj[key] = projectSystemSettings[key];
+            }
+        }
+        this.setEnvironmentRelatedValues();
+        return parentObj;
+    }
+
 }
 
 export default SystemSettings;
