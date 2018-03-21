@@ -42,8 +42,8 @@ class BaseController {
 
     _processGenericErrorResponse(errObj, params, runDigestCycle = true, isServerResponse = true) {
         params.parentObj[params.errorMessageFieldKey] = null;
-        if (CoreFactory.objectHelper.isNotNull(this._apiErrorResponseOperations)) {
-            this._apiErrorResponseOperations(errObj, params, isServerResponse);
+        if (CoreFactory.objectHelper.isNotNull(this.apiErrorResponseOperations)) {
+            this.apiErrorResponseOperations(errObj, params, isServerResponse);
         }
         if (CoreFactory.objectHelper.isNotNull(errObj, CoreFactory.jsLizerConfig.DEFAULT_ERROR_MESSAGE_KEY)) {
             params.parentObj[params.errorMessageFieldKey] = errObj[CoreFactory.jsLizerConfig.DEFAULT_ERROR_MESSAGE_KEY];
@@ -53,8 +53,8 @@ class BaseController {
                 params.parentObj[params.errorMessageFieldKey] = CoreFactory.errorMessage.getErrorMessage(params.errorId);
             }
         }
-        if (CoreFactory.objectHelper.isNotNull(this._apiResponseOperations)) {
-            this._apiResponseOperations(runDigestCycle);
+        if (CoreFactory.objectHelper.isNotNull(this.apiResponseOperations)) {
+            this.apiResponseOperations(runDigestCycle);
         }
     }
 
@@ -79,8 +79,8 @@ class BaseController {
     _bindSubscriber(params, promise, cbfn = null) {
         promise.subscribe(data => {
             params.parentObj[params.successFieldKey] = data.results;
-            if (CoreFactory.objectHelper.isNotNull(this._apiResponseOperations)) {
-                this._apiResponseOperations();
+            if (CoreFactory.objectHelper.isNotNull(this.apiResponseOperations)) {
+                this.apiResponseOperations();
             }
             if (CoreFactory.objectHelper.isNotNull(cbfn)) {
                 var results = CoreFactory.apiResponseService.genericHandler(data);
@@ -112,6 +112,39 @@ class BaseController {
         schemaResult = this._executeSchema(params.schema, params.payload);
         this._processGenericErrorResponse(schemaResult, params, false, false);
         return schemaResult;
+    }
+
+    apiResponseOperations() {
+        var i, len, loaderKeyNameList;
+        loaderKeyNameList = ['loader', 'loadingController'];
+        len = loaderKeyNameList.length;
+        for (i = 0; i < len; i++) {
+            if (CoreFactory.objectHelper.isNotNull(this, 'loader')) {
+                if (CoreFactory.objectHelper.isNotNull(this.loader, 'hide')) {
+                    if (typeof this.loader.hide === 'function') {
+                        this.loader.hide();
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    apiErrorResponseOperations(errObj, params, isServerResponse = true) {
+        var len, i, customErrorObj;
+        console.log(11111678, errObj, params, isServerResponse);
+        if (isServerResponse) {
+            if (CoreFactory.objectHelper.isNotNull(errObj, CoreFactory.jsLizerConfig.FIELD_ERROR)) {
+                customErrorObj = {};
+                len = errObj[CoreFactory.jsLizerConfig.FIELD_ERROR].length;
+                for (i = 0; i < len; i++) {
+                    customErrorObj[errObj[CoreFactory.jsLizerConfig.FIELD_ERROR][i].field] = errObj[CoreFactory.jsLizerConfig.FIELD_ERROR][i].message;
+                }
+                params.parentObj[params.errorObjFieldKey] = customErrorObj;
+            }
+        } else {
+            params.parentObj[params.errorObjFieldKey] = errObj[CoreFactory.jsLizerConfig.FIELD_ERROR];
+        }
     }
 
     callFetch(params, cbfn = null) {
