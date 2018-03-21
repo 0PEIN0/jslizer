@@ -5548,20 +5548,15 @@ var BaseController = function () {
             var cbfn = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
             promise.subscribe(function (data) {
-                console.log(1111144, data);
                 params.parentObj[params.successFieldKey] = data.results;
                 if (_coreFactory2.default.objectHelper.isNotNull(_this.apiResponseOperations)) {
                     _this.apiResponseOperations();
                 }
-                console.log(1111146, data);
                 if (_coreFactory2.default.objectHelper.isNotNull(cbfn)) {
-                    console.log(1111147, data);
                     var results = _coreFactory2.default.apiResponseService.genericHandler(data);
-                    console.log(1111148, results);
                     cbfn(results);
                 }
             }, function (errObj) {
-                console.log(1111145, errObj);
                 _this._processGenericErrorResponse(errObj, params);
                 cbfn(_this._processServerErrorResponse(params));
             });
@@ -15849,9 +15844,7 @@ var ApiResponseService = function () {
             } else {
                 results = response[_coreFactory2.default.systemSettings.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME];
             }
-            console.log(1111149, results);
             results = this._dataPostProcessing(results);
-            console.log(1111150, results);
             if (_coreFactory2.default.objectHelper.isNull(response, _coreFactory2.default.systemSettings.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME) || validStatusCodes.includes(response[_coreFactory2.default.systemSettings.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME])) {
                 finalResult[_coreFactory2.default.jsLizerConfig.FIELD_RESULTS] = results;
                 finalResult[_coreFactory2.default.jsLizerConfig.FIELD_HAS_ERROR] = false;
