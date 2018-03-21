@@ -3820,7 +3820,10 @@ var BaseApiService = function () {
                 partialUrl = this.apiModuleUrl;
             }
             if (_coreFactory2.default.objectHelper.isNotNull(uuid)) {
-                partialUrl = partialUrl + uuid + '/';
+                partialUrl = partialUrl + uuid;
+                if (_coreFactory2.default.systemSettings.API_URL_HAS_TRAILING_SLASH === true) {
+                    partialUrl = partialUrl + '/';
+                }
             }
             return _coreFactory2.default.systemSettings.ROOT_API_URL + partialUrl;
         }
@@ -15011,6 +15014,7 @@ var SystemSettings = function () {
         this.LOCAL_API_SERVER_DOMAIN_LIST = ['localhost'];
         this.LOCAL_API_SERVER_ADDRESS_LIST = ['http://localhost:8000/'];
         this.API_PREFIX_PATH = 'api/';
+        this.API_URL_HAS_TRAILING_SLASH = true;
         this.setEnvironmentRelatedValues();
     }
 

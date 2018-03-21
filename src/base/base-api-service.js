@@ -39,7 +39,10 @@ class BaseApiService {
             partialUrl = this.apiModuleUrl;
         }
         if (CoreFactory.objectHelper.isNotNull(uuid)) {
-            partialUrl = partialUrl + uuid + '/';
+            partialUrl = partialUrl + uuid;
+            if (CoreFactory.systemSettings.API_URL_HAS_TRAILING_SLASH === true) {
+                partialUrl = partialUrl + '/';
+            }
         }
         return CoreFactory.systemSettings.ROOT_API_URL + partialUrl;
     }
