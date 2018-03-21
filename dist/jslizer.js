@@ -5306,6 +5306,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -5331,6 +5333,55 @@ var CustomException = function (_Error) {
         console.log('CUSTOM ERROR LOG: ', _this.customMessage);
         return _this;
     }
+
+    _createClass(CustomException, [{
+        key: '_constructGenericErrorObject',
+        value: function _constructGenericErrorObject(exObj) {
+            var res, stack, i, len, newStack, stackLine, methodName, fileLink, fileInfo, fileName, lineNumber, columnNumber;
+            res = {};
+            res.name = exObj.name;
+            res.message = exObj.message;
+            stack = exObj.stack;
+            stack = stack.split("" + String.fromCharCode(10));
+            len = stack.length;
+            newStack = [];
+            for (i = 0; i < len; i++) {
+                stackLine = stack[i];
+                stackLine = stackLine.trim();
+                if (stackLine.indexOf('at ') === 0) {
+                    stackLine = stackLine.replace('at ', '');
+                }
+                if (stackLine.indexOf('(') === -1) {
+                    methodName = '';
+                    fileLink = stackLine;
+                } else {
+                    methodName = stackLine.split('(')[0].trim();
+                    fileLink = stackLine.split('(')[1].replace(')', '').trim();
+                }
+                fileInfo = fileLink.split('/');
+                fileInfo = fileInfo[fileInfo.length - 1].split(':');
+                fileName = fileInfo[0];
+                lineNumber = parseInt(fileInfo[1]);
+                columnNumber = parseInt(fileInfo[2]);
+                fileLink = fileLink.split(':');
+                fileLink.splice(-2, 2);
+                fileLink = fileLink.join('');
+                stackLine = {
+                    'stackLineTrace': stackLine,
+                    'methodName': methodName,
+                    'fileLink': fileLink,
+                    'fileName': fileName,
+                    'lineNumber': lineNumber,
+                    'columnNumber': columnNumber
+                };
+                if (i > 0) {
+                    newStack.push(stackLine);
+                }
+            }
+            res.stack = newStack;
+            console.log(res);
+        }
+    }]);
 
     return CustomException;
 }(Error);
@@ -14974,6 +15025,17 @@ var SystemSettings = function () {
                 throw new _customException.FatalError('core_system_settings_1');
             }
             this.ROOT_API_URL = this.ROOT_URL + this.API_PREFIX_PATH;
+        }
+    }, {
+        key: 'loadProjectLocalSettings',
+        value: function loadProjectLocalSettings(parentObj, projectSystemSettings) {
+            for (var key in projectSystemSettings) {
+                if (projectSystemSettings.hasOwnProperty(key)) {
+                    parentObj[key] = projectSystemSettings[key];
+                }
+            }
+            this.setEnvironmentRelatedValues();
+            return parentObj;
         }
     }]);
 
