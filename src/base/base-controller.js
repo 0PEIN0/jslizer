@@ -83,7 +83,7 @@ class BaseController {
                 this.apiResponseOperations();
             }
             if (CoreFactory.objectHelper.isNotNull(cbfn)) {
-                var results = CoreFactory.apiResponseService.genericHandler(data);
+                var results = CoreFactory.apiResponseService.genericHandler(params, data);
                 cbfn(results);
             }
         }, errObj => {

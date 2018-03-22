@@ -5553,7 +5553,7 @@ var BaseController = function () {
                     _this.apiResponseOperations();
                 }
                 if (_coreFactory2.default.objectHelper.isNotNull(cbfn)) {
-                    var results = _coreFactory2.default.apiResponseService.genericHandler(data);
+                    var results = _coreFactory2.default.apiResponseService.genericHandler(params, data);
                     cbfn(results);
                 }
             }, function (errObj) {
@@ -15835,7 +15835,7 @@ var ApiResponseService = function () {
         }
     }, {
         key: 'genericHandler',
-        value: function genericHandler(response) {
+        value: function genericHandler(params, response) {
             var validStatusCodes, results, finalResult;
             finalResult = {};
             validStatusCodes = [200, 201];
@@ -15847,10 +15847,13 @@ var ApiResponseService = function () {
             results = this._dataPostProcessing(results);
             if (_coreFactory2.default.objectHelper.isNull(response, _coreFactory2.default.systemSettings.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME) || validStatusCodes.includes(response[_coreFactory2.default.systemSettings.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME])) {
                 finalResult[_coreFactory2.default.jsLizerConfig.FIELD_RESULTS] = results;
+                finalResult[_coreFactory2.default.jsLizerConfig.FIELD_ERROR] = _coreFactory2.default.jsLizerConfig.DEFAULT_ERROR_VALUE;
                 finalResult[_coreFactory2.default.jsLizerConfig.FIELD_HAS_ERROR] = false;
                 return finalResult;
             }
             finalResult[_coreFactory2.default.jsLizerConfig.FIELD_RESULTS] = results;
+            finalResult[_coreFactory2.default.jsLizerConfig.FIELD_ERROR] = _coreFactory2.default.jsLizerConfig.DEFAULT_ERROR_VALUE;
+            params.parentObj[params.errorMessageFieldKey] = _coreFactory2.default.errorMessage.getErrorMessage(params.errorId);
             finalResult[_coreFactory2.default.jsLizerConfig.FIELD_HAS_ERROR] = true;
             return finalResult;
         }
@@ -27461,6 +27464,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var vueCoreFactory = function vueCoreFactory(Vue, jslizer) {
     var loader = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
+    console.log(443);
     jslizer.coreFactory = new _coreFactory2.default();
     Vue.use(jslizer);
     Vue.mixin({
@@ -27475,6 +27479,7 @@ var vueCoreFactory = function vueCoreFactory(Vue, jslizer) {
             if (this.$coreFactory.objectHelper.isNull(this.$coreFactory.defaultVueController)) {
                 this.$coreFactory.defaultVueController = new _defaultVueController2.default(loader);
             }
+            console.log(444);
         }
     });
 };

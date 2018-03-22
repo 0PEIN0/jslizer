@@ -27,7 +27,7 @@ class ApiResponseService {
         return CoreFactory.systemSettings.ROOT_API_URL + imageUrl;
     }
 
-    genericHandler(response) {
+    genericHandler(params, response) {
         var validStatusCodes, results, finalResult;
         finalResult = {};
         validStatusCodes = [200, 201];
@@ -39,10 +39,13 @@ class ApiResponseService {
         results = this._dataPostProcessing(results);
         if (CoreFactory.objectHelper.isNull(response, CoreFactory.systemSettings.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME) || validStatusCodes.includes(response[CoreFactory.systemSettings.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME])) {
             finalResult[CoreFactory.jsLizerConfig.FIELD_RESULTS] = results;
+            finalResult[CoreFactory.jsLizerConfig.FIELD_ERROR] = CoreFactory.jsLizerConfig.DEFAULT_ERROR_VALUE;
             finalResult[CoreFactory.jsLizerConfig.FIELD_HAS_ERROR] = false;
             return finalResult;
         }
         finalResult[CoreFactory.jsLizerConfig.FIELD_RESULTS] = results;
+        finalResult[CoreFactory.jsLizerConfig.FIELD_ERROR] = CoreFactory.jsLizerConfig.DEFAULT_ERROR_VALUE;
+        params.parentObj[params.errorMessageFieldKey] = CoreFactory.errorMessage.getErrorMessage(params.errorId);
         finalResult[CoreFactory.jsLizerConfig.FIELD_HAS_ERROR] = true;
         return finalResult;
     }

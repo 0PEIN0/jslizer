@@ -2,6 +2,7 @@ import CoreFactory from './../core/core-factory';
 import DefaultVueController from './default-vue-controller'
 
 let vueCoreFactory = (Vue, jslizer, loader = null) => {
+    console.log(443)
     jslizer.coreFactory = new CoreFactory();
     Vue.use(jslizer)
     Vue.mixin({
@@ -16,6 +17,7 @@ let vueCoreFactory = (Vue, jslizer, loader = null) => {
             if (this.$coreFactory.objectHelper.isNull(this.$coreFactory.defaultVueController)) {
                 this.$coreFactory.defaultVueController = new DefaultVueController(loader)
             }
+            console.log(444)
         }
     })
 };
