@@ -8,10 +8,10 @@ let vueCoreFactory = (Vue, jslizer, PROJECT_MESSAGES = {}, PROJECT_SYSTEM_SETTIN
         // eslint-disable-next-line
         beforeCreate() {
             const options = this.$options
-            if (options.jslizer) {
+            if (options.jslizer && (this.$coreFactory == null || typeof(this.$coreFactory) === 'undefned' || typeof(this.$coreFactory) === 'null')) {
                 this.$coreFactory = options.jslizer.coreFactory
                 console.log(442)
-            } else if (options.parent && options.parent.$coreFactory) {
+            } else if (options.parent && options.parent.$coreFactory && (this.$coreFactory == null || typeof(this.$coreFactory) === 'undefned' || typeof(this.$coreFactory) === 'null')) {
                 this.$coreFactory = options.parent.$coreFactory
                 console.log(443)
             }
