@@ -27551,18 +27551,8 @@ var DefaultVueController = function (_BaseController) {
         value: function apiErrorResponseOperations(errObj, params) {
             var isServerResponse = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
-            var len, i, customErrorObj;
-            console.log(11111678, errObj, params, isServerResponse);
             if (isServerResponse) {
-                // TODO implement custom server error response handler
-                if (_coreFactory2.default.objectHelper.isNotNull(errObj, _coreFactory2.default.jsLizerConfig.FIELD_ERROR)) {
-                    customErrorObj = {};
-                    len = errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR].length;
-                    for (i = 0; i < len; i++) {
-                        customErrorObj[errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR][i].field] = errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR][i].message;
-                    }
-                    params.parentObj[params.errorObjFieldKey] = customErrorObj;
-                }
+                params.parentObj[params.errorObjFieldKey] = errObj;
             } else {
                 params.parentObj[params.errorObjFieldKey] = errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR];
             }
