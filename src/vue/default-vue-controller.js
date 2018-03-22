@@ -14,6 +14,7 @@ class DefaultVueController extends BaseController {
         var len, i, customErrorObj;
         console.log(11111678, errObj, params, isServerResponse);
         if (isServerResponse) {
+            // TODO implement custom server error response handler
             if (CoreFactory.objectHelper.isNotNull(errObj, CoreFactory.jsLizerConfig.FIELD_ERROR)) {
                 customErrorObj = {};
                 len = errObj[CoreFactory.jsLizerConfig.FIELD_ERROR].length;
