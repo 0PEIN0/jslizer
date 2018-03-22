@@ -15059,6 +15059,7 @@ var SystemSettings = function () {
         this.LOCAL_API_SERVER_DOMAIN_LIST = ['localhost'];
         this.LOCAL_API_SERVER_ADDRESS_LIST = ['http://localhost:8000/'];
         this.LOCAL_DEVELOPMENT_ENVIRONMENT_KEY_NAME = 'development';
+        this.SYSTEM_DEFAULT_API_MODULE_URL = 'users';
         this.API_PREFIX_PATH = 'api/';
         this.API_URL_HAS_TRAILING_SLASH = true;
         this.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME = 'status_code';
@@ -27527,23 +27528,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var DefaultVueController = function (_BaseController) {
-    _inherits(DefaultVueController, _BaseController);
-
+var DefaultVueController = function () {
     function DefaultVueController() {
         var loader = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
         _classCallCheck(this, DefaultVueController);
 
-        var _this = _possibleConstructorReturn(this, (DefaultVueController.__proto__ || Object.getPrototypeOf(DefaultVueController)).call(this));
-
-        _this.loader = loader;
-        _this.service = new _defaultVueApiService2.default(_this.loader);
-        return _this;
+        this.loader = loader;
+        this.baseController = new _baseController2.default();
+        this.baseController.service = new _defaultVueApiService2.default(this.loader);
     }
 
     _createClass(DefaultVueController, [{
@@ -27557,10 +27550,76 @@ var DefaultVueController = function (_BaseController) {
                 params.parentObj[params.errorObjFieldKey] = errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR];
             }
         }
+    }, {
+        key: '_processDefaultControllerParams',
+        value: function _processDefaultControllerParams(params, operationTypeUrl, operationTypeNeedsAuthentication) {
+            var newParams;
+            newParams = {};
+            if (_coreFactory2.default.objectHelper.isNull(params, 'schema')) {
+                newParams.schema = params.parentObj.schema;
+            }
+            if (_coreFactory2.default.objectHelper.isNull(params, 'apiModuleUrl')) {
+                params.apiModuleUrl = _coreFactory2.default.systemSettings.SYSTEM_DEFAULT_API_MODULE_URL;
+            }
+            if (_coreFactory2.default.objectHelper.isNull(params, operationTypeUrl)) {
+                params[operationTypeUrl] = '';
+            }
+            if (_coreFactory2.default.objectHelper.isNull(params, operationTypeNeedsAuthentication)) {
+                params.operationTypeNeedsAuthentication = params.parentObj.$coreFactory.systemSettings.SYSTEM_DEFAULT_AUTHENTICATION_REQUIRED_VALUE;
+            }
+            newParams.errorId = params.errorId;
+            newParams.payload = params.payload;
+            newParams.parentObj = params.parentObj;
+            newParams.schema = params.schema;
+            newParams.successFieldKey = params.successFieldKey;
+            this.baseController.service.apiModuleUrl = params.apiModuleUrl;
+            this.baseController.service[operationTypeUrl] = params[operationTypeUrl];
+            this.baseController.service[operationTypeNeedsAuthentication] = params[operationTypeNeedsAuthentication];
+        }
+    }, {
+        key: 'callFetch',
+        value: function callFetch(params) {
+            var cbfn = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+            var newParams = this._processDefaultControllerParams(params, 'customFetchUrl', 'fetchNeedsAuthentication');
+            this.baseController.callFetch(newParams, cbfn);
+        }
+    }, {
+        key: 'callListing',
+        value: function callListing(params) {
+            var cbfn = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+            var newParams = this._processDefaultControllerParams(params, 'customListingUrl', 'listingNeedsAuthentication');
+            this.baseController.callListing(newParams, cbfn);
+        }
+    }, {
+        key: 'callSave',
+        value: function callSave(params) {
+            var cbfn = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+            var newParams = this._processDefaultControllerParams(params, 'customSaveUrl', 'saveNeedsAuthentication');
+            this.baseController.callSave(newParams, cbfn);
+        }
+    }, {
+        key: 'callUpdate',
+        value: function callUpdate(params) {
+            var cbfn = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+            var newParams = this._processDefaultControllerParams(params, 'customUpdateUrl', 'updateNeedsAuthentication');
+            this.baseController.callUpdate(newParams, cbfn);
+        }
+    }, {
+        key: 'callDelete',
+        value: function callDelete(params) {
+            var cbfn = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+            var newParams = this._processDefaultControllerParams(params, 'customDestoryUrl', 'destoryNeedsAuthentication');
+            this.baseController.callDelete(newParams, cbfn);
+        }
     }]);
 
     return DefaultVueController;
-}(_baseController2.default);
+}();
 
 exports.default = DefaultVueController;
 
