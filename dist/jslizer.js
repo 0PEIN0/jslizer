@@ -5553,7 +5553,6 @@ var BaseController = function () {
                 } else {
                     params.parentObj[params.successFieldKey] = data[_coreFactory2.default.systemSettings.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME];
                 }
-                console.log(666, params.parentObj, params.parentObj[params.successFieldKey], data);
                 if (_coreFactory2.default.objectHelper.isNotNull(_this.apiResponseOperations)) {
                     _this.apiResponseOperations();
                 }
@@ -5723,8 +5722,11 @@ var CustomException = function (_Error) {
         _this.contextData = {};
         _this.contextData = contextData;
         _this.messageCode = customErrorCode;
+        _this.systemSettings = coreFactory.systemSettings;
         _this.customMessage = coreFactory.errorMessage.getErrorMessage(customErrorCode, contextData);
-        console.log('CUSTOM ERROR LOG: ', _this.customMessage);
+        if (_this.systemSettings.ENVIRONMENT === _this.systemSettings.LOCAL_DEVELOPMENT_ENVIRONMENT_KEY_NAME) {
+            console.log('CUSTOM ERROR LOG: ', _this.customMessage);
+        }
         return _this;
     }
 
@@ -5773,7 +5775,9 @@ var CustomException = function (_Error) {
                 }
             }
             res.stack = newStack;
-            console.log(res);
+            if (this.systemSettings.ENVIRONMENT === this.systemSettings.LOCAL_DEVELOPMENT_ENVIRONMENT_KEY_NAME) {
+                console.log('GENERIC ERROR OBJECT: ', res);
+            }
         }
     }]);
 
@@ -15054,6 +15058,7 @@ var SystemSettings = function () {
         this.SYSTEM_DEFAULT_API_ERROR_MESSAGE_ID = 'core_system_settings_2';
         this.LOCAL_API_SERVER_DOMAIN_LIST = ['localhost'];
         this.LOCAL_API_SERVER_ADDRESS_LIST = ['http://localhost:8000/'];
+        this.LOCAL_DEVELOPMENT_ENVIRONMENT_KEY_NAME = 'development';
         this.API_PREFIX_PATH = 'api/';
         this.API_URL_HAS_TRAILING_SLASH = true;
         this.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME = 'status_code';
@@ -15065,7 +15070,7 @@ var SystemSettings = function () {
         key: 'setEnvironmentRelatedValues',
         value: function setEnvironmentRelatedValues() {
             if (this.LOCAL_API_SERVER_DOMAIN_LIST.indexOf(location.hostname) !== -1) {
-                this.ENVIRONMENT = 'development';
+                this.ENVIRONMENT = this.LOCAL_DEVELOPMENT_ENVIRONMENT_KEY_NAME;
                 this.ROOT_URL = this.LOCAL_API_SERVER_ADDRESS_LIST[this.LOCAL_API_SERVER_DOMAIN_LIST.indexOf(location.hostname)];
             } else {
                 //TODO: coreFactory was not passed in the custom error class instantiation
@@ -15422,7 +15427,9 @@ var JsLizerExecutor = function () {
             var finalResult;
             finalResult = {};
             finalResult[parameters.key] = currentResult;
-            console.log(87, parameters, finalResult);
+            if (this.coreFactory.systemSettings.ENVIRONMENT === this.coreFactory.systemSettings.LOCAL_DEVELOPMENT_ENVIRONMENT_KEY_NAME) {
+                console.log('JSLIZER PRIMITIVE TYPE PROPERTY HANDLER: ', parameters, finalResult);
+            }
             return finalResult;
         }
     }, {
@@ -15469,7 +15476,9 @@ var JsLizerExecutor = function () {
             if (!hasError) {
                 finalResult[parameters.key][this.jsLizerConfig.FIELD_ERROR] = this.jsLizerConfig.DEFAULT_VALUE;
             }
-            console.log(55, parameters, finalResult);
+            if (this.coreFactory.systemSettings.ENVIRONMENT === this.coreFactory.systemSettings.LOCAL_DEVELOPMENT_ENVIRONMENT_KEY_NAME) {
+                console.log('JSLIZER OBJECT TYPE PROPERTY HANDLER: ', parameters, finalResult);
+            }
             return finalResult;
         }
     }, {
