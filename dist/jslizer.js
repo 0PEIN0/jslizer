@@ -27571,6 +27571,7 @@ var DefaultVueController = function () {
             newParams.payload = params.payload;
             newParams.parentObj = params.parentObj;
             newParams.schema = params.schema;
+            newParams.service = this.baseController.service;
             newParams.successFieldKey = params.successFieldKey;
             this.baseController.service.apiModuleUrl = params.apiModuleUrl;
             this.baseController.service[operationTypeUrl] = params[operationTypeUrl];
