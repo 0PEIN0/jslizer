@@ -9,8 +9,11 @@ class CustomException extends Error {
         this.contextData = {};
         this.contextData = contextData;
         this.messageCode = customErrorCode;
+        this.systemSettings = coreFactory.systemSettings;
         this.customMessage = coreFactory.errorMessage.getErrorMessage(customErrorCode, contextData);
-        console.log('CUSTOM ERROR LOG: ', this.customMessage);
+        if (this.systemSettings.ENVIRONMENT === this.systemSettings.LOCAL_DEVELOPMENT_ENVIRONMENT_KEY_NAME) {
+            console.log('CUSTOM ERROR LOG: ', this.customMessage);
+        }
     }
 
     _constructGenericErrorObject(exObj) {
@@ -56,7 +59,9 @@ class CustomException extends Error {
             }
         }
         res.stack = newStack;
-        console.log(res);
+        if (this.systemSettings.ENVIRONMENT === this.systemSettings.LOCAL_DEVELOPMENT_ENVIRONMENT_KEY_NAME) {
+            console.log('GENERIC ERROR OBJECT: ', res);
+        }
     }
 
 }

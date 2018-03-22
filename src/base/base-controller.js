@@ -83,7 +83,6 @@ class BaseController {
             } else {
                 params.parentObj[params.successFieldKey] = data[CoreFactory.systemSettings.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME];
             }
-            console.log(666, params.parentObj, params.parentObj[params.successFieldKey], data)
             if (CoreFactory.objectHelper.isNotNull(this.apiResponseOperations)) {
                 this.apiResponseOperations();
             }

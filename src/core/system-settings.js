@@ -16,6 +16,7 @@ class SystemSettings {
         this.SYSTEM_DEFAULT_API_ERROR_MESSAGE_ID = 'core_system_settings_2';
         this.LOCAL_API_SERVER_DOMAIN_LIST = ['localhost'];
         this.LOCAL_API_SERVER_ADDRESS_LIST = ['http://localhost:8000/'];
+        this.LOCAL_DEVELOPMENT_ENVIRONMENT_KEY_NAME = 'development';
         this.API_PREFIX_PATH = 'api/';
         this.API_URL_HAS_TRAILING_SLASH = true;
         this.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME = 'status_code';
@@ -25,7 +26,7 @@ class SystemSettings {
 
     setEnvironmentRelatedValues() {
         if (this.LOCAL_API_SERVER_DOMAIN_LIST.indexOf(location.hostname) !== -1) {
-            this.ENVIRONMENT = 'development';
+            this.ENVIRONMENT = this.LOCAL_DEVELOPMENT_ENVIRONMENT_KEY_NAME;
             this.ROOT_URL = this.LOCAL_API_SERVER_ADDRESS_LIST[this.LOCAL_API_SERVER_DOMAIN_LIST.indexOf(location.hostname)];
         } else {
             //TODO: coreFactory was not passed in the custom error class instantiation

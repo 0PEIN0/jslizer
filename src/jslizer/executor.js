@@ -158,7 +158,9 @@ class JsLizerExecutor {
         var finalResult;
         finalResult = {};
         finalResult[parameters.key] = currentResult;
-        console.log(87, parameters, finalResult);
+        if (this.coreFactory.systemSettings.ENVIRONMENT === this.coreFactory.systemSettings.LOCAL_DEVELOPMENT_ENVIRONMENT_KEY_NAME) {
+            console.log('JSLIZER PRIMITIVE TYPE PROPERTY HANDLER: ', parameters, finalResult);
+        }
         return finalResult;
     }
 
@@ -203,7 +205,9 @@ class JsLizerExecutor {
         if (!hasError) {
             finalResult[parameters.key][this.jsLizerConfig.FIELD_ERROR] = this.jsLizerConfig.DEFAULT_VALUE;
         }
-        console.log(55, parameters, finalResult);
+        if (this.coreFactory.systemSettings.ENVIRONMENT === this.coreFactory.systemSettings.LOCAL_DEVELOPMENT_ENVIRONMENT_KEY_NAME) {
+            console.log('JSLIZER OBJECT TYPE PROPERTY HANDLER: ', parameters, finalResult);
+        }
         return finalResult;
     }
 
