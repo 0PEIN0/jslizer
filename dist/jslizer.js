@@ -5548,7 +5548,9 @@ var BaseController = function () {
             var cbfn = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
             promise.subscribe(function (data) {
+                console.log(665, params.parentObj, params.parentObj[params.successFieldKey], data.results, data);
                 params.parentObj[params.successFieldKey] = data.results;
+                console.log(666, params.parentObj, params.parentObj[params.successFieldKey], data.results, data);
                 if (_coreFactory2.default.objectHelper.isNotNull(_this.apiResponseOperations)) {
                     _this.apiResponseOperations();
                 }
@@ -15664,18 +15666,15 @@ var ErrorMessage = function () {
     _createClass(ErrorMessage, [{
         key: '_loadCoreMessages',
         value: function _loadCoreMessages() {
-            console.log(111115, 'loading core');
             this.MESSAGES = _coreMessages2.default;
         }
     }, {
         key: 'loadProjectMessages',
         value: function loadProjectMessages(projectMessages) {
-            console.log(111115, 'before load', this.MESSAGES, projectMessages);
             for (var key in projectMessages) {
                 this.MESSAGES[key] = {};
                 this.MESSAGES[key] = projectMessages[key];
             }
-            console.log(111116, 'after load', this.MESSAGES, projectMessages);
         }
     }, {
         key: 'getErrorMessage',
@@ -15683,7 +15682,6 @@ var ErrorMessage = function () {
             var currentLanguage, message, patternString;
             currentLanguage = this.systemSettings.SYSTEM_LANGUAGE;
             message = this.MESSAGES[customErrorCode][currentLanguage];
-            console.log(111117, 'fetching message', this.MESSAGES);
             if (this.objectHelper.isNotNull(contextData, null)) {
                 for (var key in contextData) {
                     patternString = '{{' + key + '}}';
@@ -27544,6 +27542,7 @@ var DefaultVueController = function (_BaseController) {
             var len, i, customErrorObj;
             console.log(11111678, errObj, params, isServerResponse);
             if (isServerResponse) {
+                // TODO implement custom server error response handler
                 if (_coreFactory2.default.objectHelper.isNotNull(errObj, _coreFactory2.default.jsLizerConfig.FIELD_ERROR)) {
                     customErrorObj = {};
                     len = errObj[_coreFactory2.default.jsLizerConfig.FIELD_ERROR].length;
