@@ -5548,9 +5548,12 @@ var BaseController = function () {
             var cbfn = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
             promise.subscribe(function (data) {
-                console.log(665, params.parentObj, params.parentObj[params.successFieldKey], data.results, data);
-                params.parentObj[params.successFieldKey] = data.results;
-                console.log(666, params.parentObj, params.parentObj[params.successFieldKey], data.results, data);
+                if (_coreFactory2.default.objectHelper.isNull(_coreFactory2.default.systemSettings.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME) || _coreFactory2.default.objectHelper.isNull(data, _coreFactory2.default.systemSettings.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME)) {
+                    params.parentObj[params.successFieldKey] = data;
+                } else {
+                    params.parentObj[params.successFieldKey] = data[_coreFactory2.default.systemSettings.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME];
+                }
+                console.log(666, params.parentObj, params.parentObj[params.successFieldKey], data);
                 if (_coreFactory2.default.objectHelper.isNotNull(_this.apiResponseOperations)) {
                     _this.apiResponseOperations();
                 }

@@ -78,9 +78,12 @@ class BaseController {
 
     _bindSubscriber(params, promise, cbfn = null) {
         promise.subscribe(data => {
-            console.log(665, params.parentObj, params.parentObj[params.successFieldKey], data.results, data)
-            params.parentObj[params.successFieldKey] = data.results;
-            console.log(666, params.parentObj, params.parentObj[params.successFieldKey], data.results, data)
+            if (CoreFactory.objectHelper.isNull(CoreFactory.systemSettings.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME) || CoreFactory.objectHelper.isNull(data, CoreFactory.systemSettings.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME)) {
+                params.parentObj[params.successFieldKey] = data;
+            } else {
+                params.parentObj[params.successFieldKey] = data[CoreFactory.systemSettings.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME];
+            }
+            console.log(666, params.parentObj, params.parentObj[params.successFieldKey], data)
             if (CoreFactory.objectHelper.isNotNull(this.apiResponseOperations)) {
                 this.apiResponseOperations();
             }
