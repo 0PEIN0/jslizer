@@ -1,7 +1,7 @@
 import CoreFactory from './../core/core-factory';
 import DefaultVueController from './default-vue-controller'
 
-let vueCoreFactory = (Vue, jslizer, loader = null) => {
+let vueCoreFactory = (Vue, jslizer, PROJECT_MESSAGES = {}, PROJECT_SYSTEM_SETTINGS = {}, loader = null) => {
     jslizer.coreFactory = new CoreFactory();
     Vue.use(jslizer)
     Vue.mixin({
@@ -18,6 +18,8 @@ let vueCoreFactory = (Vue, jslizer, loader = null) => {
             }
         }
     })
+    jslizer.CoreFactory.errorMessage.loadProjectMessages(PROJECT_MESSAGES)
+    jslizer.CoreFactory.systemSettings.loadProjectLocalSettings(jslizer.CoreFactory.systemSettings, PROJECT_SYSTEM_SETTINGS)
 };
 
 
