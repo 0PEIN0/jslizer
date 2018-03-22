@@ -27462,9 +27462,7 @@ var _defaultVueController2 = _interopRequireDefault(_defaultVueController);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var vueCoreFactory = function vueCoreFactory(Vue, jslizer) {
-    var PROJECT_MESSAGES = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    var PROJECT_SYSTEM_SETTINGS = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-    var loader = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
+    var loader = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
     jslizer.coreFactory = new _coreFactory2.default();
     Vue.use(jslizer);
@@ -27472,18 +27470,13 @@ var vueCoreFactory = function vueCoreFactory(Vue, jslizer) {
         // eslint-disable-next-line
         beforeCreate: function beforeCreate() {
             var options = this.$options;
-            if (options.jslizer && (this.$coreFactory == null || typeof this.$coreFactory === 'undefned' || typeof this.$coreFactory === 'null')) {
+            if (options.jslizer) {
                 this.$coreFactory = options.jslizer.coreFactory;
-                console.log(442);
-            } else if (options.parent && options.parent.$coreFactory && (this.$coreFactory == null || typeof this.$coreFactory === 'undefned' || typeof this.$coreFactory === 'null')) {
+            } else if (options.parent && options.parent.$coreFactory) {
                 this.$coreFactory = options.parent.$coreFactory;
-                console.log(443);
             }
-            if (this.$coreFactory.objectHelper.isNull(this.$defaultVueController)) {
-                console.log(444);
-                this.$defaultVueController = new _defaultVueController2.default(loader);
-                this.$coreFactory.errorMessage.loadProjectMessages(PROJECT_MESSAGES);
-                this.$coreFactory.systemSettings.loadProjectLocalSettings(this.$coreFactory.systemSettings, PROJECT_SYSTEM_SETTINGS);
+            if (this.$coreFactory.objectHelper.isNull(this.$coreFactory.defaultVueController)) {
+                this.$coreFactory.defaultVueController = new _defaultVueController2.default(loader);
             }
         }
     });
