@@ -27576,6 +27576,7 @@ var DefaultVueController = function () {
             this.baseController.service.apiModuleUrl = params.apiModuleUrl;
             this.baseController.service[operationTypeUrl] = params[operationTypeUrl];
             this.baseController.service[operationTypeNeedsAuthentication] = params[operationTypeNeedsAuthentication];
+            return newParams;
         }
     }, {
         key: 'callFetch',
