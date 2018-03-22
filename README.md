@@ -6,7 +6,7 @@
 A library to perform automated form validation, api calls, form error bindings. All from json definitions. So that those pesky `if/else` checks for a set of data is no longer needed. Currently supports only Angular 1 and VueJS 2 is supported.
 
 ### Next set of project goals
-1. Provide a default angular service in core factory.
+1. Provide a default angular service and controller in core factory. Sample implementation can be found in `DefaultVueController` class.
 2. Provide different types of form data upload like `application/json`, `multipart/form-data` content-type support.
 3. Provide `Date` object support in core.
 4. Provide `File` object support in core.
