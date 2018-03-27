@@ -33,15 +33,15 @@ class DefaultVueController {
         if (CoreFactory.objectHelper.isNull(params, operationTypeNeedsAuthentication)) {
             params.operationTypeNeedsAuthentication = params.parentObj.$coreFactory.systemSettings.SYSTEM_DEFAULT_AUTHENTICATION_REQUIRED_VALUE;
         }
-        newParams.errorId = params.errorId
-        newParams.payload = params.payload
-        newParams.parentObj = params.parentObj
-        newParams[CoreFactory.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME] = params[CoreFactory.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME]
-        newParams.service = this.baseController.service
-        newParams.successFieldKey = params.successFieldKey
-        this.baseController.service.apiModuleUrl = params.apiModuleUrl
-        this.baseController.service[operationTypeUrl] = params[operationTypeUrl]
-        this.baseController.service[operationTypeNeedsAuthentication] = params[operationTypeNeedsAuthentication]
+        newParams.errorId = params.errorId;
+        newParams.payload = params.payload;
+        newParams.parentObj = params.parentObj;
+        newParams[CoreFactory.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME] = params[CoreFactory.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME];
+        newParams.service = this.baseController.service;
+        newParams.successFieldKey = params.successFieldKey;
+        this.baseController.service.apiModuleUrl = params.apiModuleUrl;
+        this.baseController.service[operationTypeUrl] = params[operationTypeUrl];
+        this.baseController.service[operationTypeNeedsAuthentication] = params[operationTypeNeedsAuthentication];
         return newParams;
     }
 
