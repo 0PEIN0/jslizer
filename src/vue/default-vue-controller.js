@@ -80,7 +80,7 @@ class DefaultVueController {
     }
 
     initForm(parentObj, schemaObjKeyName = null, payloadKeyName = null, errorFieldKeyName = null, errorMessageFieldKeyName = null) {
-        var payloadObj, errorObj, schemaObj;
+        var payloadObj, errorObj, schemaObj, returnObj;
         if (CoreFactory.objectHelper.isNull(schemaObjKeyName)) {
             schemaObjKeyName = CoreFactory.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME;
         }
@@ -108,6 +108,11 @@ class DefaultVueController {
             parentObj[errorFieldKeyName] = errorObj;
         }
         parentObj[errorMessageFieldKeyName] = null;
+        returnObj = {};
+        returnObj[payloadKeyName] = parentObj[payloadKeyName];
+        returnObj[errorFieldKeyName] = parentObj[errorFieldKeyName];
+        returnObj[errorMessageFieldKeyName] = parentObj[errorMessageFieldKeyName];
+        return returnObj;
     }
 
     callFetch(params, cbfn = null) {

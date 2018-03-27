@@ -27623,7 +27623,7 @@ var DefaultVueController = function () {
             var errorFieldKeyName = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
             var errorMessageFieldKeyName = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
 
-            var payloadObj, errorObj, schemaObj;
+            var payloadObj, errorObj, schemaObj, returnObj;
             if (_coreFactory2.default.objectHelper.isNull(schemaObjKeyName)) {
                 schemaObjKeyName = _coreFactory2.default.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME;
             }
@@ -27651,6 +27651,11 @@ var DefaultVueController = function () {
                 parentObj[errorFieldKeyName] = errorObj;
             }
             parentObj[errorMessageFieldKeyName] = null;
+            returnObj = {};
+            returnObj[payloadKeyName] = parentObj[payloadKeyName];
+            returnObj[errorFieldKeyName] = parentObj[errorFieldKeyName];
+            returnObj[errorMessageFieldKeyName] = parentObj[errorMessageFieldKeyName];
+            return returnObj;
         }
     }, {
         key: 'callFetch',
