@@ -35,7 +35,7 @@ A library to perform automated form validation, api calls, form error bindings. 
 1. [Nodejs](https://nodejs.org/dist/latest-v8.x/docs/api/) `8.9.4`.
 2. [NPM](https://docs.npmjs.com/) `5.6.0`.
 3. [Webpack](https://webpack.js.org/concepts/configuration/) `3.11.0`.
-4. Build output in **ES5**.
+4. Build output is in **ES5**.
 
 ### Currently Supports
 1. Raw javascript code.
