@@ -63,10 +63,6 @@ var CORE_ERROR_MESSAGES = {
         'en': 'Custom error id could not be found, did you forget to declare it? Error ID: {{errorId}}.',
         'nl': 'Aangepaste fout ID kon niet worden gevonden, ben je vergeten om het te declareren? Foutcode: {{errorId}}.',
     },
-    'core_default_vue_ctrl_1': {
-        'en': 'Did you forget to declare payload object in vue component?',
-        'nl': 'Bent u vergeten het payload-object te declareren in vue-component?',
-    },
 };
 
 export default CORE_ERROR_MESSAGES;

@@ -15788,10 +15788,6 @@ var CORE_ERROR_MESSAGES = {
     'core_base_ctrl_1': {
         'en': 'Custom error id could not be found, did you forget to declare it? Error ID: {{errorId}}.',
         'nl': 'Aangepaste fout ID kon niet worden gevonden, ben je vergeten om het te declareren? Foutcode: {{errorId}}.'
-    },
-    'core_default_vue_ctrl_1': {
-        'en': 'Did you forget to declare payload object in vue component?',
-        'nl': 'Bent u vergeten het payload-object te declareren in vue-component?'
     }
 };
 
@@ -27645,9 +27641,10 @@ var DefaultVueController = function () {
             if (_coreFactory2.default.objectHelper.isNotNull(parentObj, schemaObjKeyName)) {
                 schemaObj = parentObj[schemaObjKeyName];
                 if (_coreFactory2.default.objectHelper.isNull(parentObj, payloadKeyName)) {
-                    throw new _coreFactory2.default.DeveloperError(_coreFactory2.default, 'core_default_vue_ctrl_1');
+                    payloadObj = {};
+                } else {
+                    payloadObj = parentObj[payloadKeyName];
                 }
-                payloadObj = parentObj[payloadKeyName];
                 errorObj = parentObj[errorFieldKeyName];
                 this._initializeObjects(schemaObj, payloadObj, errorObj);
                 parentObj[payloadKeyName] = payloadObj;

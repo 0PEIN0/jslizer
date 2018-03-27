@@ -98,9 +98,10 @@ class DefaultVueController {
         if (CoreFactory.objectHelper.isNotNull(parentObj, schemaObjKeyName)) {
             schemaObj = parentObj[schemaObjKeyName];
             if (CoreFactory.objectHelper.isNull(parentObj, payloadKeyName)) {
-                throw new CoreFactory.DeveloperError(CoreFactory, 'core_default_vue_ctrl_1');
+                payloadObj = {};
+            } else {
+                payloadObj = parentObj[payloadKeyName];
             }
-            payloadObj = parentObj[payloadKeyName];
             errorObj = parentObj[errorFieldKeyName];
             this._initializeObjects(schemaObj, payloadObj, errorObj);
             parentObj[payloadKeyName] = payloadObj;
