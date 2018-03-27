@@ -73,7 +73,7 @@ class DefaultVueController {
                     if (schemaObj[key][CoreFactory.jsLizerConfig.FIELD_TYPE] === CoreFactory.jsLizerConfig.FIELD_BOOLEAN) {
                         payloadObj[key] = false;
                     }
-                    errorObj[key] = null;
+                    errorObj[key] = undefined;
                 }
             }
         }

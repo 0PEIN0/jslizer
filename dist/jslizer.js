@@ -27610,7 +27610,7 @@ var DefaultVueController = function () {
                         if (schemaObj[key][_coreFactory2.default.jsLizerConfig.FIELD_TYPE] === _coreFactory2.default.jsLizerConfig.FIELD_BOOLEAN) {
                             payloadObj[key] = false;
                         }
-                        errorObj[key] = null;
+                        errorObj[key] = undefined;
                     }
                 }
             }
