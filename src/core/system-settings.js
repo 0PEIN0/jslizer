@@ -13,6 +13,7 @@ class SystemSettings {
         this.SYSTEM_DEFAULT_AUTHORIZATION_HEADER_VALUE_PREFIX = 'JWT ';
         this.SYSTEM_DEFAULT_ERROR_FIELD_KEY = 'errorMessage';
         this.SYSTEM_DEFAULT_SERVICE_DATA_OBJECT_KEY = 'data';
+        this.SYSTEM_DEFAULT_PAYLOAD_KEY_NAME = 'formData';
         this.SYSTEM_DEFAULT_API_ERROR_MESSAGE_ID = 'core_system_settings_2';
         this.LOCAL_API_SERVER_DOMAIN_LIST = ['localhost'];
         this.LOCAL_API_SERVER_ADDRESS_LIST = ['http://localhost:8000/'];
@@ -22,6 +23,7 @@ class SystemSettings {
         this.API_URL_HAS_TRAILING_SLASH = true;
         this.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME = 'status_code';
         this.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME = 'results';
+        this.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME = 'schema';
         this.setEnvironmentRelatedValues();
     }
 

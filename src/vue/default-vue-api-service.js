@@ -7,7 +7,7 @@ class DefaultVueApiService extends BaseApiService {
         super();
         this.loader = loader;
         this.apiModuleUrl = null;
-        this.schema = {};
+        this[CoreFactory.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME] = {};
     }
 
     _apiExecutionOperations() {

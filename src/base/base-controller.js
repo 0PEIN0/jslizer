@@ -26,8 +26,8 @@ class BaseController {
         if (CoreFactory.objectHelper.isNull(params.payload)) {
             params.payload = {};
         }
-        if (CoreFactory.objectHelper.isNull(params.schema)) {
-            params.schema = null;
+        if (CoreFactory.objectHelper.isNull(params, CoreFactory.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME)) {
+            params[CoreFactory.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME] = null;
         }
         return params;
     }
@@ -113,7 +113,7 @@ class BaseController {
 
     _processPayload(params) {
         var schemaResult;
-        schemaResult = this._executeSchema(params.schema, params.payload);
+        schemaResult = this._executeSchema(params[CoreFactory.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME], params.payload);
         this._processGenericErrorResponse(schemaResult, params, false, false);
         return schemaResult;
     }

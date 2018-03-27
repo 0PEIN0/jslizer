@@ -5484,8 +5484,8 @@ var BaseController = function () {
             if (_coreFactory2.default.objectHelper.isNull(params.payload)) {
                 params.payload = {};
             }
-            if (_coreFactory2.default.objectHelper.isNull(params.schema)) {
-                params.schema = null;
+            if (_coreFactory2.default.objectHelper.isNull(params, _coreFactory2.default.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME)) {
+                params[_coreFactory2.default.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME] = null;
             }
             return params;
         }
@@ -5583,7 +5583,7 @@ var BaseController = function () {
         key: '_processPayload',
         value: function _processPayload(params) {
             var schemaResult;
-            schemaResult = this._executeSchema(params.schema, params.payload);
+            schemaResult = this._executeSchema(params[_coreFactory2.default.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME], params.payload);
             this._processGenericErrorResponse(schemaResult, params, false, false);
             return schemaResult;
         }
@@ -15055,6 +15055,7 @@ var SystemSettings = function () {
         this.SYSTEM_DEFAULT_AUTHORIZATION_HEADER_VALUE_PREFIX = 'JWT ';
         this.SYSTEM_DEFAULT_ERROR_FIELD_KEY = 'errorMessage';
         this.SYSTEM_DEFAULT_SERVICE_DATA_OBJECT_KEY = 'data';
+        this.SYSTEM_DEFAULT_PAYLOAD_KEY_NAME = 'formData';
         this.SYSTEM_DEFAULT_API_ERROR_MESSAGE_ID = 'core_system_settings_2';
         this.LOCAL_API_SERVER_DOMAIN_LIST = ['localhost'];
         this.LOCAL_API_SERVER_ADDRESS_LIST = ['http://localhost:8000/'];
@@ -15064,6 +15065,7 @@ var SystemSettings = function () {
         this.API_URL_HAS_TRAILING_SLASH = true;
         this.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME = 'status_code';
         this.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME = 'results';
+        this.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME = 'schema';
         this.setEnvironmentRelatedValues();
     }
 
@@ -15786,6 +15788,10 @@ var CORE_ERROR_MESSAGES = {
     'core_base_ctrl_1': {
         'en': 'Custom error id could not be found, did you forget to declare it? Error ID: {{errorId}}.',
         'nl': 'Aangepaste fout ID kon niet worden gevonden, ben je vergeten om het te declareren? Foutcode: {{errorId}}.'
+    },
+    'core_default_vue_ctrl_1': {
+        'en': 'Did you forget to declare payload object in vue component?',
+        'nl': 'Bent u vergeten het payload-object te declareren in vue-component?'
     }
 };
 
@@ -27555,8 +27561,8 @@ var DefaultVueController = function () {
         value: function _processDefaultControllerParams(params, operationTypeUrl, operationTypeNeedsAuthentication) {
             var newParams;
             newParams = {};
-            if (_coreFactory2.default.objectHelper.isNull(params, 'schema')) {
-                newParams.schema = params.parentObj.schema;
+            if (_coreFactory2.default.objectHelper.isNull(params, _coreFactory2.default.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME)) {
+                newParams[_coreFactory2.default.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME] = params.parentObj[_coreFactory2.default.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME];
             }
             if (_coreFactory2.default.objectHelper.isNull(params, 'apiModuleUrl')) {
                 params.apiModuleUrl = _coreFactory2.default.systemSettings.SYSTEM_DEFAULT_API_MODULE_URL;
@@ -27570,13 +27576,84 @@ var DefaultVueController = function () {
             newParams.errorId = params.errorId;
             newParams.payload = params.payload;
             newParams.parentObj = params.parentObj;
-            newParams.schema = params.schema;
+            newParams[_coreFactory2.default.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME] = params[_coreFactory2.default.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME];
             newParams.service = this.baseController.service;
             newParams.successFieldKey = params.successFieldKey;
             this.baseController.service.apiModuleUrl = params.apiModuleUrl;
             this.baseController.service[operationTypeUrl] = params[operationTypeUrl];
             this.baseController.service[operationTypeNeedsAuthentication] = params[operationTypeNeedsAuthentication];
             return newParams;
+        }
+    }, {
+        key: '_initializeObjects',
+        value: function _initializeObjects(schemaObj, payloadObj, errorObj) {
+            // TODO: implement multi depth form data, regex, date and error object initialization
+            for (var key in schemaObj) {
+                if (schemaObj.hasOwnProperty(key)) {
+                    if (schemaObj[key][_coreFactory2.default.jsLizerConfig.FIELD_TYPE] === _coreFactory2.default.jsLizerConfig.FIELD_OBJECT) {
+                        errorObj[key] = {};
+                        payloadObj[key] = {};
+                        for (var childKey in schemaObj[key][_coreFactory2.default.jsLizerConfig.FIELD_CHILD]) {
+                            if (schemaObj.hasOwnProperty(childKey)) {
+                                this._initializeObjects(schemaObj[key][_coreFactory2.default.jsLizerConfig.FIELD_CHILD][childKey], payloadObj[key], errorObj[key]);
+                            }
+                        }
+                    } else if (schemaObj[key][_coreFactory2.default.jsLizerConfig.FIELD_TYPE] === _coreFactory2.default.jsLizerConfig.FIELD_ARRAY) {
+                        errorObj[key] = [];
+                        payloadObj[key] = [];
+                        //this._initializeObjects(schemaObj[key], payloadObj[key], errorObj[key]);
+                    } else {
+                        // TODO: use default values from system settings
+                        payloadObj[key] = '';
+                        if (schemaObj[key][_coreFactory2.default.jsLizerConfig.FIELD_TYPE] === _coreFactory2.default.jsLizerConfig.FIELD_INTEGER) {
+                            payloadObj[key] = 0;
+                        }
+                        if (schemaObj[key][_coreFactory2.default.jsLizerConfig.FIELD_TYPE] === _coreFactory2.default.jsLizerConfig.FIELD_DECIMAL) {
+                            payloadObj[key] = 0.00;
+                        }
+                        if (schemaObj[key][_coreFactory2.default.jsLizerConfig.FIELD_TYPE] === _coreFactory2.default.jsLizerConfig.FIELD_BOOLEAN) {
+                            payloadObj[key] = false;
+                        }
+                        errorObj[key] = null;
+                    }
+                }
+            }
+        }
+    }, {
+        key: 'initForm',
+        value: function initForm(parentObj) {
+            var schemaObjKeyName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+            var payloadKeyName = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+            var errorFieldKeyName = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+            var errorMessageFieldKeyName = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
+
+            var payloadObj, errorObj, schemaObj;
+            if (_coreFactory2.default.objectHelper.isNull(schemaObjKeyName)) {
+                schemaObjKeyName = _coreFactory2.default.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME;
+            }
+            if (_coreFactory2.default.objectHelper.isNull(payloadKeyName)) {
+                payloadKeyName = _coreFactory2.default.systemSettings.SYSTEM_DEFAULT_PAYLOAD_KEY_NAME;
+            }
+            if (_coreFactory2.default.objectHelper.isNull(errorFieldKeyName)) {
+                errorFieldKeyName = _coreFactory2.default.jsLizerConfig.FIELD_ERROR;
+            }
+            if (_coreFactory2.default.objectHelper.isNull(errorMessageFieldKeyName)) {
+                errorMessageFieldKeyName = _coreFactory2.default.systemSettings.SYSTEM_DEFAULT_ERROR_FIELD_KEY;
+            }
+            errorObj = {};
+            parentObj[errorFieldKeyName] = errorObj;
+            if (_coreFactory2.default.objectHelper.isNotNull(parentObj, schemaObjKeyName)) {
+                schemaObj = parentObj[schemaObjKeyName];
+                if (_coreFactory2.default.objectHelper.isNull(parentObj, payloadKeyName)) {
+                    throw new _coreFactory2.default.DeveloperError(_coreFactory2.default, 'core_default_vue_ctrl_1');
+                }
+                payloadObj = parentObj[payloadKeyName];
+                errorObj = parentObj[errorFieldKeyName];
+                this._initializeObjects(schemaObj, payloadObj, errorObj);
+                parentObj[payloadKeyName] = payloadObj;
+                parentObj[errorFieldKeyName] = errorObj;
+            }
+            parentObj[errorMessageFieldKeyName] = null;
         }
     }, {
         key: 'callFetch',
@@ -27666,7 +27743,7 @@ var DefaultVueApiService = function (_BaseApiService) {
 
         _this.loader = loader;
         _this.apiModuleUrl = null;
-        _this.schema = {};
+        _this[_coreFactory2.default.systemSettings.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME] = {};
         return _this;
     }
 
