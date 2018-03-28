@@ -30,6 +30,7 @@ A library to perform automated form validation, api calls, form error bindings. 
 22. Add support custom validation method for any type of property.
 23. Error and success messages should be configurable from a web panel.
 24. Schema should be browsable in a panel as a object tree.
+25. Add pagination support in listing api calls.
 
 ### Build Configurations
 1. [Nodejs](https://nodejs.org/dist/latest-v8.x/docs/api/) `8.9.4`.
