@@ -6,6 +6,8 @@ import BaseAngularController from './src/angular/base-angular-controller';
 import angularCoreFactory from './src/angular/index';
 import vueCoreFactory from './src/vue/index';
 import reactCoreFactory from './src/react/index';
+import DefaultReactController from './src/react/default-react-controller';
+import DefaultVueController from './src/vue/default-vue-controller';
 
 var jslizer;
 
@@ -17,7 +19,9 @@ jslizer = {
     'BaseAngularController': BaseAngularController,
     'angularCoreFactory': angularCoreFactory,
     'vueCoreFactory': vueCoreFactory,
-    'reactCoreFactory': reactCoreFactory
+    'DefaultVueController': DefaultVueController,
+    'reactCoreFactory': reactCoreFactory,
+    'DefaultReactController': DefaultReactController
 };
 
 export default jslizer;

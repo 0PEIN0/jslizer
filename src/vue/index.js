@@ -1,8 +1,5 @@
-import CoreFactory from './../core/core-factory';
-import DefaultVueController from './default-vue-controller'
-
 let vueCoreFactory = (Vue, jslizer, PROJECT_MESSAGES = {}, PROJECT_SYSTEM_SETTINGS = {}, loader = null) => {
-    jslizer.coreFactory = new CoreFactory();
+    jslizer.coreFactory = new jslizer.CoreFactory();
     Vue.use(jslizer)
     Vue.mixin({
         // eslint-disable-next-line
@@ -14,7 +11,7 @@ let vueCoreFactory = (Vue, jslizer, PROJECT_MESSAGES = {}, PROJECT_SYSTEM_SETTIN
                 this.$coreFactory = options.parent.$coreFactory
             }
             if (this.$coreFactory.objectHelper.isNull(this.$coreFactory.defaultVueController)) {
-                this.$coreFactory.defaultVueController = new DefaultVueController(loader)
+                this.$coreFactory.defaultVueController = new jslizer.DefaultVueController(loader)
             }
         }
     })
