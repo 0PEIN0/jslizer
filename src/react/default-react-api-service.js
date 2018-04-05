@@ -1,7 +1,7 @@
 import CoreFactory from './../core/core-factory';
 import DefaultApiService from './../base/default-api-service'
 
-class DefaultVueApiService extends DefaultApiService {
+class DefaultReactApiService extends DefaultApiService {
 
     constructor(loader = null) {
         super(loader);
@@ -9,4 +9,4 @@ class DefaultVueApiService extends DefaultApiService {
 
 }
 
-export default DefaultVueApiService;
+export default DefaultReactApiService;

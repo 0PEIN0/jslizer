@@ -8,7 +8,7 @@ class BaseAngularApiService extends BaseApiService {
         this.loadingController = loadingController;
     }
 
-    _apiExecutionOperations() {
+    apiExecutionOperations() {
         if (CoreFactory.objectHelper.isNotNull(this.loadingController)) {
             this.loadingController.show();
         }

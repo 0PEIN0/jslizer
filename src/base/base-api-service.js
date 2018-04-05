@@ -26,8 +26,8 @@ class BaseApiService {
     }
 
     _genericApiExecutionOperations() {
-        if (CoreFactory.objectHelper.isNotNull(this._apiExecutionOperations)) {
-            this._apiExecutionOperations();
+        if (CoreFactory.objectHelper.isNotNull(this.apiExecutionOperations)) {
+            this.apiExecutionOperations();
         }
     }
 
