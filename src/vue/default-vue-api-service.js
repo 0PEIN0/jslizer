@@ -1,4 +1,3 @@
-import CoreFactory from './../core/core-factory';
 import DefaultApiService from './../base/default-api-service'
 
 class DefaultVueApiService extends DefaultApiService {

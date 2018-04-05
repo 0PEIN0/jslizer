@@ -1,8 +1,7 @@
-import CoreFactory from './../core/core-factory';
-import BaseController from './../base/base-controller';
+import DefaultController from './../base/default-controller';
 import DefaultReactApiService from './default-react-api-service';
 
-class DefaultReactController {
+class DefaultReactController extends DefaultController {
 
     constructor(loader = null) {
         super(loader);

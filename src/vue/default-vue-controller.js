@@ -1,8 +1,7 @@
-import CoreFactory from './../core/core-factory';
-import BaseController from './../base/base-controller';
+import DefaultController from './../base/default-controller';
 import DefaultVueApiService from './default-vue-api-service';
 
-class DefaultVueController {
+class DefaultVueController extends DefaultController {
 
     constructor(loader = null) {
         super(loader);
