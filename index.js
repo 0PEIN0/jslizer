@@ -5,9 +5,9 @@ import BaseAngularApiService from './src/angular/base-angular-api-service';
 import BaseAngularController from './src/angular/base-angular-controller';
 import angularCoreFactory from './src/angular/index';
 import vueCoreFactory from './src/vue/index';
+import DefaultVueController from './src/vue/default-vue-controller';
 import reactCoreFactory from './src/react/index';
 import DefaultReactController from './src/react/default-react-controller';
-import DefaultVueController from './src/vue/default-vue-controller';
 
 var jslizer;
 
