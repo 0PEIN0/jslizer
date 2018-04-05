@@ -15260,12 +15260,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__src_angular_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__src_angular_index__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__src_vue_index__ = __webpack_require__(474);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__src_vue_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__src_vue_index__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__src_react_index__ = __webpack_require__(475);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__src_react_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__src_react_index__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__src_react_default_react_controller__ = __webpack_require__(476);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__src_react_default_react_controller___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__src_react_default_react_controller__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__src_vue_default_vue_controller__ = __webpack_require__(478);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__src_vue_default_vue_controller___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__src_vue_default_vue_controller__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__src_vue_default_vue_controller__ = __webpack_require__(475);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__src_vue_default_vue_controller___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__src_vue_default_vue_controller__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__src_react_index__ = __webpack_require__(477);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__src_react_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__src_react_index__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__src_react_default_react_controller__ = __webpack_require__(478);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__src_react_default_react_controller___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__src_react_default_react_controller__);
 
 
 
@@ -15287,9 +15287,9 @@ jslizer = {
     'BaseAngularController': __WEBPACK_IMPORTED_MODULE_4__src_angular_base_angular_controller___default.a,
     'angularCoreFactory': __WEBPACK_IMPORTED_MODULE_5__src_angular_index___default.a,
     'vueCoreFactory': __WEBPACK_IMPORTED_MODULE_6__src_vue_index___default.a,
-    'DefaultVueController': __WEBPACK_IMPORTED_MODULE_9__src_vue_default_vue_controller___default.a,
-    'reactCoreFactory': __WEBPACK_IMPORTED_MODULE_7__src_react_index___default.a,
-    'DefaultReactController': __WEBPACK_IMPORTED_MODULE_8__src_react_default_react_controller___default.a
+    'DefaultVueController': __WEBPACK_IMPORTED_MODULE_7__src_vue_default_vue_controller___default.a,
+    'reactCoreFactory': __WEBPACK_IMPORTED_MODULE_8__src_react_index___default.a,
+    'DefaultReactController': __WEBPACK_IMPORTED_MODULE_9__src_react_default_react_controller___default.a
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (jslizer);
@@ -27770,143 +27770,11 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var reactCoreFactory = function reactCoreFactory(React, jslizer) {
-    var PROJECT_MESSAGES = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    var PROJECT_SYSTEM_SETTINGS = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-    var loader = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
-
-    jslizer.coreFactory = new jslizer.CoreFactory();
-    jslizer.coreFactory.defaultVueController = new jslizer.DefaultReactController(loader);
-    jslizer.CoreFactory.errorMessage.loadProjectMessages(PROJECT_MESSAGES);
-    jslizer.CoreFactory.systemSettings.loadProjectLocalSettings(jslizer.CoreFactory.systemSettings, PROJECT_SYSTEM_SETTINGS);
-
-    var CustomReactComponent = function (_React$Component) {
-        _inherits(CustomReactComponent, _React$Component);
-
-        function CustomReactComponent(props) {
-            _classCallCheck(this, CustomReactComponent);
-
-            var _this = _possibleConstructorReturn(this, (CustomReactComponent.__proto__ || Object.getPrototypeOf(CustomReactComponent)).call(this, props));
-
-            _this.coreFactory = jslizer.coreFactory;
-            return _this;
-        }
-
-        return CustomReactComponent;
-    }(React.Component);
-
-    return CustomReactComponent;
-};
-
-exports.default = reactCoreFactory;
-
-/***/ }),
-/* 476 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
 var _defaultController = __webpack_require__(166);
 
 var _defaultController2 = _interopRequireDefault(_defaultController);
 
-var _defaultReactApiService = __webpack_require__(477);
-
-var _defaultReactApiService2 = _interopRequireDefault(_defaultReactApiService);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var DefaultReactController = function (_DefaultController) {
-    _inherits(DefaultReactController, _DefaultController);
-
-    function DefaultReactController() {
-        var loader = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-        _classCallCheck(this, DefaultReactController);
-
-        var _this = _possibleConstructorReturn(this, (DefaultReactController.__proto__ || Object.getPrototypeOf(DefaultReactController)).call(this, loader));
-
-        _this.baseController.service = new _defaultReactApiService2.default(_this.loader);
-        return _this;
-    }
-
-    return DefaultReactController;
-}(_defaultController2.default);
-
-exports.default = DefaultReactController;
-
-/***/ }),
-/* 477 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _defaultApiService = __webpack_require__(167);
-
-var _defaultApiService2 = _interopRequireDefault(_defaultApiService);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var DefaultReactApiService = function (_DefaultApiService) {
-    _inherits(DefaultReactApiService, _DefaultApiService);
-
-    function DefaultReactApiService() {
-        var loader = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-        _classCallCheck(this, DefaultReactApiService);
-
-        return _possibleConstructorReturn(this, (DefaultReactApiService.__proto__ || Object.getPrototypeOf(DefaultReactApiService)).call(this, loader));
-    }
-
-    return DefaultReactApiService;
-}(_defaultApiService2.default);
-
-exports.default = DefaultReactApiService;
-
-/***/ }),
-/* 478 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _defaultController = __webpack_require__(166);
-
-var _defaultController2 = _interopRequireDefault(_defaultController);
-
-var _defaultVueApiService = __webpack_require__(479);
+var _defaultVueApiService = __webpack_require__(476);
 
 var _defaultVueApiService2 = _interopRequireDefault(_defaultVueApiService);
 
@@ -27938,7 +27806,7 @@ var DefaultVueController = function (_DefaultController) {
 exports.default = DefaultVueController;
 
 /***/ }),
-/* 479 */
+/* 476 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27975,6 +27843,115 @@ var DefaultVueApiService = function (_DefaultApiService) {
 }(_defaultApiService2.default);
 
 exports.default = DefaultVueApiService;
+
+/***/ }),
+/* 477 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var reactCoreFactory = function reactCoreFactory(React, jslizer) {
+    var PROJECT_MESSAGES = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    var PROJECT_SYSTEM_SETTINGS = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+    var loader = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
+
+    jslizer.coreFactory = new jslizer.CoreFactory();
+    jslizer.coreFactory.defaultVueController = new jslizer.DefaultReactController(loader);
+    jslizer.CoreFactory.errorMessage.loadProjectMessages(PROJECT_MESSAGES);
+    jslizer.CoreFactory.systemSettings.loadProjectLocalSettings(jslizer.CoreFactory.systemSettings, PROJECT_SYSTEM_SETTINGS);
+    React.coreFactory = jslizer.coreFactory;
+};
+
+exports.default = reactCoreFactory;
+
+/***/ }),
+/* 478 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _defaultController = __webpack_require__(166);
+
+var _defaultController2 = _interopRequireDefault(_defaultController);
+
+var _defaultReactApiService = __webpack_require__(479);
+
+var _defaultReactApiService2 = _interopRequireDefault(_defaultReactApiService);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DefaultReactController = function (_DefaultController) {
+    _inherits(DefaultReactController, _DefaultController);
+
+    function DefaultReactController() {
+        var loader = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+        _classCallCheck(this, DefaultReactController);
+
+        var _this = _possibleConstructorReturn(this, (DefaultReactController.__proto__ || Object.getPrototypeOf(DefaultReactController)).call(this, loader));
+
+        _this.baseController.service = new _defaultReactApiService2.default(_this.loader);
+        return _this;
+    }
+
+    return DefaultReactController;
+}(_defaultController2.default);
+
+exports.default = DefaultReactController;
+
+/***/ }),
+/* 479 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _defaultApiService = __webpack_require__(167);
+
+var _defaultApiService2 = _interopRequireDefault(_defaultApiService);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DefaultReactApiService = function (_DefaultApiService) {
+    _inherits(DefaultReactApiService, _DefaultApiService);
+
+    function DefaultReactApiService() {
+        var loader = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+        _classCallCheck(this, DefaultReactApiService);
+
+        return _possibleConstructorReturn(this, (DefaultReactApiService.__proto__ || Object.getPrototypeOf(DefaultReactApiService)).call(this, loader));
+    }
+
+    return DefaultReactApiService;
+}(_defaultApiService2.default);
+
+exports.default = DefaultReactApiService;
 
 /***/ })
 /******/ ]);

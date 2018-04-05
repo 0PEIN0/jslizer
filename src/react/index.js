@@ -3,13 +3,7 @@ let reactCoreFactory = (React, jslizer, PROJECT_MESSAGES = {}, PROJECT_SYSTEM_SE
     jslizer.coreFactory.defaultVueController = new jslizer.DefaultReactController(loader);
     jslizer.CoreFactory.errorMessage.loadProjectMessages(PROJECT_MESSAGES);
     jslizer.CoreFactory.systemSettings.loadProjectLocalSettings(jslizer.CoreFactory.systemSettings, PROJECT_SYSTEM_SETTINGS);
-    class CustomReactComponent extends React.Component {
-        constructor(props) {
-            super(props);
-            this.coreFactory = jslizer.coreFactory;
-        }
-    }
-    return CustomReactComponent;
+    React.coreFactory = jslizer.coreFactory;
 };
 
 
