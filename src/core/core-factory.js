@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import SystemSettings from './system-settings';
 import ObjectHelper from './../utils/object-helper';
 import JsLizerConfig from './../jslizer/config';
@@ -23,10 +25,13 @@ class CoreFactory {
 
     generateInstances() {
         var objectHelper;
-        if (CoreFactory.objectHelper === null || typeof(CoreFactory.objectHelper) === 'undefined') {
+        if (CoreFactory.objectHelper === null || typeof (CoreFactory.objectHelper) === 'undefined') {
             objectHelper = new ObjectHelper();
         } else {
             objectHelper = CoreFactory.objectHelper;
+        }
+        if (objectHelper.isNull(CoreFactory.momentJs)) {
+            this.momentJs = CoreFactory.momentJs = moment;
         }
         if (objectHelper.isNull(CoreFactory.systemSettings)) {
             this.systemSettings = CoreFactory.systemSettings = new SystemSettings();
