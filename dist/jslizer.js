@@ -27860,7 +27860,7 @@ var reactCoreFactory = function reactCoreFactory(React, jslizer) {
     var loader = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
 
     jslizer.coreFactory = new jslizer.CoreFactory();
-    jslizer.coreFactory.defaultVueController = new jslizer.DefaultReactController(loader);
+    jslizer.coreFactory.defaultReactController = new jslizer.DefaultReactController(loader);
     jslizer.CoreFactory.errorMessage.loadProjectMessages(PROJECT_MESSAGES);
     jslizer.CoreFactory.systemSettings.loadProjectLocalSettings(jslizer.CoreFactory.systemSettings, PROJECT_SYSTEM_SETTINGS);
     React.coreFactory = jslizer.coreFactory;
