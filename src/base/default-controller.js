@@ -29,7 +29,7 @@ class DefaultController {
             params[operationTypeUrl] = '';
         }
         if (CoreFactory.objectHelper.isNull(params, operationTypeNeedsAuthentication)) {
-            params.operationTypeNeedsAuthentication = params.parentObj.$coreFactory.systemSettings.SYSTEM_DEFAULT_AUTHENTICATION_REQUIRED_VALUE;
+            params.operationTypeNeedsAuthentication = CoreFactory.systemSettings.SYSTEM_DEFAULT_AUTHENTICATION_REQUIRED_VALUE;
         }
         newParams.errorId = params.errorId;
         newParams.payload = params.payload;

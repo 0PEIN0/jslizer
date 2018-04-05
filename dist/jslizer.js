@@ -15044,7 +15044,7 @@ var DefaultController = function () {
                 params[operationTypeUrl] = '';
             }
             if (_coreFactory2.default.objectHelper.isNull(params, operationTypeNeedsAuthentication)) {
-                params.operationTypeNeedsAuthentication = params.parentObj.$coreFactory.systemSettings.SYSTEM_DEFAULT_AUTHENTICATION_REQUIRED_VALUE;
+                params.operationTypeNeedsAuthentication = _coreFactory2.default.systemSettings.SYSTEM_DEFAULT_AUTHENTICATION_REQUIRED_VALUE;
             }
             newParams.errorId = params.errorId;
             newParams.payload = params.payload;
