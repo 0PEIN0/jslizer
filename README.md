@@ -31,6 +31,7 @@ A library to perform automated form validation, api calls, form error bindings. 
 23. Error and success messages should be configurable from a web panel.
 24. Schema should be browsable in a panel as a object tree.
 25. Add pagination support in listing api calls.
+26. Provide `Regex` object support in core.
 
 ### Build Configurations
 1. [Nodejs](https://nodejs.org/dist/latest-v8.x/docs/api/) `8.9.4`.
