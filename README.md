@@ -7,7 +7,7 @@ A library to perform automated form validation, api calls, form error bindings. 
 
 ### Next set of project goals
 1. Provide a default angular service and controller in core factory. Sample implementation can be found in `DefaultVueController` class.
-2. Provide different types of form data upload like `application/json`, `multipart/form-data` content-type support.
+2. Support for different types of payload like `application/json`, `multipart/form-data` content-type support.
 3. Provide `Date` object support in core.
 4. Provide `File` object support in core.
 5. Provide `UUID` object support in core.
