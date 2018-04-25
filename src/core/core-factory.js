@@ -19,13 +19,13 @@ import {
 
 class CoreFactory {
 
-    constructor() {
-        this.generateInstances();
+    constructor(projectSystemSettings = null) {
+        this.generateInstances(projectSystemSettings);
     }
 
-    generateInstances() {
+    generateInstances(projectSystemSettings = null) {
         var objectHelper;
-        if (CoreFactory.objectHelper === null || typeof (CoreFactory.objectHelper) === 'undefined') {
+        if (CoreFactory.objectHelper === null || typeof(CoreFactory.objectHelper) === 'undefined') {
             objectHelper = new ObjectHelper();
         } else {
             objectHelper = CoreFactory.objectHelper;
@@ -34,7 +34,7 @@ class CoreFactory {
             this.momentJs = CoreFactory.momentJs = moment;
         }
         if (objectHelper.isNull(CoreFactory.systemSettings)) {
-            this.systemSettings = CoreFactory.systemSettings = new SystemSettings();
+            this.systemSettings = CoreFactory.systemSettings = new SystemSettings(projectSystemSettings);
         }
         if (objectHelper.isNull(CoreFactory.objectHelper)) {
             this.objectHelper = CoreFactory.objectHelper = objectHelper;

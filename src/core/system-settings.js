@@ -4,7 +4,7 @@ import {
 
 class SystemSettings {
 
-    constructor() {
+    constructor(projectSystemSettings = null) {
         this.SYSTEM_LANGUAGE = 'en';
         this.SYSTEM_DATE_FORMAT = 'DD-MM-YYYY';
         this.SYSTEM_DATE_TIME_FORMAT = 'DD-MM-YYYY hh:mm';
@@ -24,6 +24,7 @@ class SystemSettings {
         this.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME = 'status_code';
         this.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME = 'results';
         this.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME = 'schema';
+        this.loadProjectLocalSettings(this, projectSystemSettings);
         this.setEnvironmentRelatedValues();
     }
 
@@ -39,12 +40,14 @@ class SystemSettings {
     }
 
     loadProjectLocalSettings(parentObj, projectSystemSettings) {
-        for (var key in projectSystemSettings) {
-            if (projectSystemSettings.hasOwnProperty(key)) {
-                parentObj[key] = projectSystemSettings[key];
+        if (projectSystemSettings !== null) {
+            for (var key in projectSystemSettings) {
+                if (projectSystemSettings.hasOwnProperty(key)) {
+                    parentObj[key] = projectSystemSettings[key];
+                }
             }
+            this.setEnvironmentRelatedValues();
         }
-        this.setEnvironmentRelatedValues();
         return parentObj;
     }
 

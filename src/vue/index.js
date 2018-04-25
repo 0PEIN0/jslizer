@@ -1,5 +1,5 @@
 let vueCoreFactory = (Vue, jslizer, PROJECT_MESSAGES = {}, PROJECT_SYSTEM_SETTINGS = {}, loader = null) => {
-    jslizer.coreFactory = new jslizer.CoreFactory();
+    jslizer.coreFactory = new jslizer.CoreFactory(PROJECT_SYSTEM_SETTINGS);
     Vue.use(jslizer)
     Vue.mixin({
         // eslint-disable-next-line

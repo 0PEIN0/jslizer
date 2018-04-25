@@ -4049,7 +4049,7 @@ exports.Observable = Observable;
 
     addUnitAlias('date', 'D');
 
-    // PRIOROITY
+    // PRIORITY
     addUnitPriority('date', 9);
 
     // PARSING
@@ -4846,7 +4846,7 @@ exports.Observable = Observable;
     // Side effect imports
 
 
-    hooks.version = '2.22.0';
+    hooks.version = '2.22.1';
 
     setHookCallback(createLocal);
 
@@ -5841,14 +5841,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var CoreFactory = function () {
     function CoreFactory() {
+        var projectSystemSettings = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
         _classCallCheck(this, CoreFactory);
 
-        this.generateInstances();
+        this.generateInstances(projectSystemSettings);
     }
 
     _createClass(CoreFactory, [{
         key: 'generateInstances',
         value: function generateInstances() {
+            var projectSystemSettings = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
             var objectHelper;
             if (CoreFactory.objectHelper === null || typeof CoreFactory.objectHelper === 'undefined') {
                 objectHelper = new _objectHelper2.default();
@@ -5859,7 +5863,7 @@ var CoreFactory = function () {
                 this.momentJs = CoreFactory.momentJs = _moment2.default;
             }
             if (objectHelper.isNull(CoreFactory.systemSettings)) {
-                this.systemSettings = CoreFactory.systemSettings = new _systemSettings2.default();
+                this.systemSettings = CoreFactory.systemSettings = new _systemSettings2.default(projectSystemSettings);
             }
             if (objectHelper.isNull(CoreFactory.objectHelper)) {
                 this.objectHelper = CoreFactory.objectHelper = objectHelper;
@@ -18790,28 +18794,28 @@ exports.default = BaseController;
             LLLL : 'dddd, D MMMM YYYY г., H:mm'
         },
         calendar : {
-            sameDay: '[Сегодня в] LT',
-            nextDay: '[Завтра в] LT',
-            lastDay: '[Вчера в] LT',
+            sameDay: '[Сегодня, в] LT',
+            nextDay: '[Завтра, в] LT',
+            lastDay: '[Вчера, в] LT',
             nextWeek: function (now) {
                 if (now.week() !== this.week()) {
                     switch (this.day()) {
                         case 0:
-                            return '[В следующее] dddd [в] LT';
+                            return '[В следующее] dddd, [в] LT';
                         case 1:
                         case 2:
                         case 4:
-                            return '[В следующий] dddd [в] LT';
+                            return '[В следующий] dddd, [в] LT';
                         case 3:
                         case 5:
                         case 6:
-                            return '[В следующую] dddd [в] LT';
+                            return '[В следующую] dddd, [в] LT';
                     }
                 } else {
                     if (this.day() === 2) {
-                        return '[Во] dddd [в] LT';
+                        return '[Во] dddd, [в] LT';
                     } else {
-                        return '[В] dddd [в] LT';
+                        return '[В] dddd, [в] LT';
                     }
                 }
             },
@@ -18819,21 +18823,21 @@ exports.default = BaseController;
                 if (now.week() !== this.week()) {
                     switch (this.day()) {
                         case 0:
-                            return '[В прошлое] dddd [в] LT';
+                            return '[В прошлое] dddd, [в] LT';
                         case 1:
                         case 2:
                         case 4:
-                            return '[В прошлый] dddd [в] LT';
+                            return '[В прошлый] dddd, [в] LT';
                         case 3:
                         case 5:
                         case 6:
-                            return '[В прошлую] dddd [в] LT';
+                            return '[В прошлую] dddd, [в] LT';
                     }
                 } else {
                     if (this.day() === 2) {
-                        return '[Во] dddd [в] LT';
+                        return '[Во] dddd, [в] LT';
                     } else {
-                        return '[В] dddd [в] LT';
+                        return '[В] dddd, [в] LT';
                     }
                 }
             },
@@ -31975,6 +31979,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var SystemSettings = function () {
     function SystemSettings() {
+        var projectSystemSettings = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
         _classCallCheck(this, SystemSettings);
 
         this.SYSTEM_LANGUAGE = 'en';
@@ -31996,6 +32002,7 @@ var SystemSettings = function () {
         this.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME = 'status_code';
         this.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME = 'results';
         this.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME = 'schema';
+        this.loadProjectLocalSettings(this, projectSystemSettings);
         this.setEnvironmentRelatedValues();
     }
 
@@ -32014,12 +32021,14 @@ var SystemSettings = function () {
     }, {
         key: 'loadProjectLocalSettings',
         value: function loadProjectLocalSettings(parentObj, projectSystemSettings) {
-            for (var key in projectSystemSettings) {
-                if (projectSystemSettings.hasOwnProperty(key)) {
-                    parentObj[key] = projectSystemSettings[key];
+            if (projectSystemSettings !== null) {
+                for (var key in projectSystemSettings) {
+                    if (projectSystemSettings.hasOwnProperty(key)) {
+                        parentObj[key] = projectSystemSettings[key];
+                    }
                 }
+                this.setEnvironmentRelatedValues();
             }
-            this.setEnvironmentRelatedValues();
             return parentObj;
         }
     }]);
@@ -44398,7 +44407,7 @@ var vueCoreFactory = function vueCoreFactory(Vue, jslizer) {
     var PROJECT_SYSTEM_SETTINGS = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
     var loader = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
 
-    jslizer.coreFactory = new jslizer.CoreFactory();
+    jslizer.coreFactory = new jslizer.CoreFactory(PROJECT_SYSTEM_SETTINGS);
     Vue.use(jslizer);
     Vue.mixin({
         // eslint-disable-next-line
