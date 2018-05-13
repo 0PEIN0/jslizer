@@ -17,6 +17,10 @@ class SystemSettings {
         this.SYSTEM_DEFAULT_API_ERROR_MESSAGE_ID = 'core_system_settings_2';
         this.LOCAL_API_SERVER_DOMAIN_LIST = ['localhost'];
         this.LOCAL_API_SERVER_ADDRESS_LIST = ['http://localhost:8000/'];
+        this.STAGING_API_SERVER_DOMAIN_LIST = [];
+        this.STAGING_API_SERVER_ADDRESS_LIST = [];
+        this.PRODUCTION_API_SERVER_DOMAIN_LIST = [];
+        this.PRODUCTION_API_SERVER_ADDRESS_LIST = [];
         this.LOCAL_DEVELOPMENT_ENVIRONMENT_KEY_NAME = 'development';
         this.SYSTEM_DEFAULT_API_MODULE_URL = 'users';
         this.API_PREFIX_PATH = 'api/';
@@ -30,13 +34,19 @@ class SystemSettings {
 
     setEnvironmentRelatedValues() {
         if (this.LOCAL_API_SERVER_DOMAIN_LIST.indexOf(location.hostname) !== -1) {
-            this.ENVIRONMENT = this.LOCAL_DEVELOPMENT_ENVIRONMENT_KEY_NAME;
+            this.ENVIRONMENT = 'development';
             this.ROOT_URL = this.LOCAL_API_SERVER_ADDRESS_LIST[this.LOCAL_API_SERVER_DOMAIN_LIST.indexOf(location.hostname)];
+        } else if (this.STAGING_API_SERVER_DOMAIN_LIST.indexOf(location.hostname) !== -1) {
+            this.ENVIRONMENT = 'staging';
+            this.ROOT_URL = this.STAGING_API_SERVER_ADDRESS_LIST[this.STAGING_API_SERVER_DOMAIN_LIST.indexOf(location.hostname)];
+        } else if (this.PRODUCTION_API_SERVER_DOMAIN_LIST.indexOf(location.hostname) !== -1) {
+            this.ENVIRONMENT = 'production';
+            this.ROOT_URL = this.PRODUCTION_API_SERVER_ADDRESS_LIST[this.PRODUCTION_API_SERVER_DOMAIN_LIST.indexOf(location.hostname)];
         } else {
             //TODO: coreFactory was not passed in the custom error class instantiation
             throw new FatalError('core_system_settings_1');
         }
-        this.ROOT_API_URL = this.ROOT_URL + this.API_PREFIX_PATH;
+        this.ROOT_API_URL = this.ROOT_URL + 'api/';
     }
 
     loadProjectLocalSettings(parentObj, projectSystemSettings) {

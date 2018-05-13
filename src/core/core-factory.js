@@ -7,6 +7,7 @@ import JsLizerExecutor from './../jslizer/executor';
 import StorageHandler from './../utils/storage-handler';
 import ErrorMessage from './../error/error-message'
 import ApiResponseService from './../api/api-response-service';
+import ApiExecutionerService from './../api/api-executioner-service';
 import {
     ValidationError,
     JsLizerError,
@@ -25,7 +26,7 @@ class CoreFactory {
 
     generateInstances(projectSystemSettings = null) {
         var objectHelper;
-        if (CoreFactory.objectHelper === null || typeof(CoreFactory.objectHelper) === 'undefined') {
+        if (CoreFactory.objectHelper === null || typeof (CoreFactory.objectHelper) === 'undefined') {
             objectHelper = new ObjectHelper();
         } else {
             objectHelper = CoreFactory.objectHelper;
@@ -47,6 +48,9 @@ class CoreFactory {
         }
         if (objectHelper.isNull(CoreFactory.apiResponseService)) {
             this.apiResponseService = CoreFactory.apiResponseService = new ApiResponseService();
+        }
+        if (objectHelper.isNull(CoreFactory.ApiExecutionerService)) {
+            this.ApiExecutionerService = ApiExecutionerService;
         }
         if (objectHelper.isNull(CoreFactory.JsLizerExecutor)) {
             this.JsLizerExecutor = CoreFactory.JsLizerExecutor = JsLizerExecutor;
