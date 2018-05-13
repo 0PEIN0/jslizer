@@ -5,12 +5,10 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import CoreFactory from './../core/core-factory';
-import ApiExecutionerService from './../api/api-executioner-service';
 
 class BaseApiService {
 
     constructor() {
-        this.apiExecutionerService = new ApiExecutionerService();
         this.customFetchUrl = '';
         this.fetchNeedsAuthentication = CoreFactory.systemSettings.SYSTEM_DEFAULT_AUTHENTICATION_REQUIRED_VALUE;
         this.customListingUrl = '';
@@ -26,6 +24,7 @@ class BaseApiService {
     }
 
     _genericApiExecutionOperations() {
+        this.apiExecutionerService = new CoreFactory.ApiExecutionerService();
         if (CoreFactory.objectHelper.isNotNull(this.apiExecutionOperations)) {
             this.apiExecutionOperations();
         }
