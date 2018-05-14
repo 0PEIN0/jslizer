@@ -32027,7 +32027,7 @@ var SystemSettings = function () {
                 this.ROOT_URL = this.PRODUCTION_API_SERVER_ADDRESS_LIST[this.PRODUCTION_API_SERVER_DOMAIN_LIST.indexOf(location.hostname)];
             } else {
                 //TODO: coreFactory was not passed in the custom error class instantiation
-                throw new _customException.FatalError('core_system_settings_1');
+                // throw new FatalError('core_system_settings_1');
             }
             this.ROOT_API_URL = this.ROOT_URL + 'api/';
         }
