@@ -26,7 +26,7 @@ class CoreFactory {
 
     generateInstances(projectSystemSettings = null) {
         var objectHelper;
-        if (CoreFactory.objectHelper === null || typeof (CoreFactory.objectHelper) === 'undefined') {
+        if (CoreFactory.objectHelper === null || typeof(CoreFactory.objectHelper) === 'undefined') {
             objectHelper = new ObjectHelper();
         } else {
             objectHelper = CoreFactory.objectHelper;
@@ -50,7 +50,7 @@ class CoreFactory {
             this.apiResponseService = CoreFactory.apiResponseService = new ApiResponseService();
         }
         if (objectHelper.isNull(CoreFactory.ApiExecutionerService)) {
-            this.ApiExecutionerService = ApiExecutionerService;
+            this.ApiExecutionerService = CoreFactory.ApiExecutionerService = ApiExecutionerService;
         }
         if (objectHelper.isNull(CoreFactory.JsLizerExecutor)) {
             this.JsLizerExecutor = CoreFactory.JsLizerExecutor = JsLizerExecutor;
