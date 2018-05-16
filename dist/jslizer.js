@@ -5884,6 +5884,9 @@ var CoreFactory = function () {
             if (objectHelper.isNull(CoreFactory.ApiExecutionerService)) {
                 this.ApiExecutionerService = CoreFactory.ApiExecutionerService = _apiExecutionerService2.default;
             }
+            if (objectHelper.isNull(CoreFactory.apiExecutionerService)) {
+                this.apiExecutionerService = CoreFactory.apiExecutionerService = new _apiExecutionerService2.default();
+            }
             if (objectHelper.isNull(CoreFactory.JsLizerExecutor)) {
                 this.JsLizerExecutor = CoreFactory.JsLizerExecutor = _executor2.default;
             }

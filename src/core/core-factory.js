@@ -52,6 +52,9 @@ class CoreFactory {
         if (objectHelper.isNull(CoreFactory.ApiExecutionerService)) {
             this.ApiExecutionerService = CoreFactory.ApiExecutionerService = ApiExecutionerService;
         }
+        if (objectHelper.isNull(CoreFactory.apiExecutionerService)) {
+            this.apiExecutionerService = CoreFactory.apiExecutionerService = new ApiExecutionerService();
+        }
         if (objectHelper.isNull(CoreFactory.JsLizerExecutor)) {
             this.JsLizerExecutor = CoreFactory.JsLizerExecutor = JsLizerExecutor;
         }
