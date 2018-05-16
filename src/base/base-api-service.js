@@ -24,7 +24,7 @@ class BaseApiService {
     }
 
     _genericApiExecutionOperations() {
-        this.apiExecutionerService = new CoreFactory.ApiExecutionerService();
+        this.apiExecutionerService = CoreFactory.apiExecutionerService;
         if (CoreFactory.objectHelper.isNotNull(this.apiExecutionOperations)) {
             this.apiExecutionOperations();
         }
