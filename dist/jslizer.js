@@ -32842,8 +32842,10 @@ var ApiResponseService = function () {
                 var key;
                 for (key in data) {
                     data[key] = this._dataPostProcessing(data[key]);
-                    if (key.includes('_view_link') === true && data[key].indexOf('/') === 0) {
-                        data[key] = this._processImageUrls(data[key]);
+                    if (_coreFactory2.default.isNotNull(data, key)) {
+                        if (key.includes('_view_link') === true && data[key].indexOf('/') === 0) {
+                            data[key] = this._processImageUrls(data[key]);
+                        }
                     }
                 }
             }
