@@ -10,7 +10,7 @@ class BaseAngularController extends BaseController {
 
     apiResponseOperations(runDigestCycle = true) {
         if (runDigestCycle && CoreFactory.objectHelper.isNotNull(this, 'scope')) {
-            this.scope.$apply();
+            this.scope.$digest();
         } else if (CoreFactory.objectHelper.isNull(this, 'scope')) {
             throw new CoreFactory.DeveloperError(CoreFactory, 'core_base_angular_ctrl_1');
         }
