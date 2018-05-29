@@ -19,6 +19,11 @@ class BaseAngularController extends BaseController {
         }
     }
 
+    doSearch(methodName) {
+        this.searchQuery = this.buildSearchQueryString(this.searchFields, this.searchTerm);
+        this[methodName](this.searchQuery);
+    }
+
 }
 
 export default BaseAngularController;
