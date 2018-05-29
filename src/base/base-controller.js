@@ -192,6 +192,19 @@ class BaseController {
         promise = params.service.destory(params.uuid);
         this._bindSubscriber(params, promise, cbfn);
     }
+
+    buildSearchQueryString(searchFields, searchTerm) {
+        let len, orQuery, searchQuery;
+        len = searchFields.length;
+        orQuery = {};
+        for (let i = 0; i < len; i++) {
+            orQuery[searchFields[i] + CoreFactory.systemSettings.SEARCH_QUERY_FILTER_OPERATOR] = searchTerm;
+        }
+        orQuery = JSON.stringify(orQuery);
+        searchQuery = {};
+        searchQuery[CoreFactory.systemSettings.SEARCH_QUERY_KEY] = orQuery;
+        return searchQuery;
+    }
 }
 
 export default BaseController;

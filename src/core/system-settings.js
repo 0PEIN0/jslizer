@@ -28,6 +28,8 @@ class SystemSettings {
         this.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME = 'status_code';
         this.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME = 'results';
         this.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME = 'schema';
+        this.SEARCH_QUERY_FILTER_OPERATOR = '';
+        this.SEARCH_QUERY_KEY = 'search_query';
         this.loadProjectLocalSettings(this, projectSystemSettings);
         this.setEnvironmentRelatedValues();
     }
