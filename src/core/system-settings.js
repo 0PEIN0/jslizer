@@ -30,6 +30,7 @@ class SystemSettings {
         this.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME = 'schema';
         this.SEARCH_QUERY_FILTER_OPERATOR = '';
         this.SEARCH_QUERY_KEY = 'search_query';
+        this.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD = 'total_count';
         this.loadProjectLocalSettings(this, projectSystemSettings);
         this.setEnvironmentRelatedValues();
     }

@@ -10211,6 +10211,25 @@ var BaseController = function () {
             promise = params.service.destory(params.uuid);
             this._bindSubscriber(params, promise, cbfn);
         }
+    }, {
+        key: 'buildSearchQueryString',
+        value: function buildSearchQueryString(searchFields, searchTerm) {
+            var len = void 0,
+                orQuery = void 0,
+                searchQuery = void 0;
+            searchQuery = {};
+            if (_coreFactory2.default.objectHelper.isNull(searchTerm) || _coreFactory2.default.objectHelper.isEmpty(searchTerm)) {
+                return searchQuery;
+            }
+            len = searchFields.length;
+            orQuery = {};
+            for (var i = 0; i < len; i++) {
+                orQuery[searchFields[i] + _coreFactory2.default.systemSettings.SEARCH_QUERY_FILTER_OPERATOR] = searchTerm;
+            }
+            orQuery = JSON.stringify(orQuery);
+            searchQuery[_coreFactory2.default.systemSettings.SEARCH_QUERY_KEY] = orQuery;
+            return searchQuery;
+        }
     }]);
 
     return BaseController;
@@ -32012,6 +32031,9 @@ var SystemSettings = function () {
         this.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME = 'status_code';
         this.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME = 'results';
         this.SYSTEM_DEFAULT_SCHEMA_OBJECT_KEY_NAME = 'schema';
+        this.SEARCH_QUERY_FILTER_OPERATOR = '';
+        this.SEARCH_QUERY_KEY = 'search_query';
+        this.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD = 'total_count';
         this.loadProjectLocalSettings(this, projectSystemSettings);
         this.setEnvironmentRelatedValues();
     }
@@ -32866,6 +32888,9 @@ var ApiResponseService = function () {
                 results = response;
             } else {
                 results = response[_coreFactory2.default.systemSettings.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME];
+            }
+            if (_coreFactory2.default.objectHelper.isNotNull(response, _coreFactory2.default.systemSettings.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD)) {
+                finalResult[_coreFactory2.default.systemSettings.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD] = response[_coreFactory2.default.systemSettings.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD];
             }
             results = this._dataPostProcessing(results);
             if (_coreFactory2.default.objectHelper.isNull(response, _coreFactory2.default.systemSettings.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME) || validStatusCodes.includes(response[_coreFactory2.default.systemSettings.GENERIC_API_RESPONSE_STATUS_CODE_KEY_NAME])) {
@@ -44425,13 +44450,25 @@ var BaseAngularController = function (_BaseController) {
             var runDigestCycle = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
             if (runDigestCycle && _coreFactory2.default.objectHelper.isNotNull(this, 'scope')) {
-                this.scope.$apply();
+                this.scope.$digest();
             } else if (_coreFactory2.default.objectHelper.isNull(this, 'scope')) {
                 throw new _coreFactory2.default.DeveloperError(_coreFactory2.default, 'core_base_angular_ctrl_1');
             }
             if (_coreFactory2.default.objectHelper.isNotNull(this, 'loadingController')) {
                 this.loadingController.hide();
             }
+        }
+    }, {
+        key: 'doSearch',
+        value: function doSearch(methodName) {
+            if (_coreFactory2.default.objectHelper.isNull(methodName)) {
+                return;
+            }
+            this.searchQuery = this.buildSearchQueryString(this.searchFields, this.searchTerm);
+            if (_coreFactory2.default.objectHelper.isNotNull(this, 'filterQuery')) {
+                Object.assign(this.searchQuery, this.filterQuery);
+            }
+            this[methodName](this.searchQuery);
         }
     }]);
 
