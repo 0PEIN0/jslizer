@@ -20,7 +20,13 @@ class BaseAngularController extends BaseController {
     }
 
     doSearch(methodName) {
+        if (CoreFactory.objectHelper.isNull(methodName)) {
+            return;
+        }
         this.searchQuery = this.buildSearchQueryString(this.searchFields, this.searchTerm);
+        if (CoreFactory.objectHelper.isNotNull(this, 'filterQuery')) {
+            Object.assign(this.searchQuery, this.filterQuery);
+        }
         this[methodName](this.searchQuery);
     }
 

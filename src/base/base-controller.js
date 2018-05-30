@@ -195,13 +195,16 @@ class BaseController {
 
     buildSearchQueryString(searchFields, searchTerm) {
         let len, orQuery, searchQuery;
+        searchQuery = {};
+        if (CoreFactory.objectHelper.isNull(searchTerm) || CoreFactory.objectHelper.isEmpty(searchTerm)) {
+            return searchQuery;
+        }
         len = searchFields.length;
         orQuery = {};
         for (let i = 0; i < len; i++) {
             orQuery[searchFields[i] + CoreFactory.systemSettings.SEARCH_QUERY_FILTER_OPERATOR] = searchTerm;
         }
         orQuery = JSON.stringify(orQuery);
-        searchQuery = {};
         searchQuery[CoreFactory.systemSettings.SEARCH_QUERY_KEY] = orQuery;
         return searchQuery;
     }
