@@ -31,6 +31,8 @@ class SystemSettings {
         this.SEARCH_QUERY_FILTER_OPERATOR = '';
         this.SEARCH_QUERY_KEY = 'search_query';
         this.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD = 'total_count';
+        this.PAGE_SIZE_LIST = [10, 25, 50];
+        this.DEFAULT_PAGE_SIZE = 10;
         this.loadProjectLocalSettings(this, projectSystemSettings);
         this.setEnvironmentRelatedValues();
     }
