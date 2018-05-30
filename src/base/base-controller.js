@@ -1,8 +1,14 @@
 import CoreFactory from './../core/core-factory';
 
 class BaseController {
-
-    constructor() {}
+    constructor() {
+        this.pageCount = 1;
+        this.pageList = [];
+        this.pageSize = CoreFactory.systemSettings.PAGE_SIZE_LIST;
+        this.selectedPage = 1;
+        this.selectedPageSize = CoreFactory.systemSettings.DEFAULT_PAGE_SIZE;
+        this.computePaginationQuery();
+    }
 
     _baseParamInitializer(params) {
         if (CoreFactory.objectHelper.isNull(params.service)) {
@@ -207,6 +213,49 @@ class BaseController {
         orQuery = JSON.stringify(orQuery);
         searchQuery[CoreFactory.systemSettings.SEARCH_QUERY_KEY] = orQuery;
         return searchQuery;
+    }
+
+    calculatePagination(response) {
+        let total;
+        total = response[CoreFactory.systemSettings.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD];
+        this.pageCount = Math.ceil(total / this.selectedPageSize * 1.0);
+        this.pageList = [];
+        for (let i = 1; i <= this.pageCount; i++) {
+            this.pageList.push(i + '');
+        }
+    }
+
+    computePaginationQuery() {
+        this.paginationQuery = {};
+        if (CoreFactory.objectHelper.isNotNull(this, 'selectedPageSize')) {
+            this.paginationQuery['page_size'] = this.selectedPageSize;
+        }
+        if (CoreFactory.objectHelper.isNotNull(this, 'selectedPage')) {
+            this.paginationQuery['page'] = this.selectedPage;
+        }
+    }
+
+    paginationChanged(methodName) {
+        this.computePaginationQuery();
+        this.doSearch(methodName);
+    }
+
+    prevPage(methodName) {
+        this.selectedPage--;
+        if (this.selectedPage < 1) {
+            this.selectedPage = 1;
+        } else {
+            this.paginationChanged(methodName);
+        }
+    }
+
+    nextPage(methodName) {
+        this.selectedPage++;
+        if (this.selectedPage > this.pageList.length - 1) {
+            this.selectedPage = this.pageList[this.pageList.length - 1];
+        } else {
+            this.paginationChanged(methodName);
+        }
     }
 }
 

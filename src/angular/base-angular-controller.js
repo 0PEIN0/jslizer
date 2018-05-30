@@ -5,6 +5,12 @@ class BaseAngularController extends BaseController {
 
     constructor(loadingController = null) {
         super();
+        if (CoreFactory.objectHelper.isNull(this, 'filterQuery')) {
+            this.filterQuery = {}
+        }
+        if (CoreFactory.objectHelper.isNull(this, 'paginationQuery')) {
+            this.paginationQuery = {}
+        }
         this.loadingController = loadingController;
     }
 
@@ -26,6 +32,9 @@ class BaseAngularController extends BaseController {
         this.searchQuery = this.buildSearchQueryString(this.searchFields, this.searchTerm);
         if (CoreFactory.objectHelper.isNotNull(this, 'filterQuery')) {
             Object.assign(this.searchQuery, this.filterQuery);
+        }
+        if (CoreFactory.objectHelper.isNotNull(this, 'paginationQuery')) {
+            Object.assign(this.searchQuery, this.paginationQuery);
         }
         this[methodName](this.searchQuery);
     }
