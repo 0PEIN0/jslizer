@@ -38,7 +38,7 @@ class ApiResponseService {
         } else {
             results = response[CoreFactory.systemSettings.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME];
         }
-        if (CoreFactory.objectHelper.isNotNull(response, CoreFactory.systemSettings.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD)) {
+        if (CoreFactory.objectHelper.isNotNull(response, CoreFactory.systemSettings.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD) && CoreFactory.objectHelper.isNotNull(response[CoreFactory.systemSettings.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD])) {
             finalResult[CoreFactory.systemSettings.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD] = response[CoreFactory.systemSettings.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD];
         }
         results = this._dataPostProcessing(results);

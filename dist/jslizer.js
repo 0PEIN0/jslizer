@@ -32889,7 +32889,7 @@ var ApiResponseService = function () {
             } else {
                 results = response[_coreFactory2.default.systemSettings.GENERIC_API_RESPONSE_SUCCESS_RESULT_KEY_NAME];
             }
-            if (_coreFactory2.default.objectHelper.isNotNull(response, _coreFactory2.default.systemSettings.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD)) {
+            if (_coreFactory2.default.objectHelper.isNotNull(response, _coreFactory2.default.systemSettings.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD) && _coreFactory2.default.objectHelper.isNotNull(response[_coreFactory2.default.systemSettings.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD])) {
                 finalResult[_coreFactory2.default.systemSettings.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD] = response[_coreFactory2.default.systemSettings.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD];
             }
             results = this._dataPostProcessing(results);
