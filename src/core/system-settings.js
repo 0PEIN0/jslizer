@@ -33,6 +33,8 @@ class SystemSettings {
         this.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD = 'total_count';
         this.PAGE_SIZE_LIST = [10, 25, 50];
         this.DEFAULT_PAGE_SIZE = 10;
+        this.PAGE_SIZE_FIELD_KEY = 'page_size';
+        this.PAGE_NUMBER_FIELD_KEY = 'page';
         this.loadProjectLocalSettings(this, projectSystemSettings);
         this.setEnvironmentRelatedValues();
     }
