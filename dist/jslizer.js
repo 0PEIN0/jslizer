@@ -9988,6 +9988,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var BaseController = function () {
     function BaseController() {
         _classCallCheck(this, BaseController);
+
+        this.pageCount = 1;
+        this.pageList = [];
+        this.pageSize = _coreFactory2.default.systemSettings.PAGE_SIZE_LIST;
+        this.selectedPage = 1;
+        this.selectedPageSize = _coreFactory2.default.systemSettings.DEFAULT_PAGE_SIZE;
+        this.computePaginationQuery();
     }
 
     _createClass(BaseController, [{
@@ -10229,6 +10236,80 @@ var BaseController = function () {
             orQuery = JSON.stringify(orQuery);
             searchQuery[_coreFactory2.default.systemSettings.SEARCH_QUERY_KEY] = orQuery;
             return searchQuery;
+        }
+    }, {
+        key: 'calculatePagination',
+        value: function calculatePagination(response) {
+            var total = void 0;
+            total = response[_coreFactory2.default.systemSettings.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD];
+            this.pageCount = Math.ceil(total / this.selectedPageSize * 1.0);
+            this.pageList = [];
+            for (var i = 1; i <= this.pageCount; i++) {
+                this.pageList.push(i + '');
+            }
+        }
+    }, {
+        key: 'searchTermChanged',
+        value: function searchTermChanged(methodName) {
+            if (_coreFactory2.default.objectHelper.isNull(methodName)) {
+                return;
+            }
+            this.selectedPage = 1;
+            this.selectedPageSize = _coreFactory2.default.systemSettings.DEFAULT_PAGE_SIZE;
+            this.computePaginationQuery();
+            this.buildAllQueryStrings(methodName);
+        }
+    }, {
+        key: 'buildAllQueryStrings',
+        value: function buildAllQueryStrings(methodName) {
+            if (_coreFactory2.default.objectHelper.isNull(methodName)) {
+                return;
+            }
+            var searchQuery = this.buildSearchQueryString(this.searchFields, this.searchTerm);
+            if (_coreFactory2.default.objectHelper.isNotNull(this, 'filterQuery')) {
+                Object.assign(searchQuery, this.filterQuery);
+            }
+            if (_coreFactory2.default.objectHelper.isNotNull(this, 'paginationQuery')) {
+                Object.assign(searchQuery, this.paginationQuery);
+            }
+            this[methodName](searchQuery);
+        }
+    }, {
+        key: 'computePaginationQuery',
+        value: function computePaginationQuery() {
+            this.paginationQuery = {};
+            if (_coreFactory2.default.objectHelper.isNotNull(this, 'selectedPageSize')) {
+                this.paginationQuery[_coreFactory2.default.systemSettings.PAGE_SIZE_FIELD_KEY] = this.selectedPageSize;
+            }
+            if (_coreFactory2.default.objectHelper.isNotNull(this, 'selectedPage')) {
+                this.paginationQuery[_coreFactory2.default.systemSettings.PAGE_NUMBER_FIELD_KEY] = this.selectedPage;
+            }
+        }
+    }, {
+        key: 'paginationChanged',
+        value: function paginationChanged(methodName) {
+            this.computePaginationQuery();
+            this.buildAllQueryStrings(methodName);
+        }
+    }, {
+        key: 'prevPage',
+        value: function prevPage(methodName) {
+            this.selectedPage--;
+            if (this.selectedPage < 1) {
+                this.selectedPage = 1;
+            } else {
+                this.paginationChanged(methodName);
+            }
+        }
+    }, {
+        key: 'nextPage',
+        value: function nextPage(methodName) {
+            this.selectedPage++;
+            if (this.selectedPage > this.pageList.length - 1) {
+                this.selectedPage = this.pageList[this.pageList.length - 1];
+            } else {
+                this.paginationChanged(methodName);
+            }
         }
     }]);
 
@@ -32034,6 +32115,10 @@ var SystemSettings = function () {
         this.SEARCH_QUERY_FILTER_OPERATOR = '';
         this.SEARCH_QUERY_KEY = 'search_query';
         this.GENERIC_LISTING_API_RESPONSE_COUNT_FIELD = 'total_count';
+        this.PAGE_SIZE_LIST = [10, 25, 50];
+        this.DEFAULT_PAGE_SIZE = 10;
+        this.PAGE_SIZE_FIELD_KEY = 'page_size';
+        this.PAGE_NUMBER_FIELD_KEY = 'page';
         this.loadProjectLocalSettings(this, projectSystemSettings);
         this.setEnvironmentRelatedValues();
     }
@@ -44440,6 +44525,12 @@ var BaseAngularController = function (_BaseController) {
 
         var _this = _possibleConstructorReturn(this, (BaseAngularController.__proto__ || Object.getPrototypeOf(BaseAngularController)).call(this));
 
+        if (_coreFactory2.default.objectHelper.isNull(_this, 'filterQuery')) {
+            _this.filterQuery = {};
+        }
+        if (_coreFactory2.default.objectHelper.isNull(_this, 'paginationQuery')) {
+            _this.paginationQuery = {};
+        }
         _this.loadingController = loadingController;
         return _this;
     }
@@ -44457,18 +44548,6 @@ var BaseAngularController = function (_BaseController) {
             if (_coreFactory2.default.objectHelper.isNotNull(this, 'loadingController')) {
                 this.loadingController.hide();
             }
-        }
-    }, {
-        key: 'doSearch',
-        value: function doSearch(methodName) {
-            if (_coreFactory2.default.objectHelper.isNull(methodName)) {
-                return;
-            }
-            this.searchQuery = this.buildSearchQueryString(this.searchFields, this.searchTerm);
-            if (_coreFactory2.default.objectHelper.isNotNull(this, 'filterQuery')) {
-                Object.assign(this.searchQuery, this.filterQuery);
-            }
-            this[methodName](this.searchQuery);
         }
     }]);
 
