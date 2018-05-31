@@ -1,6 +1,7 @@
 import CoreFactory from './../core/core-factory';
 
 class BaseController {
+
     constructor() {
         this.pageCount = 1;
         this.pageList = [];
@@ -225,19 +226,43 @@ class BaseController {
         }
     }
 
+    searchTermChanged(methodName) {
+        if (CoreFactory.objectHelper.isNull(methodName)) {
+            return;
+        }
+        this.selectedPage = 1;
+        this.selectedPageSize = CoreFactory.systemSettings.DEFAULT_PAGE_SIZE;
+        this.computePaginationQuery();
+        this.buildAllQueryStrings(methodName);
+    }
+
+    buildAllQueryStrings(methodName) {
+        if (CoreFactory.objectHelper.isNull(methodName)) {
+            return;
+        }
+        let searchQuery = this.buildSearchQueryString(this.searchFields, this.searchTerm);
+        if (CoreFactory.objectHelper.isNotNull(this, 'filterQuery')) {
+            Object.assign(searchQuery, this.filterQuery);
+        }
+        if (CoreFactory.objectHelper.isNotNull(this, 'paginationQuery')) {
+            Object.assign(searchQuery, this.paginationQuery);
+        }
+        this[methodName](searchQuery);
+    }
+
     computePaginationQuery() {
         this.paginationQuery = {};
         if (CoreFactory.objectHelper.isNotNull(this, 'selectedPageSize')) {
-            this.paginationQuery['page_size'] = this.selectedPageSize;
+            this.paginationQuery[CoreFactory.systemSettings.PAGE_SIZE_FIELD_KEY] = this.selectedPageSize;
         }
         if (CoreFactory.objectHelper.isNotNull(this, 'selectedPage')) {
-            this.paginationQuery['page'] = this.selectedPage;
+            this.paginationQuery[CoreFactory.systemSettings.PAGE_NUMBER_FIELD_KEY] = this.selectedPage;
         }
     }
 
     paginationChanged(methodName) {
         this.computePaginationQuery();
-        this.doSearch(methodName);
+        this.buildAllQueryStrings(methodName);
     }
 
     prevPage(methodName) {
