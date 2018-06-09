@@ -43,6 +43,7 @@ A library to perform automated form validation, api calls, form error bindings. 
 1. Raw javascript code.
 2. [Vue](https://vuejs.org/v2/guide/) `2.5.13`.
 3. [Angular 1](https://docs.angularjs.org/tutorial) `1.6.6`.
+4. [React](https://reactjs.org/docs/hello-world.html) `16.2.0`
 
 ### Other alternative projects that inspired this repository
 1. [Joi](https://github.com/hapijs/joi) by [The hapi.js node framework](https://github.com/hapijs/).
