@@ -282,6 +282,22 @@ class BaseController {
             this.paginationChanged(methodName);
         }
     }
+
+    getSelectedPage() {
+        if (CoreFactory.objectHelper.isNotNull(this.selectedPage)) {
+            return this.selectedPage;
+        } else {
+            return 1;
+        }
+    }
+
+    getSelectedPageSize() {
+        if (CoreFactory.objectHelper.isNotNull(this.selectedPageSize)) {
+            return this.selectedPageSize;
+        } else {
+            return CoreFactory.systemSettings.DEFAULT_PAGE_SIZE;
+        }
+    }
 }
 
 export default BaseController;
