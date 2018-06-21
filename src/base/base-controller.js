@@ -71,7 +71,7 @@ class BaseController {
             results[CoreFactory.jsLizerConfig.FIELD_VALUE] = schemaResult[CoreFactory.jsLizerConfig.FIELD_VALUE];
             results[CoreFactory.jsLizerConfig.FIELD_ERROR] = schemaResult[CoreFactory.jsLizerConfig.FIELD_ERROR];
             results[CoreFactory.jsLizerConfig.FIELD_HAS_ERROR] = true;
-            cbfn(results);
+            cbfn(results, null);
         }
     }
 
@@ -95,11 +95,11 @@ class BaseController {
             }
             if (CoreFactory.objectHelper.isNotNull(cbfn)) {
                 var results = CoreFactory.apiResponseService.genericHandler(params, data);
-                cbfn(results);
+                cbfn(results, data);
             }
         }, errObj => {
             this._processGenericErrorResponse(errObj, params);
-            cbfn(this._processServerErrorResponse(params));
+            cbfn(this._processServerErrorResponse(params), null);
         });
     }
 

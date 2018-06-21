@@ -10065,7 +10065,7 @@ var BaseController = function () {
                 results[_coreFactory2.default.jsLizerConfig.FIELD_VALUE] = schemaResult[_coreFactory2.default.jsLizerConfig.FIELD_VALUE];
                 results[_coreFactory2.default.jsLizerConfig.FIELD_ERROR] = schemaResult[_coreFactory2.default.jsLizerConfig.FIELD_ERROR];
                 results[_coreFactory2.default.jsLizerConfig.FIELD_HAS_ERROR] = true;
-                cbfn(results);
+                cbfn(results, null);
             }
         }
     }, {
@@ -10095,11 +10095,11 @@ var BaseController = function () {
                 }
                 if (_coreFactory2.default.objectHelper.isNotNull(cbfn)) {
                     var results = _coreFactory2.default.apiResponseService.genericHandler(params, data);
-                    cbfn(results);
+                    cbfn(results, data);
                 }
             }, function (errObj) {
                 _this._processGenericErrorResponse(errObj, params);
-                cbfn(_this._processServerErrorResponse(params));
+                cbfn(_this._processServerErrorResponse(params), null);
             });
         }
     }, {
@@ -10309,6 +10309,24 @@ var BaseController = function () {
                 this.selectedPage = this.pageList[this.pageList.length - 1];
             } else {
                 this.paginationChanged(methodName);
+            }
+        }
+    }, {
+        key: 'getSelectedPage',
+        value: function getSelectedPage() {
+            if (_coreFactory2.default.objectHelper.isNotNull(this.selectedPage)) {
+                return this.selectedPage;
+            } else {
+                return 1;
+            }
+        }
+    }, {
+        key: 'getSelectedPageSize',
+        value: function getSelectedPageSize() {
+            if (_coreFactory2.default.objectHelper.isNotNull(this.selectedPageSize)) {
+                return this.selectedPageSize;
+            } else {
+                return _coreFactory2.default.systemSettings.DEFAULT_PAGE_SIZE;
             }
         }
     }]);
