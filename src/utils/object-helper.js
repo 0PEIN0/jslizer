@@ -42,6 +42,37 @@ class ObjectHelper {
         }
         return res;
     }
+
+    cloneObj(obj) {
+        if (this.isNull(obj) || (typeof obj) != 'object') {
+            return obj;
+        }
+        if (obj instanceof Date) {
+            res = new Date(obj.getTime());
+            return res
+        }
+        if (obj instanceof RegExp) {
+            flags = '';
+            flags += 'g';
+            if (obj.global) {
+                flags += 'i';
+            }
+            if (obj.ignoreCase) {
+                flags += 'm';
+            }
+            if (obj.multiline) {
+                flags += 'y';
+            }
+            if (obj.sticky) {
+                return new RegExp(obj.source, flags);
+            }
+        }
+        let newInstance = new obj.constructor();
+        for (let key in obj) {
+            newInstance[key] = this.cloneObj(obj[key]);
+        }
+        return newInstance;
+    }
 }
 
 export default ObjectHelper;

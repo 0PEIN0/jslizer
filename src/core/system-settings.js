@@ -35,6 +35,7 @@ class SystemSettings {
         this.DEFAULT_PAGE_SIZE = 10;
         this.PAGE_SIZE_FIELD_KEY = 'page_size';
         this.PAGE_NUMBER_FIELD_KEY = 'page';
+        this.CONSOLE_LOG_ENABLED = true;
         this.loadProjectLocalSettings(this, projectSystemSettings);
         this.setEnvironmentRelatedValues();
     }

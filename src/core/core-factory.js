@@ -8,6 +8,7 @@ import StorageHandler from './../utils/storage-handler';
 import ErrorMessage from './../error/error-message'
 import ApiResponseService from './../api/api-response-service';
 import ApiExecutionerService from './../api/api-executioner-service';
+import BasicLogger from './../logger/basic-logger';
 import {
     ValidationError,
     JsLizerError,
@@ -81,6 +82,9 @@ class CoreFactory {
         }
         if (objectHelper.isNull(CoreFactory.errorMessage)) {
             this.errorMessage = CoreFactory.errorMessage = new ErrorMessage(CoreFactory.objectHelper, CoreFactory.systemSettings, CoreFactory.DeveloperError);
+        }
+        if (objectHelper.isNull(CoreFactory.basicLogger)) {
+            this.basicLogger = CoreFactory.basicLogger = new BasicLogger(CoreFactory.systemSettings);
         }
     }
 }
