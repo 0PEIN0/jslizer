@@ -11,4 +11,4 @@ class BasicLogger {
     }
 }
 
-export default ObjectHelper;
+export default BasicLogger;

@@ -33253,7 +33253,7 @@ var BasicLogger = function () {
     return BasicLogger;
 }();
 
-exports.default = ObjectHelper;
+exports.default = BasicLogger;
 
 /***/ }),
 /* 306 */
