@@ -10106,7 +10106,7 @@ var BaseController = function () {
                 }
             }, function (errObj) {
                 _this._processGenericErrorResponse(errObj, params);
-                cbfn(_this._processServerErrorResponse(params), null);
+                cbfn(_this._processServerErrorResponse(params), errObj);
             });
         }
     }, {

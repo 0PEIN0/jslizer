@@ -99,7 +99,7 @@ class BaseController {
             }
         }, errObj => {
             this._processGenericErrorResponse(errObj, params);
-            cbfn(this._processServerErrorResponse(params), null);
+            cbfn(this._processServerErrorResponse(params), errObj);
         });
     }
 
