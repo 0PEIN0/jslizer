@@ -276,7 +276,7 @@ class BaseController {
 
     nextPage(methodName) {
         this.selectedPage++;
-        if (this.selectedPage > this.pageList.length - 1) {
+        if (this.selectedPage > this.pageList.length) {
             this.selectedPage = this.pageList[this.pageList.length - 1];
         } else {
             this.paginationChanged(methodName);
