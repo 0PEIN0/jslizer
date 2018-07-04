@@ -33099,7 +33099,7 @@ var ApiExecutionerService = function () {
             return _Observable.Observable.fromPromise(new Promise(function (resolve, reject) {
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4) {
+                    if (xhr.readyState === 4 && xhr.status > 0) {
                         var response = JSON.parse(xhr.response);
                         if (xhr.status === 200 || xhr.status === 201) {
                             resolve(response);
