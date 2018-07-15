@@ -40,7 +40,6 @@ function getDefaultConfig() {
         ],
         optimization: {
             minimizer: [
-                // we specify a custom UglifyJsPlugin here to get source maps in production
                 new UglifyJsPlugin({
                     cache: false,
                     parallel: true,
