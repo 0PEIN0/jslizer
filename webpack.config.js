@@ -2,39 +2,17 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const srcDir = path.resolve(__dirname, 'src')
 const distDir = path.resolve(__dirname, 'dist')
 const env = process.env.WEBPACK_ENV;
 
-function loadDefaultPlugins() {
-    var plugins = [];
-    plugins.push(
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify(env)
-        })
-    );
-    return plugins;
-}
-
-function loadProductionPlugins(plugins) {
-    plugins.push(
-        new webpack.optimize.UglifyJsPlugin({
-            compressor: {
-                pure_getters: true,
-                unsafe: true,
-                unsafe_comps: true,
-                warnings: false
-            }
-        })
-    );
-    return plugins;
-}
-
 function getDefaultConfig() {
     return {
         entry: './index.js',
         devtool: 'source-map',
+        mode: env,
         output: {
             filename: 'jslizer.js',
             path: distDir,
@@ -45,7 +23,7 @@ function getDefaultConfig() {
             umdNamedDefine: true
         },
         module: {
-            loaders: [{
+            rules: [{
                 test: /\.js$/,
                 loader: 'babel-loader',
                 query: {
@@ -54,16 +32,30 @@ function getDefaultConfig() {
                 exclude: path.resolve(__dirname, "./node_modules"),
                 include: srcDir
             }]
+        },
+        plugins: [
+            new webpack.DefinePlugin({
+                'process.env.NODE_ENV': JSON.stringify(env)
+            })
+        ],
+        optimization: {
+            minimizer: [
+                // we specify a custom UglifyJsPlugin here to get source maps in production
+                new UglifyJsPlugin({
+                    cache: false,
+                    parallel: true,
+                    uglifyOptions: {
+                        compress: true,
+                        ecma: 8,
+                        mangle: false,
+                    },
+                    sourceMap: true,
+                })
+            ]
         }
     };
 }
 
 const config = getDefaultConfig();
-var minConfig = getDefaultConfig();
-minConfig.output.filename = 'jslizer.min.js';
-minConfig.output.sourceMapFilename = 'jslizer.min.map';
-config.plugins = loadDefaultPlugins();
-minConfig.plugins = loadDefaultPlugins();
-minConfig.plugins = loadProductionPlugins(minConfig.plugins);
 //TODO: add `minConfig` variable in the array below after the bugs are resolved.
 module.exports = [config];
