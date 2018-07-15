@@ -27,7 +27,7 @@ function getDefaultConfig() {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ['es2015']
+                    presets: ['es2016']
                 },
                 exclude: path.resolve(__dirname, "./node_modules"),
                 include: srcDir
